@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import AddToCalendar from '../components/AddToCalendar'
 import { formatAs } from '../utils/formatDate'
 
@@ -27,7 +28,9 @@ const Index = () => {
         </h2>
         <p>
           Why not see it at{' '}
-          <a href={`/cinema/${showtime.cinema.id}`}>{showtime.cinema.name}</a>{' '}
+          <Link to={`/cinema/${showtime.cinema.id}`}>
+            {showtime.cinema.name}
+          </Link>{' '}
           at <strong>{formatAs.time(showtime.startTime)}</strong>
           on <strong>{formatAs.date(showtime.startTime)}</strong>?
           <AddToCalendar showtime={showtime} />

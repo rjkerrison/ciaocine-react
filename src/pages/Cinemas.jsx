@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { API_URL } from '../utils/consts'
 
 const Cinemas = () => {
@@ -25,7 +26,7 @@ const Cinemas = () => {
         {cinemas.map((cinema) => (
           <li className='cinema'>
             <h2>
-              <a href={`/cinema/${cinema._id}`}>{cinema.name}</a>
+              <Link to={`/cinema/${cinema._id}`}>{cinema.name}</Link>
             </h2>
 
             <div className='address'>
