@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { API_URL } from '../consts'
+import { API_URL } from '../utils/consts'
 
 const Cinemas = () => {
   const [cinemas, setCinemas] = useState([])
@@ -35,7 +35,7 @@ const Cinemas = () => {
               {/* {> favouriteCinema cinema=this liked=liked} */}
             </div>
             <ul className='member-card-list'>
-              {cinema?.member_cards?.map((card) => (
+              {cinema.member_cards?.map((card) => (
                 <li className='member-card' data-code={card.code}>
                   {card.label}
                 </li>

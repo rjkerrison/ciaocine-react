@@ -1,8 +1,6 @@
 import React from 'react'
 import AddToCalendar from '../components/AddToCalendar'
-
-const time = (a) => a.toString()
-const date = time
+import { formatAs } from '../utils/formatDate'
 
 const Index = () => {
   const appTitle = 'Ciaocine'
@@ -30,8 +28,8 @@ const Index = () => {
         <p>
           Why not see it at{' '}
           <a href={`/cinema/${showtime.cinema.id}`}>{showtime.cinema.name}</a>{' '}
-          at <strong>{time(showtime.startTime)}</strong>
-          on <strong>{date(showtime.startTime)}</strong>?
+          at <strong>{formatAs.time(showtime.startTime)}</strong>
+          on <strong>{formatAs.date(showtime.startTime)}</strong>?
           <AddToCalendar showtime={showtime} />
         </p>
         <picture>

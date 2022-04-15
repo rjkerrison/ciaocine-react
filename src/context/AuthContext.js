@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext } from 'react'
 import axios from 'axios'
-import { API_URL } from '../consts'
+import { API_URL } from '../utils/consts'
 
 const AuthContext = createContext()
 
@@ -43,6 +43,10 @@ function AuthProviderWrapper(props) {
         .catch((error) => {
           // If the server sends an error response (invalid token)
           // Update state variables
+          console.log({ error })
+          if (error.response.status === 401) {
+            removeToken()
+          }
           setIsLoggedIn(false)
           setIsLoading(false)
           setUser(null)
