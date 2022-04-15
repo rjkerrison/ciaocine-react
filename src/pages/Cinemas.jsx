@@ -1,6 +1,23 @@
-const Index = () => {
-  // to get from axios
-  const cinemas = []
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { API_URL } from '../consts'
+
+const Cinemas = () => {
+  const [cinemas, setCinemas] = useState([])
+
+  const getCinemas = async () => {
+    const {
+      data: { cinemas },
+    } = await axios({
+      baseURL: API_URL,
+      url: '/cinemas',
+    })
+    setCinemas(cinemas)
+  }
+
+  useEffect(() => {
+    getCinemas()
+  }, [])
 
   return (
     <section>
@@ -18,7 +35,7 @@ const Index = () => {
               {/* {> favouriteCinema cinema=this liked=liked} */}
             </div>
             <ul className='member-card-list'>
-              {cinema.memberCards.map((card) => (
+              {cinema?.member_cards?.map((card) => (
                 <li className='member-card' data-code={card.code}>
                   {card.label}
                 </li>
@@ -31,4 +48,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Cinemas
