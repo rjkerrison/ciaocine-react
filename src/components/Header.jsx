@@ -41,7 +41,7 @@ const Header = ({ pageTitle }) => {
       <div className='mobile-collapsible collapsed' id='main-nav'>
         <nav aria-label='main navigation'>
           <Link to='/'>Home</Link>
-          <Link to='/cinema'>Cinemas</Link>
+          <Link to='/cinemas'>Cinemas</Link>
           <Link to='/movies'>Movies</Link>
         </nav>
         <div className='account-header'>
