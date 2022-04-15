@@ -1,5 +1,5 @@
 import React from 'react'
-import MovieHeading from '../../components/MovieHeading'
+import MovieHeading from '../components/MovieHeading'
 
 const weekdaydate = (d) => d?.toString()
 
