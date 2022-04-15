@@ -26,6 +26,7 @@ const Movies = () => {
     { name: 'rive', type: 'switch', options: ['droite', 'gauche'] },
   ]
 
+  const [isLoading, setIsLoading] = useState(true)
   const [searchParams, setSearchParams] = useSearchParams()
   const [movies, setMovies] = useState([])
   const [date, setDate] = useState(new Date())
@@ -40,11 +41,13 @@ const Movies = () => {
     }
 
     console.log({ date, params }, 'LOADING======')
+    setIsLoading(true)
 
     const getMovies = async () => {
       const { movies } = await getData({ date, ...params })
       setMovies(movies)
       console.log({ date, params }, 'DONE')
+      setIsLoading(false)
     }
 
     getMovies()
@@ -79,17 +82,21 @@ const Movies = () => {
           />
         ))}
       </nav>
-      <div className='movies'>
-        {movies.map(({ movie, showtimes }) => (
-          <div
-            key={movie._id}
-            className='movie overlay-container expander-container'
-          >
-            <MovieHeading {...movie} />
-            <MovieShowtimes showtimes={showtimes} />
-          </div>
-        ))}
-      </div>
+      {isLoading ? (
+        <p>Loading</p>
+      ) : (
+        <div className='movies'>
+          {movies.map(({ movie, showtimes }) => (
+            <div
+              key={movie._id}
+              className='movie overlay-container expander-container'
+            >
+              <MovieHeading {...movie} />
+              <MovieShowtimes showtimes={showtimes} />
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   )
 }
