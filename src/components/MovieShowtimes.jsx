@@ -23,6 +23,7 @@ const MovieShowtimes = ({ showtimes }) => {
     const toHide = showtimes
       .slice(overflowLimit - 1)
       .map((s) => toHiddenShowtimeCard(s))
+
     return (
       <div
         className={`movie-showtimes expander-container ${
