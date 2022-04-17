@@ -35,10 +35,14 @@ const MoviePopup = ({ movieId, active, close }) => {
     }
   }, [active])
 
-  const collapseThenHide = () => {
+  const deactivate = () => {
     setClasses((c) => c.filter((a) => a !== 'active'))
-    const timeout = setTimeout(close, 500)
-    return () => clearTimeout(timeout)
+  }
+
+  const handleTransitionEnd = () => {
+    if (!classes.includes('active')) {
+      close()
+    }
   }
 
   if (!active || !movieInfo) {
@@ -46,7 +50,11 @@ const MoviePopup = ({ movieId, active, close }) => {
   }
 
   return (
-    <article className={classes.join(' ')} onClick={collapseThenHide}>
+    <article
+      className={classes.join(' ')}
+      onClick={deactivate}
+      onTransitionEnd={handleTransitionEnd}
+    >
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
@@ -59,12 +67,12 @@ const MoviePopup = ({ movieId, active, close }) => {
         <p>Released {formatAs.date(movieInfo.extra.release_date)}</p>
         <ul>
           {movieInfo.extra.crew.slice(0, 5).map(({ job, name, id }) => (
-            <li key={`${job} ${name}`}>
+            <li key={id + job}>
               {job}: {name}
             </li>
           ))}
         </ul>
-        <button onClick={collapseThenHide}>Close</button>
+        <button onClick={deactivate}>Close</button>
       </div>
     </article>
   )
