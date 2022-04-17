@@ -13,9 +13,9 @@ const ShowtimeCard = ({
       <h4>{formatAs.time(startTime)}</h4>
       {showDate && <p>{formatAs.dateMonth(startTime)}</p>}
       {cinema.name && (
-        <div class='overlay'>
+        <div className='overlay'>
           <AddToCalendar showtimeId={_id} />
-          <p class='extra-info'>
+          <p className='extra-info'>
             <span>{cinema.name}</span>
           </p>
         </div>

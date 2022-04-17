@@ -39,6 +39,7 @@ const FilterGroup = ({
           <ul className='movies-filters'>
             {options.map((option) => (
               <li
+                key={option}
                 className={[
                   className,
                   option === values[name] ? 'selected' : '',

@@ -2,8 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import FilterGroup from '../components/FilterGroup'
-import MovieHeading from '../components/MovieHeading'
-import MovieShowtimes from '../components/MovieShowtimes'
+import MoviePopup from '../components/movies/MoviePopup'
+import MovieShowtimeSummary from '../components/movies/MovieShowtimeSummary'
 import { API_URL } from '../utils/consts'
 import { formatAs } from '../utils/formatDate'
 
@@ -34,6 +34,15 @@ const Movies = () => {
     () => Object.fromEntries(searchParams.entries()),
     [searchParams]
   )
+  const [popupState, setPopupState] = useState({
+    active: false,
+    movieId: null,
+    close: () => setPopupState((ps) => ({ ...ps, active: false })),
+  })
+
+  const showMovieInPopup = (movieId) => {
+    setPopupState((ps) => ({ ...ps, active: true, movieId }))
+  }
 
   useEffect(() => {
     if (!date || !params) {
@@ -77,6 +86,7 @@ const Movies = () => {
         {filters.map((filter) => (
           <FilterGroup
             {...filter}
+            key={filter.name}
             updateFilter={updateFilter}
             values={params}
           />
@@ -86,17 +96,16 @@ const Movies = () => {
         <p>Loading</p>
       ) : (
         <div className='movies'>
-          {movies.map(({ movie, showtimes }) => (
-            <div
-              key={movie._id}
-              className='movie overlay-container expander-container'
-            >
-              <MovieHeading {...movie} />
-              <MovieShowtimes showtimes={showtimes} />
-            </div>
+          {movies.map((props) => (
+            <MovieShowtimeSummary
+              key={props.movie._id}
+              {...props}
+              show={showMovieInPopup}
+            />
           ))}
         </div>
       )}
+      <MoviePopup {...popupState} />
     </section>
   )
 }

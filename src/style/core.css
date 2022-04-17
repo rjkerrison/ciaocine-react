@@ -48,6 +48,8 @@ h4,
 h5,
 h6 {
   font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+  padding: 0;
 }
 
 picture {
@@ -62,16 +64,34 @@ picture img {
 
 button {
   font-size: 1.25rem;
-  color: var(--dark);
   padding: 0.25rem;
   margin: 0.125rem;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   transition: all 500ms;
   cursor: pointer;
+  color: var(--dark);
   background-color: var(--contrast);
   border: 1px solid var(--light);
   box-shadow: 0rem 0.5rem 0.5rem -0.25rem var(--button-shadow);
 }
+
+button.round {
+  border-radius: 50%;
+  color: var(--contrast);
+  background: none;
+  border: 0.125rem solid var(--contrast);
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+button.round:hover {
+  color: var(--dark);
+}
+
 button:hover {
   background-color: var(--button-hover-background);
   transform: translateY(-0.125rem);

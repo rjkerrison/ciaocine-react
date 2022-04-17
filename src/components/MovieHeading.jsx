@@ -1,7 +1,12 @@
-const MovieHeading = ({ title, poster }) => {
+const MovieHeading = ({ title, poster, _id, show }) => {
   return (
     <>
-      <h3 className='movie-heading'>{title}</h3>
+      <div className='movie-heading'>
+        <h3>{title}</h3>
+        <button className='round' onClick={() => show(_id)}>
+          i
+        </button>
+      </div>
       <picture className='poster'>
         <img src={poster} alt={title} />
       </picture>
