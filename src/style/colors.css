@@ -2,10 +2,12 @@
   --dark: #1c153a;
   --mid: #34276c;
   --light: #533ea7;
+  --light-half: #533ea780;
   --text: #e6e3f4;
   --link: #ff6969;
   --contrast: #ff6969;
   --contrast-dark: #cd3737;
+  --contrast-dark-half: #cd373780;
   --contrast-shadow: #ff696967;
 
   --splash-gradient-start: var(--dark);

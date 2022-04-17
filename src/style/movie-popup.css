@@ -24,10 +24,21 @@
   width: 100%;
   padding: 0;
   background-image: var(--backdrop-path),
-    linear-gradient(45deg, var(--light), var(--contrast));
-  background-position: center;
-  background-size: cover;
-  background-blend-mode: color-burn;
+    linear-gradient(45deg, var(--light-half), var(--contrast-dark-half));
+  background-blend-mode: color-dodge;
+  color: var(--dark);
+  background-position: top center;
+  background-size: contain;
+  background-size: 20% contain;
+  background-image: linear-gradient(transparent 1%, #f04e4ee0 15%),
+    var(--backdrop-path);
+  background-blend-mode: inherit;
+  background-repeat: no-repeat;
+  padding-top: 20%;
+  align-self: stretch;
+  justify-self: stretch;
+  font-size: 1.25rem;
+  overflow-y: scroll;
 }
 
 .movie-popup.active > div {
@@ -41,4 +52,18 @@
 }
 .movie-popup.active > div > * {
   display: block;
+}
+
+.movie-popup > div {
+  /* background-position: top center; */
+  /* background-size: contain; */
+  /* background-size: 20% contain; */
+  /* background-image: linear-gradient(transparent 1%, #f04e4ee0 15%), var(--backdrop-path); */
+  /* background-blend-mode: inherit; */
+  background-position: top center, 50% 0%, top center;
+  background-size: 100%, 95% 40%, auto 40%;
+  background-image: linear-gradient(var(--contrast) 1%, #f04e4e10 15%),
+    radial-gradient(transparent 0% 60%, black 70% 70%), var(--backdrop-path);
+  background-blend-mode: normal;
+  background-color: black;
 }
