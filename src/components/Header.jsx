@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 import ProfilePicture from './ProfilePicture'
 
-const AccountNav = ({ toggleOpen }) => (
+const AccountNav = ({ logOutUser }) => (
   <>
     <nav aria-label='account navigation'>
       <Link to='/calendar'>Calendar</Link>
-      <Link to='/auth/logout'>Logout</Link>
+      <button onClick={logOutUser}>Logout</button>
     </nav>
     <ProfilePicture />
   </>
@@ -23,7 +23,7 @@ const AnonymousNav = () => {
 }
 
 const Header = ({ pageTitle }) => {
-  const { isLoggedIn } = useContext(AuthContext)
+  const { isLoggedIn, logOutUser } = useContext(AuthContext)
   const [open, setOpen] = useState(false)
   const toggleOpen = () => setOpen(!open)
 
@@ -51,7 +51,11 @@ const Header = ({ pageTitle }) => {
           <Link to='/movies'>Movies</Link>
         </nav>
         <div className='account-header'>
-          {isLoggedIn ? <AccountNav /> : <AnonymousNav />}
+          {isLoggedIn ? (
+            <AccountNav logOutUser={logOutUser} />
+          ) : (
+            <AnonymousNav />
+          )}
         </div>
       </div>
     </header>

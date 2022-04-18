@@ -5,6 +5,8 @@ import { API_URL } from '../utils/consts'
 
 const Cinemas = () => {
   const [cinemas, setCinemas] = useState([])
+  const [filteredCinemas, setFilteredCinemas] = useState([])
+  const [query, setQuery] = useState('')
 
   const getCinemas = async () => {
     const {
@@ -20,10 +22,27 @@ const Cinemas = () => {
     getCinemas()
   }, [])
 
+  useEffect(() => {
+    const filtered = cinemas.filter(({ name }) =>
+      name.toLowerCase().includes(query.toLowerCase())
+    )
+    setFilteredCinemas(filtered)
+  }, [query, cinemas])
+
+  const handleQueryChange = (e) => {
+    setQuery(e.target.value)
+  }
+
   return (
     <section>
+      <input
+        type='text'
+        value={query}
+        placeholder='filter by name'
+        onChange={handleQueryChange}
+      />
       <ul className='cinema-list'>
-        {cinemas.map((cinema) => (
+        {filteredCinemas.map((cinema) => (
           <li className='cinema'>
             <h2>
               <Link to={`/cinema/${cinema._id}`}>{cinema.name}</Link>
