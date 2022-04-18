@@ -9,8 +9,8 @@ const AddToCalendar = ({ showtimeId }) => {
   }
 
   return (
-    <button class='add-to-calendar' data-showtime={showtimeId}>
-      +<span class='sr-only'>Add this to your calendar</span>
+    <button className='add-to-calendar' data-showtime={showtimeId}>
+      +<span className='sr-only'>Add this to your calendar</span>
     </button>
   )
 }
