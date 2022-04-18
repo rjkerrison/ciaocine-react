@@ -8,6 +8,7 @@ function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState(null)
+  const [token, setToken] = useState('')
 
   /* 
     Functions for handling the authentication status (isLoggedIn, isLoading, user)
@@ -24,6 +25,7 @@ function AuthProviderWrapper(props) {
   const authenticateUser = useCallback(() => {
     // Get the stored token from the localStorage
     const storedToken = localStorage.getItem('authToken')
+    setToken(storedToken)
 
     // If the token exists in the localStorage
     if (storedToken) {
@@ -80,6 +82,7 @@ function AuthProviderWrapper(props) {
         storeToken,
         authenticateUser,
         logOutUser,
+        token,
       }}
     >
       {props.children}

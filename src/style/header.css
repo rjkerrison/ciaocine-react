@@ -46,11 +46,15 @@ body {
 
 .account-header {
   display: flex;
-  height: 4rem;
+  /* height: 4rem; */
   gap: 1rem;
   background: var(--contrast);
   padding: 0.5rem;
   color: var(--mid);
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .account-header picture {
@@ -98,5 +102,9 @@ body {
     flex-direction: row;
     justify-content: space-between;
     flex-grow: 100%;
+  }
+  .account-header {
+    height: 4rem;
+    flex-direction: row;
   }
 }
