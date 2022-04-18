@@ -1,4 +1,6 @@
 import Multi from './Multi'
+import Slider from './Slider'
+import Switch from './Switch'
 import Toggle from './Toggle'
 
 const riveDroiteArrondissements = [
@@ -34,6 +36,11 @@ allArrondissements.sort()
 
 const filters = [
   { name: 'ugcIllimiteOnly', component: Toggle, label: 'UGC Illimité' },
+  {
+    name: ['fromHour', 'toHour'],
+    component: Slider,
+    options: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+  },
   {
     name: 'arrondissements',
     component: Multi,
