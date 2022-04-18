@@ -22,7 +22,7 @@ const getData = async ({ date, ...criteria }) => {
 
 const Movies = () => {
   const filters = [
-    { name: 'ugcIllimite', type: 'toggle', label: 'UGC Illimité' },
+    { name: 'ugcIllimiteOnly', type: 'toggle', label: 'UGC Illimité' },
     { name: 'rive', type: 'switch', options: ['droite', 'gauche'] },
   ]
 
