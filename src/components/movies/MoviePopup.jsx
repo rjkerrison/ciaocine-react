@@ -72,7 +72,9 @@ const MoviePopup = ({ movieId, active, close }) => {
             </li>
           ))}
         </ul>
-        <button onClick={deactivate}>Close</button>
+        <button className='round' onClick={deactivate}>
+          X
+        </button>
       </div>
     </article>
   )

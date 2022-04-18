@@ -67,3 +67,38 @@
   background-blend-mode: normal;
   background-color: black;
 }
+
+/* Inline #11 | http://localhost:3000/movies?rive=droite */
+
+.movie-popup.active > div {
+  /* padding: 1rem; */
+  padding: 15%;
+  color: #262121;
+}
+
+.movie-popup > div {
+  /* background-position: top center, 50% 0%, top center; */
+  /* background-size: 100%, 95% 40%, auto 40%; */
+  /* background-image: linear-gradient(var(--contrast) 1%, #f04e4e10 15%), radial-gradient(transparent 0% 60%, black 70% 70%), var(--backdrop-path); */
+  background-position: top center, center center, center center;
+  background-size: 100%, auto auto, auto;
+  background-image: linear-gradient(
+      var(--light) -10%,
+      #f04e4e10 10%,
+      #f04e4e10 90%,
+      var(--contrast) 110%
+    ),
+    radial-gradient(#fffe 0% 30%, black 95% 100%), var(--backdrop-path);
+  padding: 1rem;
+  position: relative;
+}
+
+.movie-popup button.round {
+  top: 1rem;
+  right: 1rem;
+  position: absolute;
+  display: flex;
+  font-size: 2rem;
+  height: 3rem;
+  width: 3rem;
+}
