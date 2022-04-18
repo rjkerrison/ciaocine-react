@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import AddToCalendar from '../components/AddToCalendar'
 import { formatAs } from '../utils/formatDate'
+import { stripProtocol } from '../utils/urls'
 
 const Index = () => {
   const appTitle = 'Ciaocine'
@@ -9,10 +10,10 @@ const Index = () => {
 
   // make this read random showtime from axios call
   const showtime = {
-    cinema: { id: null, name: 'to do' },
+    cinema: { id: null, name: 'random cinema name' },
     startTime: new Date(),
     movie: {
-      title: 'movie',
+      title: 'random movie',
     },
   }
 
@@ -36,7 +37,10 @@ const Index = () => {
           <AddToCalendar showtime={showtime} />
         </p>
         <picture>
-          <img src={showtime.movie.poster} alt={showtime.movie.title} />
+          <img
+            src={stripProtocol(showtime.movie.poster)}
+            alt={showtime.movie.title}
+          />
         </picture>
       </section>
     </>

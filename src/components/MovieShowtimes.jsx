@@ -3,7 +3,11 @@ import ShowtimeCard from './ShowtimeCard'
 
 const toShowtimeCard = (showtime, isHidden = false) => {
   return (
-    <ShowtimeCard {...showtime} className={isHidden && 'expanded-only'}>
+    <ShowtimeCard
+      {...showtime}
+      key={showtime._id}
+      className={isHidden && 'expanded-only'}
+    >
       {JSON.stringify(showtime)}
     </ShowtimeCard>
   )

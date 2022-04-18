@@ -53,9 +53,13 @@ const Movies = () => {
     setIsLoading(true)
 
     const getMovies = async () => {
-      const { movies } = await getData({ date, ...params })
-      setMovies(movies)
-      console.log({ date, params }, 'DONE')
+      try {
+        const { movies } = await getData({ date, ...params })
+        setMovies(movies)
+        console.log({ date, params }, 'DONE')
+      } catch (error) {
+        console.error('error', error.message)
+      }
       setIsLoading(false)
     }
 

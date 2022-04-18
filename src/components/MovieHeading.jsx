@@ -1,3 +1,5 @@
+import { stripProtocol } from '../utils/urls'
+
 const MovieHeading = ({ title, poster, _id, show }) => {
   return (
     <>
@@ -8,7 +10,7 @@ const MovieHeading = ({ title, poster, _id, show }) => {
         </button>
       </div>
       <picture className='poster'>
-        <img src={poster} alt={title} />
+        <img src={stripProtocol(poster)} alt={title} />
       </picture>
     </>
   )
