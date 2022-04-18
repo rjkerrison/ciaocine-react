@@ -1,6 +1,5 @@
 import Multi from './Multi'
 import Slider from './Slider'
-import Switch from './Switch'
 import Toggle from './Toggle'
 
 const riveDroiteArrondissements = [
