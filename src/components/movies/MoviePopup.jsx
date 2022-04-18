@@ -30,7 +30,7 @@ const MoviePopup = ({ movieId, active, close }) => {
 
   useEffect(() => {
     if (active) {
-      const timeout = setTimeout(() => setClasses((c) => [...c, 'active']), 500)
+      const timeout = setTimeout(() => setClasses((c) => [...c, 'active']), 100)
       return () => clearTimeout(timeout)
     }
   }, [active])

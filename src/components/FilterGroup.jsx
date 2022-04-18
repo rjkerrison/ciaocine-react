@@ -1,65 +1,17 @@
-import React from 'react'
+import Multi from './filters/Multi'
+import Switch from './filters/Switch'
+import Toggle from './filters/Toggle'
 
-const FilterGroup = ({
-  label,
-  type,
-  options,
-  updateFilter,
-  className,
-  values,
-  name,
-}) => {
+const FilterGroup = ({ type, component: Component, ...filter }) => {
   switch (type) {
     case 'toggle':
-      options = ['true', 'false']
-      return (
-        <>
-          <p>{label}</p>
-          <ul className='movies-filters'>
-            <li
-              className={[
-                className,
-                values[name] === 'true' ? 'selected' : '',
-              ].join(' ')}
-            >
-              <button
-                className='movies-filter'
-                onClick={() => updateFilter(name, !(values[name] === 'true'))}
-              >
-                {label}
-              </button>
-            </li>
-          </ul>
-        </>
-      )
+      return <Toggle {...filter} />
     case 'switch':
-      return (
-        <>
-          <p>{label}</p>
-          <ul className='movies-filters'>
-            {options.map((option) => (
-              <li
-                key={option}
-                className={[
-                  className,
-                  option === values[name] ? 'selected' : '',
-                ].join(' ')}
-              >
-                <button
-                  className='movies-filter'
-                  onClick={() =>
-                    updateFilter(name, option === values[name] ? false : option)
-                  }
-                >
-                  {option}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </>
-      )
+      return <Switch {...filter} />
+    // case 'multi':
+    //   return <Multi {...filter} />
     default:
-      return <p>Other</p>
+      return <Component {...filter} />
   }
 }
 

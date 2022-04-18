@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import FilterGroup from '../components/FilterGroup'
+import Filters from '../components/filters/Filters'
 import MoviePopup from '../components/movies/MoviePopup'
 import MovieShowtimeSummary from '../components/movies/MovieShowtimeSummary'
 import { API_URL } from '../utils/consts'
@@ -21,11 +21,6 @@ const getData = async ({ date, ...criteria }) => {
 }
 
 const Movies = () => {
-  const filters = [
-    { name: 'ugcIllimiteOnly', type: 'toggle', label: 'UGC Illimité' },
-    { name: 'rive', type: 'switch', options: ['droite', 'gauche'] },
-  ]
-
   const [isLoading, setIsLoading] = useState(true)
   const [searchParams, setSearchParams] = useSearchParams()
   const [movies, setMovies] = useState([])
@@ -87,14 +82,7 @@ const Movies = () => {
       </p>
       <nav>
         <button onClick={() => incrementDate(1)}>Next date</button>
-        {filters.map((filter) => (
-          <FilterGroup
-            {...filter}
-            key={filter.name}
-            updateFilter={updateFilter}
-            values={params}
-          />
-        ))}
+        <Filters updateFilter={updateFilter} params={params} />
       </nav>
       {isLoading ? (
         <p>Loading</p>
