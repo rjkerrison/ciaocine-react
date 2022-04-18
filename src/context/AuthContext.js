@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from 'react'
+import { useState, useEffect, createContext, useCallback } from 'react'
 import axios from 'axios'
 import { API_URL } from '../utils/consts'
 
@@ -21,7 +21,7 @@ function AuthProviderWrapper(props) {
     localStorage.removeItem('authToken')
   }
 
-  const authenticateUser = () => {
+  const authenticateUser = useCallback(() => {
     // Get the stored token from the localStorage
     const storedToken = localStorage.getItem('authToken')
 
@@ -57,7 +57,7 @@ function AuthProviderWrapper(props) {
       setIsLoading(false)
       setUser(null)
     }
-  }
+  }, [])
 
   const logOutUser = () => {
     // To log out the user, remove the token
@@ -69,7 +69,7 @@ function AuthProviderWrapper(props) {
 
   useEffect(() => {
     authenticateUser()
-  }, [])
+  }, [authenticateUser])
 
   return (
     <AuthContext.Provider
