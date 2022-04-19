@@ -45,6 +45,7 @@ const Slider = ({ options, values, name, updateFilter, ...props }) => {
       {options.map((option) => (
         <SliderOption
           {...props}
+          key={getLabelValue(option).value}
           option={option}
           updateSlider={updateSlider}
           lower={lower}

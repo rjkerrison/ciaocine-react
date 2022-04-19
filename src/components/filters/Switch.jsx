@@ -10,7 +10,6 @@ const SwitchOption = ({
 }) => {
   const { label, value } = getLabelValue(option)
   const isActive = value.toString() === (values[name] || defaultValue)
-  console.log(label, value)
 
   return (
     <li
@@ -31,7 +30,11 @@ const Switch = ({ options, ...props }) => {
   return (
     <ul className='movies-filters'>
       {options.map((option) => (
-        <SwitchOption option={option} {...props} />
+        <SwitchOption
+          key={getLabelValue(option).value}
+          option={option}
+          {...props}
+        />
       ))}
     </ul>
   )
