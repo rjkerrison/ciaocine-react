@@ -52,17 +52,6 @@ const Multi = ({
 
   return (
     <ul className='movies-filters'>
-      {options.map((option) => (
-        <MultiSingleOption
-          key={getLabelValue(option).value}
-          option={option}
-          className={className}
-          name={name}
-          updateFilter={updateFilter}
-          isActive={isActive}
-          toggle={toggle}
-        />
-      ))}
       {groupedOptions.map((group, i) => {
         if (!group) {
           console.error(`group at index ${i} was not defined`)
@@ -85,6 +74,17 @@ const Multi = ({
           </li>
         )
       })}
+      {options.map((option) => (
+        <MultiSingleOption
+          key={getLabelValue(option).value}
+          option={option}
+          className={className}
+          name={name}
+          updateFilter={updateFilter}
+          isActive={isActive}
+          toggle={toggle}
+        />
+      ))}
     </ul>
   )
 }
