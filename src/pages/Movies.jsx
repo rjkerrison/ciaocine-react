@@ -1,9 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useMemo, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Route, Routes, useSearchParams } from 'react-router-dom'
 import Filters from '../components/filters/Filters'
 import MoviePopup from '../components/movies/MoviePopup'
+import MoviePopupInner from '../components/movies/MoviePopupInner'
 import MovieShowtimeSummary from '../components/movies/MovieShowtimeSummary'
+import Popup from '../components/Popup'
 import { API_URL } from '../utils/consts'
 import { formatAs } from '../utils/formatDate'
 
