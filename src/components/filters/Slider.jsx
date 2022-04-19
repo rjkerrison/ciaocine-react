@@ -1,4 +1,27 @@
-const Slider = ({ options, className, values, name, updateFilter }) => {
+import React from 'react'
+import { getLabelValue } from './helpers'
+
+const SliderOption = ({ option, className, updateSlider, lower, upper }) => {
+  const { label, value } = getLabelValue(option)
+  const isSelected = value === lower || value === upper
+  const isInside = (!lower || value > lower) && (!upper || value < upper)
+
+  const classes = [
+    className,
+    isSelected ? 'selected' : '',
+    isInside ? 'inside' : '',
+  ]
+
+  return (
+    <li key={value} className={classes.join(' ')}>
+      <button className='movies-filter' onClick={() => updateSlider(value)}>
+        {label}
+      </button>
+    </li>
+  )
+}
+
+const Slider = ({ options, values, name, updateFilter, ...props }) => {
   const [lower, upper] = name.map((n) => Number(values[n]))
 
   const updateSlider = (option) => {
@@ -20,23 +43,13 @@ const Slider = ({ options, className, values, name, updateFilter }) => {
   return (
     <ul className='movies-filters'>
       {options.map((option) => (
-        <li
-          key={option}
-          className={[
-            className,
-            option === lower || option === upper ? 'selected' : '',
-            (!lower || option > lower) && (!upper || option < upper)
-              ? 'selected'
-              : '',
-          ].join(' ')}
-        >
-          <button
-            className='movies-filter'
-            onClick={() => updateSlider(option)}
-          >
-            {option}
-          </button>
-        </li>
+        <SliderOption
+          {...props}
+          option={option}
+          updateSlider={updateSlider}
+          lower={lower}
+          upper={upper}
+        />
       ))}
     </ul>
   )

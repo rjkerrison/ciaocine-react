@@ -62,13 +62,17 @@ const Movies = () => {
   }, [date, params])
 
   const updateFilter = (name, value) => {
+    if (name === 'daysAhead') {
+      incrementDate(value, new Date())
+    }
+
     setSearchParams({
       ...params,
       [name]: value,
     })
   }
 
-  const incrementDate = (increment) => {
+  const incrementDate = (increment, date) => {
     const newDate = new Date(date - 0 + 86400 * 1000 * increment)
     setDate(newDate)
   }
@@ -81,7 +85,6 @@ const Movies = () => {
         matching your filters
       </p>
       <nav>
-        <button onClick={() => incrementDate(1)}>Next date</button>
         <Filters updateFilter={updateFilter} params={params} />
       </nav>
       {isLoading ? (

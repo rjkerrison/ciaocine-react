@@ -142,15 +142,23 @@ section.movies-section h2 {
   transition: all 0.5s;
   border-radius: 0.25rem;
   color: white;
+  border: none;
 }
 
 .movies-filter:hover {
   background-color: var(--contrast);
+  border: none;
 }
 
-.selected .movies-filter {
+.selected .movies-filter,
+.inside:hover .movies-filter {
+  background-color: var(--contrast-dark);
+  color: var(--white);
+}
+
+.inside .movies-filter {
   background-color: var(--contrast);
-  color: #3f3275;
+  color: var(--mid);
 }
 
 .selected .movies-filter:hover {
