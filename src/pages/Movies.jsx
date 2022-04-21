@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import Filters from '../components/filters/Filters'
+import MovieList from '../components/movies/MovieList'
 import MoviePopup from '../components/movies/MoviePopup'
 import MovieShowtimeSummary from '../components/movies/MovieShowtimeSummary'
 import { API_URL } from '../utils/consts'
@@ -87,19 +88,13 @@ const Movies = () => {
       <nav>
         <Filters updateFilter={updateFilter} params={params} />
       </nav>
-      {isLoading ? (
-        <p>Loading</p>
-      ) : (
-        <div className='movies'>
-          {movies.map((props) => (
-            <MovieShowtimeSummary
-              key={props.movie._id}
-              {...props}
-              show={showMovieInPopup}
-            />
-          ))}
-        </div>
-      )}
+
+      <MovieList
+        isLoading={isLoading}
+        showMovieInPopup={showMovieInPopup}
+        movies={movies}
+      />
+
       <MoviePopup {...popupState} />
     </section>
   )

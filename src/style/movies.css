@@ -4,6 +4,16 @@ section.movies-section {
 
 section.movies-section h2 {
   font-size: 3rem;
+  background-color: var(--dark);
+  border-radius: 1.25rem;
+  padding: 0.5rem;
+  margin: 0.25rem;
+}
+section.movies-section > p {
+  background-color: var(--mid);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  margin: 0.25rem;
 }
 
 .movies {
@@ -61,6 +71,16 @@ section.movies-section h2 {
 
 .movie-showtimes.expanded {
   height: min-content;
+}
+.movies.poster-tile-view {
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+}
+.movies.poster-tile-view .movie {
+  grid-template: 'poster' auto;
+}
+.movies.poster-tile-view .movie .movie-showtimes,
+.movies.poster-tile-view .movie .movie-heading {
+  display: none;
 }
 
 .movie-showtime {
@@ -186,5 +206,26 @@ section.movies-section h2 {
       'poster showtimes';
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 5rem 1fr;
+  }
+}
+
+.loading {
+  background-image: conic-gradient(red, blue, purple, red);
+  border-radius: 50%;
+  width: 15rem;
+  height: 15rem;
+  animation: spin 1.9s infinite;
+  position: absolute;
+  left: calc(50% - 7.5rem);
+  right: 50%;
+  top: 50%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(1turn);
   }
 }
