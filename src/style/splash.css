@@ -55,3 +55,31 @@
 .random-screening button .sr-only {
   font-size: inherit;
 }
+
+.splash {
+  background-position: center 81%;
+  height: calc(20vh + 5vw);
+}
+
+.splash h2 {
+  font-size: calc(1.75rem + 4vw);
+  animation: 1s enter ease-in-out;
+}
+
+.splash p {
+  font-size: calc(1rem + 2vw);
+  animation: 1.2s enter ease-in-out;
+}
+
+@keyframes enter {
+  0% {
+    position: relative;
+    top: 1rem;
+    opacity: 0;
+  }
+  100% {
+    position: relative;
+    top: 0rem;
+    opacity: 1;
+  }
+}

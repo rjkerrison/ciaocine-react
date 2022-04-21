@@ -21,6 +21,14 @@ section.movies-section h2 {
   grid-template-columns: 1fr;
   grid-template-rows: auto 5rem auto;
   text-align: center;
+  background-image: linear-gradient(
+    var(--dark) 0,
+    var(--mid) 50%,
+    var(--light) 100%
+  );
+  border-radius: 1rem;
+  padding: 0.5rem;
+  gap: 0.5rem;
 }
 .movie .poster {
   grid-area: poster;
@@ -143,6 +151,7 @@ section.movies-section h2 {
   border-radius: 0.25rem;
   color: white;
   border: none;
+  animation: 1s enter ease-in-out;
 }
 
 .movies-filter:hover {
