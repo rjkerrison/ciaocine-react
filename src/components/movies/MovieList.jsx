@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Button from '../shared/Button'
 import MovieShowtimeSummary from './MovieShowtimeSummary'
 
-const MovieList = ({ movies, showMovieInPopup, isLoading }) => {
+const MovieList = ({ movies, isLoading }) => {
   const [isPosterTileView, setIsPosterTileView] = useState(false)
 
   if (isLoading) {
@@ -21,11 +21,7 @@ const MovieList = ({ movies, showMovieInPopup, isLoading }) => {
         )}
       >
         {movies.map((props) => (
-          <MovieShowtimeSummary
-            key={props.movie._id}
-            {...props}
-            show={showMovieInPopup}
-          />
+          <MovieShowtimeSummary key={props.movie._id} {...props} />
         ))}
       </div>
     </>

@@ -1,14 +1,12 @@
 import { stripProtocol } from '../utils/urls'
+import PopupLink from './shared/PopupLink'
 
-const MovieHeading = ({ title, poster, _id, show }) => {
+const MovieHeading = ({ title, poster, _id }) => {
   return (
     <>
-      <div className='movie-heading'>
+      <PopupLink to={`/movies/${_id}`} className='movie-heading'>
         <h3>{title}</h3>
-        <button className='round' onClick={() => show(_id)}>
-          i
-        </button>
-      </div>
+      </PopupLink>
       <picture className='poster'>
         <img src={stripProtocol(poster)} alt={title} />
       </picture>
