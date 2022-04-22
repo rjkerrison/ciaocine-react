@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { API_URL } from '../../utils/consts'
 import { formatAs } from '../../utils/formatDate'
@@ -35,7 +35,6 @@ const MoviePopupInner = () => {
 
   return (
     <div
-      onClick={(e) => e.stopPropagation()}
       style={{
         '--backdrop-path': `url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${movieInfo.extra.backdrop_path})`,
       }}

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
 const Popup = ({ active = true, close }) => {
-  const [classes, setClasses] = useState(['big-popup'])
+  const [classes, setClasses] = useState(['big-popup', 'movie-popup'])
 
   useEffect(() => {
     if (active) {
@@ -31,15 +31,12 @@ const Popup = ({ active = true, close }) => {
       onClick={deactivate}
       onTransitionEnd={handleTransitionEnd}
     >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        // style={style}
-      >
+      <Fragment onClick={(e) => e.stopPropagation()}>
         <Outlet />
         <button className='round' onClick={deactivate}>
           X
         </button>
-      </div>
+      </Fragment>
     </article>
   )
 }

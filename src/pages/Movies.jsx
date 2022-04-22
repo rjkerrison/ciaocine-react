@@ -1,22 +1,17 @@
 import axios from 'axios'
 import React, { useEffect, useMemo, useState } from 'react'
-import { Route, Routes, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import Filters from '../components/filters/Filters'
-import MoviePopup from '../components/movies/MoviePopup'
-import MoviePopupInner from '../components/movies/MoviePopupInner'
 import MovieShowtimeSummary from '../components/movies/MovieShowtimeSummary'
-import Popup from '../components/Popup'
 import { API_URL } from '../utils/consts'
 import { formatAs } from '../utils/formatDate'
 
-const getData = async ({ date, ...criteria }) => {
+const getData = async ({ yyyy, mm, dd, ...criteria }) => {
   const {
     data: { movies },
   } = await axios({
     baseURL: API_URL,
-    url: `/showtimes/${date.getFullYear()}/${
-      date.getMonth() + 1
-    }/${date.getDate()}/`,
+    url: `/showtimes/${yyyy}/${mm + 1}/${dd}/`,
     params: criteria,
   })
   return { movies }
@@ -27,33 +22,26 @@ const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [movies, setMovies] = useState([])
   const [date, setDate] = useState(new Date())
+  const yyyy = useMemo(() => date.getFullYear(), [date])
+  const mm = useMemo(() => date.getMonth(), [date])
+  const dd = useMemo(() => date.getDate(), [date])
+
   const params = useMemo(
     () => Object.fromEntries(searchParams.entries()),
     [searchParams]
   )
-  const [popupState, setPopupState] = useState({
-    active: false,
-    movieId: null,
-    close: () => setPopupState((ps) => ({ ...ps, active: false })),
-  })
-
-  const showMovieInPopup = (movieId) => {
-    setPopupState((ps) => ({ ...ps, active: true, movieId }))
-  }
 
   useEffect(() => {
-    if (!date || !params) {
+    if (!yyyy || !params) {
       return
     }
 
-    console.log({ date, params }, 'LOADING======')
     setIsLoading(true)
 
     const getMovies = async () => {
       try {
-        const { movies } = await getData({ date, ...params })
+        const { movies } = await getData({ yyyy, mm, dd, ...params })
         setMovies(movies)
-        console.log({ date, params }, 'DONE')
       } catch (error) {
         console.error('error', error.message)
       }
@@ -61,7 +49,7 @@ const Movies = () => {
     }
 
     getMovies()
-  }, [date, params])
+  }, [yyyy, mm, dd, params])
 
   const updateFilter = (name, value) => {
     if (name === 'daysAhead') {
@@ -94,15 +82,10 @@ const Movies = () => {
       ) : (
         <div className='movies'>
           {movies.map((props) => (
-            <MovieShowtimeSummary
-              key={props.movie._id}
-              {...props}
-              show={showMovieInPopup}
-            />
+            <MovieShowtimeSummary key={props.movie._id} {...props} />
           ))}
         </div>
       )}
-      <MoviePopup {...popupState} />
     </section>
   )
 }

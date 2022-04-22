@@ -26,7 +26,6 @@ const FavouriteCinema = ({ cinema, likedCinemas, setLiked }) => {
   const cinemaId = cinema._id
   const liked = likedCinemas?.some((x) => {
     if (!x.cinema) {
-      console.log('something weird', x)
       return false
     }
 
