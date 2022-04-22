@@ -22,7 +22,7 @@ const AnonymousNav = () => {
   )
 }
 
-const Header = ({ pageTitle }) => {
+const Header = () => {
   const { isLoggedIn, logOutUser } = useContext(AuthContext)
   const [open, setOpen] = useState(false)
   const toggleOpen = () => setOpen(!open)
@@ -30,7 +30,7 @@ const Header = ({ pageTitle }) => {
   return (
     <header className='app-header'>
       <div className='header-main-row' onClick={toggleOpen}>
-        <h1>Ciaocine: {pageTitle}</h1>
+        <h1>Ciaocine</h1>
         <span
           className={'collapse-toggle hamburger' + (open ? ' active' : '')}
           data-target='main-nav'

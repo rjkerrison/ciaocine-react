@@ -30,6 +30,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path='/' index element={<Index />} />
           <Route path='/cinemas' index element={<Cinemas />} />
+          <Route path='/cinemas/:cinemaId' element={<Movies />} />
           <Route path='/calendar' index element={<Calendar />} />
           <Route
             path='/movies/:movieId'
