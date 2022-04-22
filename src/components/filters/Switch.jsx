@@ -1,3 +1,4 @@
+import Button from '../shared/Button'
 import { getLabelValue } from './helpers'
 
 const SwitchOption = ({
@@ -12,23 +13,19 @@ const SwitchOption = ({
   const isActive = value.toString() === (values[name] || defaultValue)
 
   return (
-    <li
+    <Button
       key={value}
-      className={[className, isActive ? 'selected' : ''].join(' ')}
-    >
-      <button
-        className='movies-filter'
-        onClick={() => updateFilter(name, isActive ? false : value)}
-      >
-        {label}
-      </button>
-    </li>
+      isActive={isActive}
+      onClick={() => updateFilter(name, isActive ? false : value)}
+      classes={[className]}
+      label={label}
+    />
   )
 }
 
 const Switch = ({ options, ...props }) => {
   return (
-    <ul className='movies-filters'>
+    <div className='movies-filters'>
       {options.map((option) => (
         <SwitchOption
           key={getLabelValue(option).value}
@@ -36,7 +33,7 @@ const Switch = ({ options, ...props }) => {
           {...props}
         />
       ))}
-    </ul>
+    </div>
   )
 }
 

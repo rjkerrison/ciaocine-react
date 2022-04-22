@@ -179,18 +179,18 @@ section.movies-section > p {
   border: none;
 }
 
-.selected .movies-filter,
+.selected.movies-filter,
 .inside:hover .movies-filter {
   background-color: var(--contrast-dark);
   color: var(--white);
 }
 
-.inside .movies-filter {
+.inside.movies-filter {
   background-color: var(--contrast);
   color: var(--mid);
 }
 
-.selected .movies-filter:hover {
+.selected.movies-filter:hover {
   background-color: var(--mid);
   color: white;
 }

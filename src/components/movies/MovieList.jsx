@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from '../shared/Button'
 import MovieShowtimeSummary from './MovieShowtimeSummary'
 
 const MovieList = ({ movies, showMovieInPopup, isLoading }) => {
@@ -10,9 +11,10 @@ const MovieList = ({ movies, showMovieInPopup, isLoading }) => {
 
   return (
     <>
-      <button onClick={() => setIsPosterTileView((s) => !s)}>
-        View toggle
-      </button>
+      <Button
+        onClick={() => setIsPosterTileView((s) => !s)}
+        label='View toggle'
+      />
       <div
         className={['movies', isPosterTileView ? 'poster-tile-view' : ''].join(
           ' '

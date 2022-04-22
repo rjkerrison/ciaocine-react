@@ -1,4 +1,5 @@
 import { URL_SEPARATOR } from '../../utils/consts'
+import Button from '../shared/Button'
 import { getLabelValue } from './helpers'
 
 const MultiSingleOption = ({
@@ -12,17 +13,13 @@ const MultiSingleOption = ({
   const { label, value } = getLabelValue(option)
 
   return (
-    <li
+    <Button
       key={value}
-      className={[className, isActive(value) ? 'selected' : ''].join(' ')}
-    >
-      <button
-        className='movies-filter'
-        onClick={() => updateFilter(name, toggle(value))}
-      >
-        {label}
-      </button>
-    </li>
+      isActive={isActive(value)}
+      onClick={() => updateFilter(name, toggle(value))}
+      classes={[className]}
+      label={label}
+    />
   )
 }
 
@@ -51,7 +48,7 @@ const Multi = ({
       : Array.from(new Set([...current, ...group.options])).join(URL_SEPARATOR)
 
   return (
-    <ul className='movies-filters'>
+    <div className='movies-filters'>
       {groupedOptions.map((group, i) => {
         if (!group) {
           console.error(`group at index ${i} was not defined`)
@@ -59,19 +56,13 @@ const Multi = ({
         }
 
         return (
-          <li
+          <Button
             key={group.label}
-            className={[className, isGroupActive(group) ? 'selected' : ''].join(
-              ' '
-            )}
-          >
-            <button
-              className='movies-filter'
-              onClick={() => updateFilter(name, toggleGroup(group))}
-            >
-              {group.label}
-            </button>
-          </li>
+            isActive={isGroupActive(group)}
+            onClick={() => updateFilter(name, toggleGroup(group))}
+            classes={[className]}
+            label={group.label}
+          />
         )
       })}
       {options.map((option) => (
@@ -85,7 +76,7 @@ const Multi = ({
           toggle={toggle}
         />
       ))}
-    </ul>
+    </div>
   )
 }
 
