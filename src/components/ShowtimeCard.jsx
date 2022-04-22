@@ -9,17 +9,11 @@ const ShowtimeCard = ({
   showDate = false,
 }) => {
   return (
-    <div className={`movie-showtime overlay-container ${className}`}>
+    <div className={`movie-showtime ${className}`}>
       <h4>{formatAs.time(startTime)}</h4>
       {showDate && <p>{formatAs.dateMonth(startTime)}</p>}
-      {cinema.name && (
-        <div className='overlay'>
-          <AddToCalendar showtimeId={_id} />
-          <p className='extra-info'>
-            <span>{cinema.name}</span>
-          </p>
-        </div>
-      )}
+      <p className='extra-info'>{cinema.name}</p>
+      <AddToCalendar showtimeId={_id} />
     </div>
   )
 }
