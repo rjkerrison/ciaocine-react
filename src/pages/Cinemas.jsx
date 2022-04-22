@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getCinemas } from '../api/cinemas'
 import { getLikedCinemas } from '../api/likes'
@@ -50,15 +50,14 @@ const Cinemas = () => {
     setQuery(e.target.value)
   }
 
-  const handleFavouriteCinemaChange = (cinemaId, liked) => {
-    console.log(liked ? 'LIKED' : 'UNLIKED', cinemaId)
+  const handleFavouriteCinemaChange = useCallback((cinemaId, liked) => {
     if (liked) {
       const newEntry = { cinema: { _id: cinemaId } }
       setLikedCinemas((lc) => [...lc, newEntry])
     } else {
       setLikedCinemas((lc) => lc.filter((x) => x.cinema._id !== cinemaId))
     }
-  }
+  }, [])
 
   return (
     <section>
