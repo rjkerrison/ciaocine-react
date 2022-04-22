@@ -1,22 +1,17 @@
+import Button from '../shared/Button'
+
 const Toggle = ({ label, className, values, updateFilter, name }) => {
+  const isActive = values[name] === 'true'
+
   return (
-    <>
-      <ul className='movies-filters'>
-        <li
-          className={[
-            className,
-            values[name] === 'true' ? 'selected' : '',
-          ].join(' ')}
-        >
-          <button
-            className='movies-filter'
-            onClick={() => updateFilter(name, !(values[name] === 'true'))}
-          >
-            {label}
-          </button>
-        </li>
-      </ul>
-    </>
+    <div className='movies-filters'>
+      <Button
+        isActive={isActive}
+        onClick={() => updateFilter(name, !isActive)}
+        classes={[className]}
+        label={label}
+      />
+    </div>
   )
 }
 

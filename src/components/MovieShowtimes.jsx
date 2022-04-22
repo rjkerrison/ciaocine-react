@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from './shared/Button'
 import ShowtimeCard from './ShowtimeCard'
 
 const toShowtimeCard = (showtime, isHidden = false) => {
@@ -36,13 +37,13 @@ const MovieShowtimes = ({ showtimes }) => {
       >
         {toShow}
         {toHide}
-        <button
+        <Button
+          isActive={isExpanded}
+          label={isExpanded ? 'Hide' : 'Show more'}
           onClick={() => {
             setIsExpanded((c) => !c)
           }}
-        >
-          {isExpanded ? 'Hide' : 'Show more'}
-        </button>
+        />
       </div>
     )
   }

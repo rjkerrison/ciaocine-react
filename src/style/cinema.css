@@ -7,10 +7,15 @@
 
 .cinema-list .cinema {
   position: relative;
-  box-shadow: 0.25rem 0.25rem 0.75rem -0.25rem var(--contrast-shadow);
   border-radius: 1rem;
   padding: 0.5rem 0.5rem 2rem;
   overflow: hidden;
+  background-size: 0% 200%;
+  background-image: linear-gradient(
+    var(--dark) 0,
+    var(--mid) 50%,
+    var(--light) 100%
+  );
 }
 
 .cinema-list .cinema h2 {
@@ -80,10 +85,7 @@ button.favourite-cinema:hover {
   display: contents;
 }
 
-/* cinema.css | http://localhost:3000/stylesheets/cinema.css */
-
 .cinema-list {
-  /* grid-template: auto / repeat(auto-fill, minmax(16rem, 1fr)); */
   grid-template: auto / repeat(auto-fill, minmax(30rem, 1fr));
   padding: 0;
 }
@@ -114,8 +116,26 @@ button.favourite-cinema:hover {
   text-align: center;
 }
 
-/* Inline #1 | http://localhost:3000/cinema */
-
 .cinema .address {
   grid-area: address;
+}
+
+.cinema-list .cinema {
+  background-size: 100% 150%;
+}
+
+.cinema-list .cinema {
+  grid-template: 'name' auto 'address' 1fr 'cards' 1fr / 1fr;
+}
+
+.cinema-list .cinema h2 {
+  text-align: center;
+}
+
+.cinema .address {
+  text-align: center;
+}
+
+.cinema-list {
+  grid-template: auto / repeat(auto-fill, minmax(15rem, 1fr));
 }

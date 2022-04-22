@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../shared/Button'
 import { getLabelValue } from './helpers'
 
 const SliderOption = ({ option, className, updateSlider, lower, upper }) => {
@@ -6,18 +7,16 @@ const SliderOption = ({ option, className, updateSlider, lower, upper }) => {
   const isSelected = value === lower || value === upper
   const isInside = (!lower || value > lower) && (!upper || value < upper)
 
-  const classes = [
-    className,
-    isSelected ? 'selected' : '',
-    isInside ? 'inside' : '',
-  ]
+  const classes = [className, isInside ? 'inside' : '']
 
   return (
-    <li key={value} className={classes.join(' ')}>
-      <button className='movies-filter' onClick={() => updateSlider(value)}>
-        {label}
-      </button>
-    </li>
+    <Button
+      key={value}
+      isActive={isSelected}
+      onClick={() => updateSlider(value)}
+      classes={classes}
+      label={label}
+    />
   )
 }
 
@@ -41,7 +40,7 @@ const Slider = ({ options, values, name, updateFilter, ...props }) => {
   }
 
   return (
-    <ul className='movies-filters'>
+    <div className='movies-filters'>
       {options.map((option) => (
         <SliderOption
           {...props}
@@ -52,7 +51,7 @@ const Slider = ({ options, values, name, updateFilter, ...props }) => {
           upper={upper}
         />
       ))}
-    </ul>
+    </div>
   )
 }
 

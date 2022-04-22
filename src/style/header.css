@@ -15,15 +15,10 @@
 
 .app-header .header-main-row {
   display: flex;
-  height: 5rem;
+  height: var(--header-height);
   padding: 0.5rem;
   justify-content: space-between;
   align-items: center;
-}
-
-body {
-  /* to allow for the fixed header */
-  padding-top: 5rem;
 }
 
 .app-header .mobile-collapsible {
