@@ -31,12 +31,10 @@ const Popup = ({ active = true, close }) => {
       onClick={deactivate}
       onTransitionEnd={handleTransitionEnd}
     >
-      <Fragment onClick={(e) => e.stopPropagation()}>
-        <Outlet />
-        <button className='round' onClick={deactivate}>
-          X
-        </button>
-      </Fragment>
+      <Outlet />
+      <button className='round' onClick={deactivate}>
+        X
+      </button>
     </article>
   )
 }

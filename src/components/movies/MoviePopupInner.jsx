@@ -35,9 +35,11 @@ const MoviePopupInner = () => {
 
   return (
     <div
+      onClick={(e) => e.stopPropagation()}
       style={{
         '--backdrop-path': `url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${movieInfo.extra.backdrop_path})`,
       }}
+      className='movie-popup-inner'
     >
       <h2>{movieInfo.extra.original_title}</h2>
       <p>{movieInfo.extra.overview}</p>
