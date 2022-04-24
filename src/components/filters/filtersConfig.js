@@ -25,21 +25,23 @@ const getHoursOptions = () => {
   )
 }
 
-const filters = [
-  {
-    name: 'daysAhead',
-    component: Switch,
-    options: daysAheadOptions(),
-    label: 'Date',
-    defaultValue: '0',
-  },
+export const daysAhead = {
+  name: 'daysAhead',
+  component: Switch,
+  options: daysAheadOptions(),
+  label: 'Date',
+  defaultValue: '0',
+}
+
+export const time = {
+  name: ['fromHour', 'toHour'],
+  component: Slider,
+  options: getHoursOptions(),
+}
+
+export const all = [
+  daysAhead,
   { name: 'ugcIllimiteOnly', component: Toggle, label: 'UGC Illimité' },
-  {
-    name: ['fromHour', 'toHour'],
-    component: Slider,
-    options: getHoursOptions(),
-  },
+  time,
   arrondissementFilter,
 ]
-
-export default filters

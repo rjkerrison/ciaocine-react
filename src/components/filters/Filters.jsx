@@ -1,6 +1,8 @@
-import filters from './filtersConfig'
+import { all, daysAhead, time } from './filtersConfig'
 
-const Filters = ({ updateFilter, params }) => {
+const Filters = ({ updateFilter, params, isCinema }) => {
+  const filters = isCinema ? [daysAhead, time] : all
+
   return (
     <>
       {filters.map(({ component: Component, ...filter }) => (

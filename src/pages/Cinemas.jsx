@@ -83,7 +83,7 @@ const Cinemas = () => {
         {filteredCinemas.map((cinema) => (
           <li className='cinema'>
             <h2>
-              <Link to={`/cinema/${cinema._id}`}>{cinema.name}</Link>
+              <Link to={`/cinemas/${cinema._id}`}>{cinema.name}</Link>
             </h2>
 
             <div className='address'>

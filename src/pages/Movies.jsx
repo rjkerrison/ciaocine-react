@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useMemo, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import Filters from '../components/filters/Filters'
 import MovieList from '../components/movies/MovieList'
 import { API_URL } from '../utils/consts'
@@ -25,6 +25,7 @@ const Movies = () => {
   const yyyy = useMemo(() => date.getFullYear(), [date])
   const mm = useMemo(() => date.getMonth(), [date])
   const dd = useMemo(() => date.getDate(), [date])
+  const { cinemaId } = useParams()
 
   const params = useMemo(
     () => Object.fromEntries(searchParams.entries()),
@@ -40,7 +41,13 @@ const Movies = () => {
 
     const getMovies = async () => {
       try {
-        const { movies } = await getData({ yyyy, mm, dd, ...params })
+        const { movies } = await getData({
+          yyyy,
+          mm,
+          dd,
+          cinema: cinemaId,
+          ...params,
+        })
         setMovies(movies)
       } catch (error) {
         console.error('error', error.message)
@@ -49,7 +56,7 @@ const Movies = () => {
     }
 
     getMovies()
-  }, [yyyy, mm, dd, params])
+  }, [yyyy, mm, dd, params, cinemaId])
 
   const updateFilter = (name, value) => {
     if (name === 'daysAhead') {
@@ -69,13 +76,20 @@ const Movies = () => {
 
   return (
     <section className='movies-section'>
-      <h2>{formatAs.weekdayDate(date)}</h2>
+      <h2>Showtimes</h2>
       <p>
         {movies.length} films are showing on {formatAs.weekdayDate(date)}{' '}
-        matching your filters
+        matching your filters{' '}
+        {cinemaId &&
+          movies?.[0]?.showtimes?.[0]?.cinema?.name &&
+          `at ${movies?.[0]?.showtimes?.[0]?.cinema?.name}`}
       </p>
       <nav>
-        <Filters updateFilter={updateFilter} params={params} />
+        <Filters
+          updateFilter={updateFilter}
+          params={params}
+          isCinema={!!cinemaId}
+        />
       </nav>
 
       <MovieList isLoading={isLoading} movies={movies} />
