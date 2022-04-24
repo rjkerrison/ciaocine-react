@@ -1,6 +1,5 @@
 import { useState, useEffect, createContext, useCallback } from 'react'
-import axios from 'axios'
-import { API_URL } from '../utils/consts'
+import { verifyToken, removeToken } from '../api/auth'
 
 const AuthContext = createContext()
 
@@ -8,53 +7,15 @@ function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState(null)
-  const [token, setToken] = useState('')
 
-  /* 
-    Functions for handling the authentication status (isLoggedIn, isLoading, user)
-    will be added here later in the next step
-  */
-  const storeToken = (token) => {
-    localStorage.setItem('authToken', token)
-  }
-  const removeToken = () => {
-    // Upon logout, remove the token from the localStorage
-    localStorage.removeItem('authToken')
-  }
+  const authenticateUser = useCallback(async () => {
+    const { isValid, user } = await verifyToken()
 
-  const authenticateUser = useCallback(() => {
-    // Get the stored token from the localStorage
-    const storedToken = localStorage.getItem('authToken')
-    setToken(storedToken)
-
-    // If the token exists in the localStorage
-    if (storedToken) {
-      // We must send the JWT token in the request's "Authorization" Headers
-      axios
-        .get(`${API_URL}/auth/verify`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then((response) => {
-          // If the server verifies that JWT is valid
-          const user = response.data
-          // Update state variables
-          setIsLoggedIn(true)
-          setIsLoading(false)
-          setUser(user)
-        })
-        .catch((error) => {
-          // If the server sends an error response (invalid token)
-          // Update state variables
-          console.log({ error })
-          if (error.response.status === 401) {
-            removeToken()
-          }
-          setIsLoggedIn(false)
-          setIsLoading(false)
-          setUser(null)
-        })
+    if (isValid) {
+      setIsLoggedIn(true)
+      setIsLoading(false)
+      setUser(user)
     } else {
-      // If the token is not available (or is removed)
       setIsLoggedIn(false)
       setIsLoading(false)
       setUser(null)
@@ -62,10 +23,7 @@ function AuthProviderWrapper(props) {
   }, [])
 
   const logOutUser = () => {
-    // To log out the user, remove the token
     removeToken()
-
-    // and update the state variables
     authenticateUser()
   }
 
@@ -79,10 +37,8 @@ function AuthProviderWrapper(props) {
         isLoggedIn,
         isLoading,
         user,
-        storeToken,
         authenticateUser,
         logOutUser,
-        token,
       }}
     >
       {props.children}

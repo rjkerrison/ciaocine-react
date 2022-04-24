@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { API_URL } from '../../utils/consts'
 import { AuthContext } from '../../context/AuthContext'
+import { storeToken } from '../../api/auth'
 
 const LoginPage = () => {
-  const { storeToken, authenticateUser } = useContext(AuthContext)
+  const { authenticateUser } = useContext(AuthContext)
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')

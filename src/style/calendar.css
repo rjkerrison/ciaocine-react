@@ -19,7 +19,7 @@
 }
 
 .calendar .movie {
-  grid-template-areas: 'showtimes heading';
+  grid-template-areas: 'showtimes heading .';
   grid-template-columns: auto 1fr;
   grid-template-rows: subgrid;
 }
