@@ -1,10 +1,9 @@
 import { useContext, useMemo } from 'react'
 import { likeCinema } from '../api/likes'
-import { AuthContext } from '../context/AuthContext'
 import { ToastContext } from '../context/ToastContext'
+import Authenticated from './shared/Authenticated'
 
 const FavouriteCinema = ({ cinema, likedCinemas, setLiked }) => {
-  const { isLoggedIn, isLoading } = useContext(AuthContext)
   const { toast } = useContext(ToastContext)
 
   const liked = useMemo(
@@ -20,10 +19,6 @@ const FavouriteCinema = ({ cinema, likedCinemas, setLiked }) => {
       }),
     [cinema, likedCinemas]
   )
-
-  if (isLoading || !isLoggedIn) {
-    return <></>
-  }
 
   return (
     <button
@@ -44,4 +39,4 @@ const FavouriteCinema = ({ cinema, likedCinemas, setLiked }) => {
   )
 }
 
-export default FavouriteCinema
+export default Authenticated(FavouriteCinema)

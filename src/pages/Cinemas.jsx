@@ -78,13 +78,11 @@ const Cinemas = () => {
               <p>
                 {cinema.address} {cinema.zipcode} {cinema.city}
               </p>
-              {isLoggedIn && (
-                <FavouriteCinema
-                  likedCinemas={likedCinemas}
-                  cinema={cinema}
-                  setLiked={handleFavouriteCinemaChange}
-                />
-              )}
+              <FavouriteCinema
+                likedCinemas={likedCinemas}
+                cinema={cinema}
+                setLiked={handleFavouriteCinemaChange}
+              />
             </div>
             <ul className='member-card-list'>
               {cinema.member_cards?.map((card) => (
