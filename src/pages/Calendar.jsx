@@ -1,33 +1,29 @@
-import axios from 'axios'
 import { useContext, useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
+import { getCalendar, removeFromCalendar } from '../api/calendar'
 import { AuthContext } from '../context/AuthContext'
-import { API_URL } from '../utils/consts'
 import { formatAs } from '../utils/formatDate'
 
 const Calendar = () => {
   const [calendarByDay, setCalendarByDay] = useState([])
-  const { isLoggedIn, isLoading, token } = useContext(AuthContext)
+  const { isLoggedIn, isLoading } = useContext(AuthContext)
 
   useEffect(() => {
-    if (!isLoggedIn || !token) {
+    if (!isLoggedIn) {
       return
     }
 
-    const getCalendar = async () => {
-      const {
-        data: { calendar },
-      } = await axios({
-        baseURL: API_URL,
-        url: '/calendar',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    getCalendar().then((calendar) => {
       setCalendarByDay(calendar)
-    }
-    getCalendar()
-  }, [calendarByDay, token, isLoggedIn])
+    })
+  }, [isLoggedIn])
+
+  const remove = async (id) => {
+    await removeFromCalendar(id)
+    getCalendar().then((calendar) => {
+      setCalendarByDay(calendar)
+    })
+  }
 
   if (isLoading) {
     return (
@@ -39,19 +35,6 @@ const Calendar = () => {
 
   if (!isLoggedIn) {
     return <Navigate to='/auth/login' />
-  }
-
-  const removeShowtimeFromCalendar = async (id) => {
-    const config = {
-      method: 'delete',
-      baseURL: API_URL,
-      url: `/calendar/${id}`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-    const { data } = await axios(config)
-    console.log(data)
   }
 
   return (
@@ -76,7 +59,7 @@ const Calendar = () => {
                   </div>
                   <button
                     className='remove-from-calendar'
-                    onClick={() => removeShowtimeFromCalendar(_id)}
+                    onClick={() => remove(_id)}
                   >
                     Remove
                   </button>

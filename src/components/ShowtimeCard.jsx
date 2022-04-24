@@ -6,6 +6,7 @@ const ShowtimeCard = ({
   startTime,
   cinema,
   className,
+  title,
   showDate = false,
 }) => {
   return (
@@ -13,7 +14,7 @@ const ShowtimeCard = ({
       <h4>{formatAs.time(startTime)}</h4>
       {showDate && <p>{formatAs.dateMonth(startTime)}</p>}
       <p className='extra-info'>{cinema.name}</p>
-      <AddToCalendar showtimeId={_id} />
+      <AddToCalendar {...{ _id, title, startTime, cinema }} />
     </div>
   )
 }

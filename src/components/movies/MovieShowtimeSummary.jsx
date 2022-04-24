@@ -5,7 +5,7 @@ const MovieShowtimeSummary = ({ movie, showtimes }) => {
   return (
     <div className='movie overlay-container expander-container'>
       <MovieHeading {...movie} />
-      <MovieShowtimes showtimes={showtimes} />
+      <MovieShowtimes showtimes={showtimes} movie={movie} />
     </div>
   )
 }

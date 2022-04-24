@@ -2,9 +2,10 @@ import { useState } from 'react'
 import Button from './shared/Button'
 import ShowtimeCard from './ShowtimeCard'
 
-const toShowtimeCard = (showtime, isHidden = false) => {
+const toShowtimeCard = (showtime, movie, isHidden = false) => {
   return (
     <ShowtimeCard
+      {...movie}
       {...showtime}
       key={showtime._id}
       className={isHidden && 'expanded-only'}
@@ -14,20 +15,21 @@ const toShowtimeCard = (showtime, isHidden = false) => {
   )
 }
 
-const toHiddenShowtimeCard = (showtime) => toShowtimeCard(showtime, true)
+const toHiddenShowtimeCard = (showtime, movie) =>
+  toShowtimeCard(showtime, movie, true)
 
 const overflowLimit = 6
 
-const MovieShowtimes = ({ showtimes }) => {
+const MovieShowtimes = ({ showtimes, movie }) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
   if (showtimes.length > overflowLimit) {
     const toShow = showtimes
       .slice(0, overflowLimit - 1)
-      .map((s) => toShowtimeCard(s))
+      .map((s) => toShowtimeCard(s, movie))
     const toHide = showtimes
       .slice(overflowLimit - 1)
-      .map((s) => toHiddenShowtimeCard(s))
+      .map((s) => toHiddenShowtimeCard(s, movie))
 
     return (
       <div
@@ -48,7 +50,7 @@ const MovieShowtimes = ({ showtimes }) => {
     )
   }
 
-  const toShow = showtimes.map(toShowtimeCard)
+  const toShow = showtimes.map((s) => toShowtimeCard(s, movie))
 
   return <div className='movie-showtimes'>{toShow}</div>
 }

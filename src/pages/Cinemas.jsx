@@ -1,29 +1,29 @@
-import axios from 'axios'
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getCinemas } from '../api/cinemas'
+import { getLikedCinemas } from '../api/likes'
 import FavouriteCinema from '../components/FavouriteCinema'
 import { AuthContext } from '../context/AuthContext'
-import { API_URL } from '../utils/consts'
 
 const Cinemas = () => {
-  const { token, isLoggedIn, isLoading } = useContext(AuthContext)
+  const { isLoggedIn, isLoading } = useContext(AuthContext)
   const [cinemas, setCinemas] = useState([])
   const [likedCinemas, setLikedCinemas] = useState([])
   const [filteredCinemas, setFilteredCinemas] = useState([])
   const [query, setQuery] = useState('')
 
-  const getCinemas = async () => {
-    const {
-      data: { cinemas },
-    } = await axios({
-      baseURL: API_URL,
-      url: '/cinemas',
-    })
+  const updateCinemas = async () => {
+    const cinemas = await getCinemas()
     setCinemas(cinemas)
   }
 
+  const updateLikedCinemas = async () => {
+    const likedCinemas = await getLikedCinemas()
+    setLikedCinemas(likedCinemas)
+  }
+
   useEffect(() => {
-    getCinemas()
+    updateCinemas()
   }, [])
 
   useEffect(() => {
@@ -43,31 +43,20 @@ const Cinemas = () => {
       return
     }
 
-    const getLikedCinemas = async () => {
-      const {
-        data: { cinemas },
-      } = await axios({
-        baseURL: API_URL,
-        url: '/likes/cinemas',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      setLikedCinemas(cinemas)
-    }
-    getLikedCinemas()
-  }, [token, isLoading, isLoggedIn])
+    updateLikedCinemas()
+  }, [isLoading, isLoggedIn])
 
   const handleQueryChange = (e) => {
     setQuery(e.target.value)
   }
 
   const handleFavouriteCinemaChange = (cinemaId, liked) => {
+    console.log(liked ? 'LIKED' : 'UNLIKED', cinemaId)
     if (liked) {
       const newEntry = { cinema: { _id: cinemaId } }
-      setLikedCinemas([...cinemas, newEntry])
+      setLikedCinemas((lc) => [...lc, newEntry])
     } else {
-      setLikedCinemas(likedCinemas.filter((x) => x !== cinemaId))
+      setLikedCinemas((lc) => lc.filter((x) => x.cinema._id !== cinemaId))
     }
   }
 
@@ -81,7 +70,7 @@ const Cinemas = () => {
       />
       <ul className='cinema-list'>
         {filteredCinemas.map((cinema) => (
-          <li className='cinema'>
+          <li className='cinema' key={cinema._id}>
             <h2>
               <Link to={`/cinema/${cinema._id}`}>{cinema.name}</Link>
             </h2>
@@ -100,7 +89,7 @@ const Cinemas = () => {
             </div>
             <ul className='member-card-list'>
               {cinema.member_cards?.map((card) => (
-                <li className='member-card' data-code={card.code}>
+                <li className='member-card' key={card.code}>
                   {card.label}
                 </li>
               ))}

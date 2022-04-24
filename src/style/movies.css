@@ -94,7 +94,6 @@ section.movies-section > p {
   padding: 0.5rem;
   transition: all 1s;
   border-radius: 0.25rem;
-  overflow: hidden;
 }
 
 .movie-showtime .extra-info {
@@ -145,8 +144,9 @@ section.movies-section > p {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: -1rem;
-  right: -1rem;
+  top: -0.5rem;
+  right: -0.5rem;
+  z-index: 1;
 }
 
 /* Movies filters */
