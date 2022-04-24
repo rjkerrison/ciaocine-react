@@ -13,9 +13,13 @@ const Calendar = () => {
       return
     }
 
-    getCalendar().then((calendar) => {
-      setCalendarByDay(calendar)
-    })
+    getCalendar()
+      .then((calendar) => {
+        setCalendarByDay(calendar)
+      })
+      .catch((error) => {
+        console.log('error', error)
+      })
   }, [isLoggedIn])
 
   const remove = async (id) => {
