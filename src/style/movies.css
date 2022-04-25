@@ -225,3 +225,85 @@ section.movies-section > p {
 .expander-container.expanded .expanded-only {
   display: flex;
 }
+
+/* main.8e3ef9c1.css | https://ciaocine.netlify.app/static/css/main.8e3ef9c1.css */
+
+.movies-filters-menu {
+  position: relative;
+  width: 10rem;
+}
+
+.movies-filters {
+  position: absolute;
+  top: 2rem;
+  justify-content: flex-start;
+  z-index: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.movies-filters.collapsed {
+  display: none;
+}
+
+nav.filters {
+  display: flex;
+}
+
+/* Inline #11 | http://localhost:3000/movies?arrondissements=75010%7C75016%7C75007&fromHour=14&toHour=21&daysAhead=2&ugcIllimiteOnly=true */
+
+nav.filters {
+  z-index: 1;
+  position: relative;
+}
+
+.movies-filters-menu {
+  position: static;
+  width: 14rem;
+  z-index: 1;
+  overflow: visible;
+}
+
+.movies-filters {
+  flex-direction: row;
+  justify-content: stretch;
+  left: 0;
+}
+
+.movies-filter {
+  padding: 0.25rem;
+  border-radius: 0.125rem;
+}
+
+.movies-filters {
+  gap: 0.125rem;
+}
+
+section.movies-section h2 {
+  border-radius: 0;
+  padding: 0.125rem;
+  margin: 0;
+}
+
+section.movies-section > p {
+  border-radius: 0;
+  margin: 0;
+}
+
+.App {
+  overflow: hidden;
+}
+
+@media screen and (min-width: 600px) {
+  section {
+    padding: 0.25rem;
+  }
+}
+
+section {
+  padding: 0;
+}
+
+.app-header {
+  overflow: hidden;
+}

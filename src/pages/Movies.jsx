@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 import Filters from '../components/filters/Filters'
+import ViewSwitches from '../components/filters/ViewSwitches'
 import MovieList from '../components/movies/MovieList'
 import { API_URL } from '../utils/consts'
 import { formatAs } from '../utils/formatDate'
@@ -20,7 +21,9 @@ const getData = async ({ yyyy, mm, dd, ...criteria }) => {
 const Movies = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [searchParams, setSearchParams] = useSearchParams()
+  const [viewParams, setViewParams] = useState({ isTiles: false })
   const [movies, setMovies] = useState([])
+  const [isPosterTileView, setIsPosterTileView] = useState(false)
   const [date, setDate] = useState(new Date())
   const yyyy = useMemo(() => date.getFullYear(), [date])
   const mm = useMemo(() => date.getMonth(), [date])
@@ -84,15 +87,22 @@ const Movies = () => {
           movies?.[0]?.showtimes?.[0]?.cinema?.name &&
           `at ${movies?.[0]?.showtimes?.[0]?.cinema?.name}`}
       </p>
-      <nav>
-        <Filters
-          updateFilter={updateFilter}
-          params={params}
-          isCinema={!!cinemaId}
-        />
-      </nav>
 
-      <MovieList isLoading={isLoading} movies={movies} />
+      <Filters
+        updateFilter={updateFilter}
+        params={params}
+        isCinema={!!cinemaId}
+        setIsPosterTileView={setIsPosterTileView}
+        isPosterTileView={isPosterTileView}
+      />
+
+      <ViewSwitches setViewParams={setViewParams} viewParams={viewParams} />
+
+      <MovieList
+        isLoading={isLoading}
+        movies={movies}
+        className={isPosterTileView ? 'poster-tile-view' : ''}
+      />
     </section>
   )
 }
