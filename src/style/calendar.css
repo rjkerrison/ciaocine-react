@@ -48,31 +48,6 @@
   grid-template-areas: 'head' 'shows';
 }
 
-.calendar .calendar-movie {
-  grid-template: auto auto 1fr / 7rem 1fr;
-  grid-template-areas: 'time heading' 'poster heading' 'poster cinema';
-  color: var(--text);
-  border-radius: 0.25rem;
-  padding: 0.25rem;
-}
-
-.calendar-movie .time {
-  grid-area: time;
-  margin: 0;
-}
-.calendar-movie .movie-heading {
-  grid-area: heading;
-  margin: 0;
-}
-.calendar-movie .poster {
-  grid-area: poster;
-  margin: 0;
-}
-.calendar-movie .cinema {
-  grid-area: cinema;
-  margin: 0;
-}
-
 @media screen and (min-width: 600px) {
   .calendar {
     grid-auto-flow: column;
@@ -88,7 +63,7 @@
 }
 
 .calendar .movies {
-  grid-template: auto / repeat(auto-fit, minmax(13rem, 15rem));
+  grid-template: auto / repeat(auto-fit, minmax(15rem, 20rem));
   column-gap: 0.25rem;
   row-gap: 0;
 }

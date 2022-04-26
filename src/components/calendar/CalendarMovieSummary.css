@@ -1,0 +1,25 @@
+.calendar-movie {
+  grid-template: auto auto 1fr auto / 7rem 1fr;
+  grid-template-areas: 'poster heading' 'poster heading' 'poster cinema' 'poster time';
+  color: var(--text);
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  position: relative;
+}
+
+.calendar-movie .time {
+  grid-area: time;
+  margin: 0;
+}
+.calendar-movie .movie-heading {
+  grid-area: heading;
+  margin: 0;
+}
+.calendar-movie .poster {
+  grid-area: poster;
+  margin: 0;
+}
+.calendar-movie .cinema {
+  grid-area: cinema;
+  margin: 0;
+}

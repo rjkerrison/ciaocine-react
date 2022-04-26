@@ -136,19 +136,6 @@ section.movies-section > p {
   transform: rotateX(1turn);
 }
 
-.movie button.add-to-calendar {
-  width: 1.5rem;
-  padding: 0;
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: -0.5rem;
-  right: -0.5rem;
-  z-index: 1;
-}
-
 /* Movies filters */
 .movies-filters {
   display: flex;

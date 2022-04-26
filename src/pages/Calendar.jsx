@@ -52,6 +52,7 @@ const Calendar = () => {
             calendarDate={calendarDate}
             showtimes={showtimes}
             key={calendarDate}
+            remove={remove}
           />
         ))}
       </div>

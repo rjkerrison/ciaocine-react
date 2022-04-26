@@ -17,7 +17,7 @@ const AddToCalendar = ({ _id, title, startTime, cinema }) => {
 
   return (
     <button
-      className='add-to-calendar'
+      className='round'
       title={description}
       onClick={async () => {
         const { added } = await addToCalendar(_id)
