@@ -53,12 +53,24 @@ const time = getFormatter(timeFormat)
 const date = getFormatter(dateFormat)
 const dateMonth = getFormatter(dateMonthFormat)
 const weekdayDate = getFormatter(weekdayDateFormat)
+const fifteenMinuteIndex = (datetime) => {
+  try {
+    if (typeof datetime === 'string') {
+      datetime = new Date(datetime)
+    }
+    return datetime.getHours() * 4 + Math.floor(datetime.getMinutes() / 15)
+  } catch (error) {
+    console.log('errored with datetime', datetime, error)
+    return 1
+  }
+}
 
 export const formatAs = {
   time,
   date,
   dateMonth,
   weekdayDate,
+  fifteenMinuteIndex,
 }
 
 export const formats = {

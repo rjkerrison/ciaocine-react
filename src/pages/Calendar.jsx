@@ -1,33 +1,15 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
-import { getCalendar, removeFromCalendar } from '../api/calendar'
+import SingleDayView from '../components/calendar/SingleDayView'
 import { AuthContext } from '../context/AuthContext'
-import { formatAs } from '../utils/formatDate'
+import {
+  CalendarContext,
+  CalendarContextProvider,
+} from '../context/CalendarContext'
 
 const Calendar = () => {
-  const [calendarByDay, setCalendarByDay] = useState([])
   const { isLoggedIn, isLoading } = useContext(AuthContext)
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      return
-    }
-
-    getCalendar()
-      .then((calendar) => {
-        setCalendarByDay(calendar)
-      })
-      .catch((error) => {
-        console.log('error', error)
-      })
-  }, [isLoggedIn])
-
-  const remove = async (id) => {
-    await removeFromCalendar(id)
-    getCalendar().then((calendar) => {
-      setCalendarByDay(calendar)
-    })
-  }
+  const { calendarByDay } = useContext(CalendarContext)
 
   if (isLoading) {
     return (
@@ -46,35 +28,23 @@ const Calendar = () => {
       <h2>Your saved screenings</h2>
       <div className='calendar'>
         {calendarByDay.map(({ calendarDate, showtimes }) => (
-          <div className='calendar-date' key={calendarDate}>
-            <h2 className='calendar-head'>{formatAs.date(calendarDate)}</h2>
-            <div className='movies'>
-              {showtimes.map(({ _id, movie, cinema, startTime }) => (
-                <div
-                  key={_id}
-                  className='movie overlay-container expander-container calendar-entry'
-                >
-                  <div className='movie-heading'>
-                    <h3>{movie.title}</h3>
-                    {cinema.name}
-                  </div>
-                  <div className='movie-showtime'>
-                    <p>{formatAs.time(startTime)}</p>
-                  </div>
-                  <button
-                    className='remove-from-calendar'
-                    onClick={() => remove(_id)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
+          <SingleDayView
+            calendarDate={calendarDate}
+            showtimes={showtimes}
+            key={calendarDate}
+          />
         ))}
       </div>
     </section>
   )
 }
 
-export default Calendar
+const CalendarWithContext = () => {
+  return (
+    <CalendarContextProvider>
+      <Calendar />
+    </CalendarContextProvider>
+  )
+}
+
+export default CalendarWithContext

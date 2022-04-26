@@ -1,5 +1,6 @@
 .calendar {
   display: grid;
+  color: var(--dark);
 }
 
 .calendar-date {
@@ -10,26 +11,9 @@
 }
 
 .calendar-head {
+  grid-area: head;
   grid-row: 1;
   counter-increment: column;
-}
-
-.calendar .movies {
-  grid-gap: 0.25rem;
-}
-
-.calendar .movie {
-  grid-template-areas: 'showtimes heading .';
-  grid-template-columns: auto 1fr;
-  grid-template-rows: subgrid;
-}
-
-.calendar .movie h3 {
-  margin: 0;
-}
-
-.calendar .movie-showtime {
-  grid-area: showtimes;
 }
 
 .calendar .movie .overlay {
@@ -64,10 +48,6 @@
   grid-template-areas: 'head' 'shows';
 }
 
-.calendar-head {
-  grid-area: head;
-}
-
 @media screen and (min-width: 600px) {
   .calendar {
     grid-auto-flow: column;
@@ -76,4 +56,14 @@
   .calendar-date {
     grid-row: 1 / 100;
   }
+}
+
+.calendar .movie h3 {
+  font-size: 1.25rem;
+}
+
+.calendar .movies {
+  grid-template: auto / repeat(auto-fit, minmax(15rem, 20rem));
+  column-gap: 0.25rem;
+  row-gap: 0;
 }

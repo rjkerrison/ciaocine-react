@@ -1,5 +1,5 @@
 import { formatAs } from '../utils/formatDate'
-import AddToCalendar from './AddToCalendar'
+import AddToCalendar from './calendar/AddToCalendar'
 
 const ShowtimeCard = ({
   _id,
