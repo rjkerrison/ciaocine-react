@@ -8,7 +8,7 @@ const Filters = ({ updateFilter, params, isCinema }) => {
       {filters.map(({ component: Component, ...filter }) => (
         <Component
           {...filter}
-          key={filter.name}
+          key={filter.label}
           updateFilter={updateFilter}
           values={params}
         />

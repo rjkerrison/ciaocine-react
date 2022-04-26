@@ -1,8 +1,8 @@
 import { useContext, useMemo } from 'react'
-import { addToCalendar } from '../api/calendar'
-import { ToastContext } from '../context/ToastContext'
-import { formatAs } from '../utils/formatDate'
-import Authenticated from './shared/Authenticated'
+import { addToCalendar } from '../../api/calendar'
+import { ToastContext } from '../../context/ToastContext'
+import { formatAs } from '../../utils/formatDate'
+import Authenticated from '../shared/Authenticated'
 
 const AddToCalendar = ({ _id, title, startTime, cinema }) => {
   const { toast } = useContext(ToastContext)

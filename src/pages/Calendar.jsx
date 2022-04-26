@@ -1,35 +1,15 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
-import { getCalendar, removeFromCalendar } from '../api/calendar'
 import SingleDayView from '../components/calendar/SingleDayView'
-import MovieShowtimeSummary from '../components/movies/MovieShowtimeSummary'
 import { AuthContext } from '../context/AuthContext'
-import { formatAs } from '../utils/formatDate'
+import {
+  CalendarContext,
+  CalendarContextProvider,
+} from '../context/CalendarContext'
 
 const Calendar = () => {
-  const [calendarByDay, setCalendarByDay] = useState([])
   const { isLoggedIn, isLoading } = useContext(AuthContext)
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      return
-    }
-
-    getCalendar()
-      .then((calendar) => {
-        setCalendarByDay(calendar)
-      })
-      .catch((error) => {
-        console.log('error', error)
-      })
-  }, [isLoggedIn])
-
-  const remove = async (id) => {
-    await removeFromCalendar(id)
-    getCalendar().then((calendar) => {
-      setCalendarByDay(calendar)
-    })
-  }
+  const { calendarByDay } = useContext(CalendarContext)
 
   if (isLoading) {
     return (
@@ -52,7 +32,6 @@ const Calendar = () => {
             calendarDate={calendarDate}
             showtimes={showtimes}
             key={calendarDate}
-            remove={remove}
           />
         ))}
       </div>
@@ -60,4 +39,12 @@ const Calendar = () => {
   )
 }
 
-export default Calendar
+const CalendarWithContext = () => {
+  return (
+    <CalendarContextProvider>
+      <Calendar />
+    </CalendarContextProvider>
+  )
+}
+
+export default CalendarWithContext
