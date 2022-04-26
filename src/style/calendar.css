@@ -1,5 +1,6 @@
 .calendar {
   display: grid;
+  color: var(--dark);
 }
 
 .calendar-date {
@@ -10,26 +11,9 @@
 }
 
 .calendar-head {
+  grid-area: head;
   grid-row: 1;
   counter-increment: column;
-}
-
-.calendar .movies {
-  grid-gap: 0.25rem;
-}
-
-.calendar .movie {
-  grid-template-areas: 'showtimes heading .';
-  grid-template-columns: auto 1fr;
-  grid-template-rows: subgrid;
-}
-
-.calendar .movie h3 {
-  margin: 0;
-}
-
-.calendar .movie-showtime {
-  grid-area: showtimes;
 }
 
 .calendar .movie .overlay {
@@ -64,8 +48,29 @@
   grid-template-areas: 'head' 'shows';
 }
 
-.calendar-head {
-  grid-area: head;
+.calendar .calendar-movie {
+  grid-template: auto auto 1fr / 7rem 1fr;
+  grid-template-areas: 'time heading' 'poster heading' 'poster cinema';
+  color: var(--text);
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+}
+
+.calendar-movie .time {
+  grid-area: time;
+  margin: 0;
+}
+.calendar-movie .movie-heading {
+  grid-area: heading;
+  margin: 0;
+}
+.calendar-movie .poster {
+  grid-area: poster;
+  margin: 0;
+}
+.calendar-movie .cinema {
+  grid-area: cinema;
+  margin: 0;
 }
 
 @media screen and (min-width: 600px) {
@@ -76,4 +81,14 @@
   .calendar-date {
     grid-row: 1 / 100;
   }
+}
+
+.calendar .movie h3 {
+  font-size: 1.25rem;
+}
+
+.calendar .movies {
+  grid-template: auto / repeat(auto-fit, minmax(13rem, 15rem));
+  column-gap: 0.25rem;
+  row-gap: 0;
 }
