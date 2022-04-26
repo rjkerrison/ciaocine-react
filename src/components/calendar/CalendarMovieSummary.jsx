@@ -1,6 +1,6 @@
 import { formatAs } from '../../utils/formatDate'
 import MovieHeading from '../MovieHeading'
-import './CalendarMovieSummary.css'
+import './CalendarMovieSummary.scss'
 import RemoveFromCalendar from './RemoveFromCalendar'
 
 const CalendarMovieSummary = ({ movie, startTime, cinema, _id }) => {
