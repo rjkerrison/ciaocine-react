@@ -115,27 +115,6 @@ section.movies-section > p {
   font-size: 1.25rem;
 }
 
-.movie-showtime:hover .extra-info,
-.movie-showtime.show-overlay .extra-info {
-  display: block;
-  width: 100%;
-  text-align: center;
-}
-
-.movie-showtime .overlay {
-  display: flex;
-  align-items: center;
-  height: 2rem;
-  height: 100%;
-  top: 0;
-  transform: rotateX(0.5turn);
-}
-
-.movie-showtime:hover .overlay,
-.movie-showtime.show-overlay .overlay {
-  transform: rotateX(1turn);
-}
-
 /* Movies filters */
 .movies-filters {
   display: flex;

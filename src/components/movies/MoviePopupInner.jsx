@@ -44,7 +44,11 @@ const MoviePopupInner = () => {
       <h2>{movieInfo.extra.original_title}</h2>
       <p>{movieInfo.extra.overview}</p>
       <p>{movieInfo.extra.vote_average} / 10 on TMDB</p>
-      <p>Released {formatAs.date(movieInfo.extra.release_date)}</p>
+      <p>
+        Released{' '}
+        {movieInfo.extra.release_date &&
+          formatAs.date(movieInfo.extra.release_date)}
+      </p>
       <ul>
         {movieInfo.extra.crew.slice(0, 5).map(({ job, name, id }) => (
           <li key={id + job}>

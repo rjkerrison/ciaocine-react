@@ -16,21 +16,6 @@
   counter-increment: column;
 }
 
-.calendar .movie .overlay {
-  display: flex;
-  align-items: center;
-  height: 2rem;
-  height: 100%;
-  top: 0;
-  transform: rotateX(0.5turn);
-  background: none;
-}
-
-.calendar .movie:hover .overlay,
-.calendar .movie.show-overlay .overlay {
-  transform: rotateX(1turn);
-}
-
 .calendar .movies {
   grid-template: auto / 1fr;
   grid-area: shows;
