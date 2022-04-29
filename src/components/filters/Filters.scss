@@ -20,13 +20,19 @@
 }
 
 nav.filters {
-  display: flex;
+  display: grid;
   z-index: 1;
   position: relative;
+  background-color: var(--mid);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .movies-filters-menu {
-  width: 14rem;
-  z-index: 1;
-  overflow: visible;
+  display: contents;
+  background-color: var(--mid);
+  
+  h3 {
+    grid-row: 1;
+    font-size: 1.5rem;
+  }
 }

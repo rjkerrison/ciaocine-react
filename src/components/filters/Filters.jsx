@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react'
 import { all, daysAhead, time } from './filtersConfig'
-import './Filters.css'
+import './Filters.scss'
 
-const Filters = ({ updateFilter, params, isCinema }) => {
+const Filters = ({ updateFilter, params, isCinema, children }) => {
   const [openFilters, setOpenFilters] = useState({})
   const filters = isCinema ? [daysAhead, time] : all
 
@@ -10,16 +10,19 @@ const Filters = ({ updateFilter, params, isCinema }) => {
     (name, value) =>
       setOpenFilters((current) => ({
         ...current,
-        [name]: value,
+        [name]: value || !current[name],
       })),
     []
   )
 
   return (
     <nav className='filters'>
-      {filters.map(({ component: Component, label, ...filter }) => (
+      {filters.map(({ component: Component, getShortDisplay, ...filter }) => (
         <div className='movies-filters-menu'>
-          <h2 onClick={() => setOpenFilter(filter.name, true)}>{label}</h2>
+          <h3 onClick={() => setOpenFilter(filter.name)}>
+            {getShortDisplay ? getShortDisplay(params) : filter.label}{' '}
+            {openFilters[filter.name] ? '▲' : '▼'}
+          </h3>
           <Component
             {...filter}
             classes={[openFilters[filter.name] ? 'open' : 'closed']}
@@ -32,6 +35,7 @@ const Filters = ({ updateFilter, params, isCinema }) => {
           />
         </div>
       ))}
+      {children}
     </nav>
   )
 }

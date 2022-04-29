@@ -1,17 +1,15 @@
-import axios from 'axios'
-import React, { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
+import service from '../api/service'
 import Filters from '../components/filters/Filters'
 import ViewSwitches from '../components/filters/ViewSwitches'
 import MovieList from '../components/movies/MovieList'
-import { API_URL } from '../utils/consts'
 import { formatAs } from '../utils/formatDate'
 
 const getData = async ({ yyyy, mm, dd, ...criteria }) => {
   const {
     data: { movies },
-  } = await axios({
-    baseURL: API_URL,
+  } = await service.request({
     url: `/showtimes/${yyyy}/${mm + 1}/${dd}/`,
     params: criteria,
   })
@@ -23,7 +21,6 @@ const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [viewParams, setViewParams] = useState({ isTiles: false })
   const [movies, setMovies] = useState([])
-  const [isPosterTileView, setIsPosterTileView] = useState(false)
   const [date, setDate] = useState(new Date())
   const yyyy = useMemo(() => date.getFullYear(), [date])
   const mm = useMemo(() => date.getMonth(), [date])
@@ -65,11 +62,15 @@ const Movies = () => {
     if (name === 'daysAhead') {
       incrementDate(value, new Date())
     }
+    const newParams = { ...params }
 
-    setSearchParams({
-      ...params,
-      [name]: value,
-    })
+    if (value === null) {
+      delete newParams[name]
+      setSearchParams(newParams)
+    } else {
+      newParams[name] = value
+    }
+    setSearchParams(newParams)
   }
 
   const incrementDate = (increment, date) => {
@@ -92,16 +93,14 @@ const Movies = () => {
         updateFilter={updateFilter}
         params={params}
         isCinema={!!cinemaId}
-        setIsPosterTileView={setIsPosterTileView}
-        isPosterTileView={isPosterTileView}
-      />
-
-      <ViewSwitches setViewParams={setViewParams} viewParams={viewParams} />
+      >
+        <ViewSwitches setViewParams={setViewParams} viewParams={viewParams} />
+      </Filters>
 
       <MovieList
         isLoading={isLoading}
         movies={movies}
-        className={isPosterTileView ? 'poster-tile-view' : ''}
+        className={viewParams.isTiles ? 'poster-tile-view' : ''}
       />
     </section>
   )

@@ -1,8 +1,18 @@
 .movie-filter-group {
-  display: block;
+  // position:absolute;
+  // left: 0;
+  display: flex;
+  flex-wrap:wrap;
+  grid-column: 1 / -1;
 
   &.closed {
     display: none;
+  }
+
+  &.top-level {
+    grid-row: 1;
+    grid-column: auto;
+    justify-content: center;
   }
 }
 
@@ -34,6 +44,7 @@
 
   &:hover {
     background-color: var(--contrast);
+    border: none;
   }
 
   &.selected:hover {
@@ -41,4 +52,3 @@
     color: var(--text);
   }
 }
-
