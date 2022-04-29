@@ -1,0 +1,44 @@
+.movie-filter-group {
+  display: block;
+
+  &.closed {
+    display: none;
+  }
+}
+
+.movies-filter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--mid);
+  padding: 1rem;
+  margin: 0;
+  transition: all 0.5s;
+  border-radius: 0.25rem;
+  color: white;
+  border: none;
+  animation: 1s enter ease-in-out;
+  padding: 0.25rem;
+  border-radius: 0.125rem;
+
+  &.selected {
+    background-color: var(--contrast-dark);
+    color: var(--white);
+  }
+
+  &.inside {
+    background-color: var(--contrast);
+    color: var(--mid);
+  }
+
+  &:hover {
+    background-color: var(--contrast);
+  }
+
+  &.selected:hover {
+    background-color: var(--mid);
+    color: var(--text);
+  }
+}
+

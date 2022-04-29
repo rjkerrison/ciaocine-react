@@ -1,17 +1,17 @@
 import Button from '../shared/Button'
+import Filter from './Filter'
 
-const Toggle = ({ label, className, values, updateFilter, name }) => {
+const Toggle = ({ label, classes, values, updateFilter, name }) => {
   const isActive = values[name] === 'true'
 
   return (
-    <div className='movies-filters'>
+    <Filter classes={classes}>
       <Button
         isActive={isActive}
         onClick={() => updateFilter(name, !isActive)}
-        classes={[className]}
         label={label}
       />
-    </div>
+    </Filter>
   )
 }
 

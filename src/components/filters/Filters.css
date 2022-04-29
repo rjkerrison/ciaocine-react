@@ -1,0 +1,32 @@
+/* Movies filters */
+.movies-filters {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.125rem;
+  margin: 0.25rem;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: stretch;
+}
+
+.movies-filters.collapsed {
+  display: none;
+}
+
+nav.filters {
+  display: flex;
+  z-index: 1;
+  position: relative;
+}
+
+.movies-filters-menu {
+  width: 14rem;
+  z-index: 1;
+  overflow: visible;
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../shared/Button'
+import Filter from './Filter'
 import { getLabelValue } from './helpers'
 
 const SliderOption = ({ option, className, updateSlider, lower, upper }) => {
@@ -20,7 +21,7 @@ const SliderOption = ({ option, className, updateSlider, lower, upper }) => {
   )
 }
 
-const Slider = ({ options, values, name, updateFilter, ...props }) => {
+const Slider = ({ classes, options, values, name, updateFilter, ...props }) => {
   const [lower, upper] = name.map((n) => Number(values[n]))
 
   const updateSlider = (option) => {
@@ -40,7 +41,7 @@ const Slider = ({ options, values, name, updateFilter, ...props }) => {
   }
 
   return (
-    <div className='movies-filters'>
+    <Filter classes={classes}>
       {options.map((option) => (
         <SliderOption
           {...props}
@@ -51,7 +52,7 @@ const Slider = ({ options, values, name, updateFilter, ...props }) => {
           upper={upper}
         />
       ))}
-    </div>
+    </Filter>
   )
 }
 
