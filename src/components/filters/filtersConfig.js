@@ -34,11 +34,9 @@ export const daysAhead = {
   label: 'Date',
   defaultValue: '0',
   getShortDisplay: (params) => {
-    if (params.daysAhead) {
-      const date = new Date(Date.now() + params.daysAhead * 86400 * 1000)
-      return formatAs.dateMonth(date)
-    }
-    return `Date`
+    const daysAheadInt = parseInt(params.daysAhead) || 0
+    const date = new Date(Date.now() + daysAheadInt * 86400 * 1000)
+    return formatAs.dateMonth(date)
   },
 }
 
