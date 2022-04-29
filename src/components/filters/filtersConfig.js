@@ -46,14 +46,17 @@ export const time = {
   component: Slider,
   options: getHoursOptions(),
   getShortDisplay: (params) => {
+    const offset = Math.floor(date.getTimezoneOffset() / 60)
     if (params.fromHour) {
       if (params.toHour) {
-        return `${params.fromHour}h to ${params.toHour}h`
+        return `${parseInt(params.fromHour) - offset}h to ${
+          parseInt(params.toHour) - offset
+        }h`
       }
-      return `After ${params.fromHour}h`
+      return `After ${parseInt(params.fromHour) - offset}h`
     }
     if (params.toHour) {
-      return `Before ${params.toHour}h`
+      return `Before ${parseInt(params.toHour) - offset}h`
     }
     return `N'importe pas l'heure`
   },

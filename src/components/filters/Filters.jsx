@@ -18,7 +18,7 @@ const Filters = ({ updateFilter, params, isCinema, children }) => {
   return (
     <nav className='filters'>
       {filters.map(({ component: Component, getShortDisplay, ...filter }) => (
-        <div className='movies-filters-menu'>
+        <div className='movies-filters-menu' key={filter.label}>
           <h3 onClick={() => setOpenFilter(filter.name)}>
             {getShortDisplay ? getShortDisplay(params) : filter.label}{' '}
             {openFilters[filter.name] ? '▲' : '▼'}

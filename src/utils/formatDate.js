@@ -5,7 +5,7 @@ const formatDate = (datetime, targetFormat) => {
 
   try {
     let { format } = Intl.DateTimeFormat('fr-FR', targetFormat)
-    return format(datetime)
+    return format(datetime, { timeZone: 'Europe/Paris' })
   } catch (error) {
     console.error('uhohohohoh', datetime, targetFormat)
     return datetime
