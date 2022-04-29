@@ -66,7 +66,7 @@ const ugcFilter = {
   component: Toggle,
   label: 'UGC Illimité',
   getShortDisplay: (params) => {
-    if (params['ugcIllimiteOnly']) {
+    if (params['ugcIllimiteOnly'] === 'true') {
       return 'Accepting UGC Illimité'
     }
     return 'Any cinema'

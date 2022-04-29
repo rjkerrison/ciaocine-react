@@ -24,7 +24,12 @@ nav.filters {
   z-index: 1;
   position: relative;
   background-color: var(--mid);
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 1fr;
+  grid-auto-flow: row;
+
+  @media screen and (min-width: 600px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 .movies-filters-menu {
@@ -32,7 +37,10 @@ nav.filters {
   background-color: var(--mid);
   
   h3 {
-    grid-row: 1;
     font-size: 1.5rem;
+
+    @media screen and (min-width: 600px) {
+      grid-row: 1;
+    }
   }
 }
