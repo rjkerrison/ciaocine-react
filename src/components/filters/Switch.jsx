@@ -1,4 +1,5 @@
 import Button from '../shared/Button'
+import Filter from './Filter'
 import { getLabelValue } from './helpers'
 
 const SwitchOption = ({
@@ -23,9 +24,9 @@ const SwitchOption = ({
   )
 }
 
-const Switch = ({ options, ...props }) => {
+const Switch = ({ options, classes, ...props }) => {
   return (
-    <div className='movies-filters'>
+    <Filter classes={classes}>
       {options.map((option) => (
         <SwitchOption
           key={getLabelValue(option).value}
@@ -33,7 +34,7 @@ const Switch = ({ options, ...props }) => {
           {...props}
         />
       ))}
-    </div>
+    </Filter>
   )
 }
 

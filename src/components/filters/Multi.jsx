@@ -1,5 +1,6 @@
 import { URL_SEPARATOR } from '../../utils/consts'
 import Button from '../shared/Button'
+import Filter from './Filter'
 import { getLabelValue } from './helpers'
 
 const MultiSingleOption = ({
@@ -25,7 +26,7 @@ const MultiSingleOption = ({
 
 const Multi = ({
   options,
-  className,
+  classes,
   values,
   name,
   updateFilter,
@@ -48,7 +49,7 @@ const Multi = ({
       : Array.from(new Set([...current, ...group.options])).join(URL_SEPARATOR)
 
   return (
-    <div className='movies-filters'>
+    <Filter classes={classes}>
       {groupedOptions.map((group, i) => {
         if (!group) {
           console.error(`group at index ${i} was not defined`)
@@ -60,7 +61,7 @@ const Multi = ({
             key={group.label}
             isActive={isGroupActive(group)}
             onClick={() => updateFilter(name, toggleGroup(group))}
-            classes={[className]}
+            classes={classes}
             label={group.label}
           />
         )
@@ -69,14 +70,13 @@ const Multi = ({
         <MultiSingleOption
           key={getLabelValue(option).value}
           option={option}
-          className={className}
           name={name}
           updateFilter={updateFilter}
           isActive={isActive}
           toggle={toggle}
         />
       ))}
-    </div>
+    </Filter>
   )
 }
 

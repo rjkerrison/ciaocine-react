@@ -136,53 +136,6 @@ section.movies-section > p {
   transform: rotateX(1turn);
 }
 
-/* Movies filters */
-.movies-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-  margin: 0.25rem;
-  justify-content: center;
-  list-style: none;
-  padding: 0;
-}
-
-.movies-filter {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--mid);
-  padding: 1rem;
-  margin: 0;
-  transition: all 0.5s;
-  border-radius: 0.25rem;
-  color: white;
-  border: none;
-  animation: 1s enter ease-in-out;
-}
-
-.movies-filter:hover {
-  background-color: var(--contrast);
-  border: none;
-}
-
-.selected.movies-filter,
-.inside:hover .movies-filter {
-  background-color: var(--contrast-dark);
-  color: var(--white);
-}
-
-.inside.movies-filter {
-  background-color: var(--contrast);
-  color: var(--mid);
-}
-
-.selected.movies-filter:hover {
-  background-color: var(--mid);
-  color: white;
-}
-
 @media screen and (min-width: 600px) {
   .movies {
     grid-template: auto / repeat(auto-fill, minmax(30rem, 1fr));
@@ -224,4 +177,33 @@ section.movies-section > p {
 
 .expander-container.expanded .expanded-only {
   display: flex;
+}
+
+section.movies-section h2 {
+  border-radius: 0;
+  padding: 0.125rem;
+  margin: 0;
+}
+
+section.movies-section > p {
+  border-radius: 0;
+  margin: 0;
+}
+
+.App {
+  overflow: hidden;
+}
+
+@media screen and (min-width: 600px) {
+  section {
+    padding: 0.25rem;
+  }
+}
+
+section {
+  padding: 0;
+}
+
+.app-header {
+  overflow: hidden;
 }

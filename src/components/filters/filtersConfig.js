@@ -33,17 +33,44 @@ export const daysAhead = {
   options: daysAheadOptions(),
   label: 'Date',
   defaultValue: '0',
+  getShortDisplay: (params) => {
+    if (params.daysAhead) {
+      const date = new Date(Date.now() + params.daysAhead * 86400 * 1000)
+      return formatAs.dateMonth(date)
+    }
+    return `Date`
+  },
 }
 
 export const time = {
   name: ['fromHour', 'toHour'],
+  label: 'Heure',
   component: Slider,
   options: getHoursOptions(),
+  getShortDisplay: (params) => {
+    if (params.fromHour) {
+      if (params.toHour) {
+        return `${params.fromHour}h to ${params.toHour}h`
+      }
+      return `After ${params.fromHour}h`
+    }
+    if (params.toHour) {
+      return `Before ${params.toHour}h`
+    }
+    return `N'importe pas l'heure`
+  },
 }
 
-export const all = [
-  daysAhead,
-  { name: 'ugcIllimiteOnly', component: Toggle, label: 'UGC Illimité' },
-  time,
-  arrondissementFilter,
-]
+const ugcFilter = {
+  name: 'ugcIllimiteOnly',
+  component: Toggle,
+  label: 'UGC Illimité',
+  getShortDisplay: (params) => {
+    if (params['ugcIllimiteOnly'] === 'true') {
+      return 'Accepting UGC Illimité'
+    }
+    return 'Any cinema'
+  },
+}
+
+export const all = [daysAhead, time, arrondissementFilter, ugcFilter]

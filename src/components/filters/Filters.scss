@@ -1,0 +1,46 @@
+/* Movies filters */
+.movies-filters {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.125rem;
+  margin: 0.25rem;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: stretch;
+}
+
+.movies-filters.collapsed {
+  display: none;
+}
+
+nav.filters {
+  display: grid;
+  z-index: 1;
+  position: relative;
+  background-color: var(--mid);
+  grid-template-columns: 1fr;
+  grid-auto-flow: row;
+
+  @media screen and (min-width: 600px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.movies-filters-menu {
+  display: contents;
+  background-color: var(--mid);
+  
+  h3 {
+    font-size: 1.5rem;
+
+    @media screen and (min-width: 600px) {
+      grid-row: 1;
+    }
+  }
+}
