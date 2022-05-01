@@ -40,4 +40,50 @@ const verifyToken = async () => {
   }
 }
 
-export { getHeadersWithAuth, storeToken, removeToken, verifyToken }
+const login = async (body) => {
+  try {
+    const {
+      data: { authToken, errorMessage },
+    } = await service.request({
+      url: `/auth/login`,
+      data: body,
+      method: 'post',
+    })
+    if (authToken) {
+      storeToken(authToken)
+      return { isLoggedIn: true }
+    }
+    return { isLoggedIn: false, errorMessage }
+  } catch (error) {
+    console.error(error)
+    return { isLoggedIn: false, errorMessage: error.message }
+  }
+}
+
+const signup = async (body) => {
+  try {
+    const {
+      data: { errorMessage },
+    } = await service.request({
+      url: `/auth/signup`,
+      data: body,
+      method: 'post',
+    })
+    if (!errorMessage) {
+      return { isSignedUp: true }
+    }
+    return {}
+  } catch (error) {
+    console.error(error)
+    return { isSignedUp: false, errorMessage: error.message }
+  }
+}
+
+export {
+  getHeadersWithAuth,
+  storeToken,
+  removeToken,
+  verifyToken,
+  login,
+  signup,
+}

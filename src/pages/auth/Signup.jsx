@@ -1,27 +1,22 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-
-const API_URL = 'http://localhost:5005/api'
+import { signup } from '../../api/auth'
+import UserForm from '../../components/auth/UserForm'
+import './AuthPage.css'
 
 const SignupPage = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState(undefined)
 
   const navigate = useNavigate()
 
-  const handleUsername = (e) => setUsername(e.target.value)
-  const handlePassword = (e) => setPassword(e.target.value)
-
-  const handleSignupSubmit = async (e) => {
-    e.preventDefault()
-    // Create an object representing the request body
-    const requestBody = { username, password }
-
+  const handleSignupSubmit = async ({ username, password }) => {
     try {
-      await axios.post(`${API_URL}/auth/signup`, requestBody)
-      navigate('/login')
+      const { isSignedUp, errorMessage } = await signup({ username, password })
+      if (!isSignedUp) {
+        setErrorMessage(errorMessage)
+      } else {
+        navigate('/login')
+      }
     } catch (error) {
       const errorDescription = error.response.data.message
       setErrorMessage(errorDescription)
@@ -29,33 +24,16 @@ const SignupPage = () => {
   }
 
   return (
-    <div className='SignupPage'>
+    <div className='auth-page'>
       <h1>Sign Up</h1>
 
-      <form onSubmit={handleSignupSubmit}>
-        <label>Username:</label>
-        <input
-          type='text'
-          name='username'
-          value={username}
-          onChange={handleUsername}
-        />
-
-        <label>Password:</label>
-        <input
-          type='password'
-          name='password'
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <button type='submit'>Sign Up</button>
-      </form>
+      <UserForm submitUserInfo={handleSignupSubmit} submitLabel='Sign Up' />
 
       {errorMessage && <p className='error-message'>{errorMessage}</p>}
 
-      <p>Already have account?</p>
-      <Link to={'/auth/login'}> Login</Link>
+      <p>
+        Already have an account? <Link to={'/auth/login'}>Login</Link>.
+      </p>
     </div>
   )
 }

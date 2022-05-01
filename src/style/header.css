@@ -52,6 +52,10 @@
   align-items: center;
 }
 
+.account-header nav {
+  display: contents;
+}
+
 .account-header picture {
   height: 100%;
   border-radius: 0.5rem;
@@ -72,8 +76,20 @@
   list-style: none;
 }
 
-.account-header a {
+.account-header a,
+.account-header button {
   color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+.account-header button:hover {
+  transform: none;
+}
+.account-header p {
+  margin: 0;
 }
 
 @media screen and (min-width: 600px) {

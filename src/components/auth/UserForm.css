@@ -1,0 +1,9 @@
+.label-input-group {
+  width: 100%;
+  display: flex;
+  margin: 1rem 0;
+}
+.label-input-group label,
+.label-input-group input {
+  flex: 50% 1 1;
+}
