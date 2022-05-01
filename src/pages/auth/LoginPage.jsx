@@ -6,7 +6,7 @@ import './AuthPage.css'
 import UserForm from '../../components/auth/UserForm'
 
 const LoginPage = () => {
-  const { authenticateUser } = useContext(AuthContext)
+  const { authenticateUser, isLoggedIn } = useContext(AuthContext)
   const [errorMessage, setErrorMessage] = useState(undefined)
 
   const navigate = useNavigate()
@@ -24,6 +24,10 @@ const LoginPage = () => {
       const errorDescription = error.response.data.message
       setErrorMessage(errorDescription)
     }
+  }
+
+  if (isLoggedIn) {
+    navigate('/calendar')
   }
 
   return (
