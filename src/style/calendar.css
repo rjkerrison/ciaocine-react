@@ -34,6 +34,11 @@
 .calendar .movies {
   grid-template: auto / 1fr;
   grid-area: shows;
+  grid-template: repeat(96, 2rem) / 3rem repeat(auto-fit, 5rem);
+  column-gap: 0.25rem;
+  row-gap: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .calendar {
@@ -56,14 +61,12 @@
   .calendar-date {
     grid-row: 1 / 100;
   }
+
+  .calendar .movies {
+    display: grid;
+  }
 }
 
 .calendar .movie h3 {
   font-size: 1.25rem;
-}
-
-.calendar .movies {
-  grid-template: auto / repeat(auto-fit, minmax(15rem, 20rem));
-  column-gap: 0.25rem;
-  row-gap: 0;
 }
