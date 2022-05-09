@@ -1,5 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
+import {
+  useNavigate,
+  useParams,
+  useSearchParams,
+  useLocation,
+} from 'react-router-dom'
 import service from '../api/service'
 import Filters from '../components/filters/Filters'
 import ViewSwitches from '../components/filters/ViewSwitches'
@@ -17,15 +22,32 @@ const getData = async ({ yyyy, mm, dd, ...criteria }) => {
 }
 
 const Movies = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+
   const [isLoading, setIsLoading] = useState(true)
   const [searchParams, setSearchParams] = useSearchParams()
   const [viewParams, setViewParams] = useState({ isTiles: false })
   const [movies, setMovies] = useState([])
-  const [date, setDate] = useState(new Date())
-  const yyyy = useMemo(() => date.getFullYear(), [date])
-  const mm = useMemo(() => date.getMonth(), [date])
-  const dd = useMemo(() => date.getDate(), [date])
-  const { cinemaId } = useParams()
+  const {
+    cinemaId,
+    year: routeYear,
+    month: routeMonth,
+    date: routeDate,
+  } = useParams()
+
+  const [date, setDate] = useState(null)
+  const yyyy = useMemo(() => date?.getFullYear(), [date])
+  const mm = useMemo(() => date?.getMonth(), [date])
+  const dd = useMemo(() => date?.getDate(), [date])
+
+  useEffect(() => {
+    if (routeYear && routeMonth && routeDate) {
+      setDate(new Date(routeYear, routeMonth - 1, routeDate))
+    } else {
+      setDate(new Date())
+    }
+  }, [routeYear, routeMonth, routeDate])
 
   const params = useMemo(
     () => Object.fromEntries(searchParams.entries()),
@@ -61,6 +83,7 @@ const Movies = () => {
   const updateFilter = (name, value) => {
     if (name === 'daysAhead') {
       incrementDate(value, new Date())
+      return
     }
     const newParams = { ...params }
 
@@ -75,6 +98,14 @@ const Movies = () => {
 
   const incrementDate = (increment, date) => {
     const newDate = new Date(date - 0 + 86400 * 1000 * increment)
+    const { year, month, date: routeDate } = formatAs.yearMonthDate(newDate)
+    console.log({ year, month, routeDate, date, increment })
+    if (cinemaId) {
+      navigate(`/cinemas/${cinemaId}/${year}/${month}/${routeDate}`)
+    } else {
+      navigate(`/movies/${year}/${month}/${routeDate}`)
+    }
+
     setDate(newDate)
   }
 

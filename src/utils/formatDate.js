@@ -64,6 +64,20 @@ const fifteenMinuteIndex = (datetime) => {
     return 1
   }
 }
+const yearMonthDate = (datetime) => {
+  try {
+    if (typeof datetime === 'string') {
+      datetime = new Date(datetime)
+    }
+  } catch (error) {
+    datetime = new Date()
+  }
+  return {
+    year: datetime.getFullYear(),
+    month: datetime.getMonth() + 1,
+    date: datetime.getDate(),
+  }
+}
 
 export const formatAs = {
   time,
@@ -71,6 +85,7 @@ export const formatAs = {
   dateMonth,
   weekdayDate,
   fifteenMinuteIndex,
+  yearMonthDate,
 }
 
 export const formats = {
