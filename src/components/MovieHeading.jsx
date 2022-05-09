@@ -7,7 +7,7 @@ const MovieHeading = ({ title, poster, _id }) => {
       <PopupLink to={`/movies/${_id}`} className='movie-heading'>
         <h3>{title}</h3>
       </PopupLink>
-      <picture className='poster'>
+      <picture className='poster' title={title}>
         <img src={stripProtocol(poster)} alt={title} />
       </picture>
     </>

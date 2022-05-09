@@ -34,7 +34,7 @@
 .calendar .movies {
   grid-template: auto / 1fr;
   grid-area: shows;
-  grid-template: repeat(96, 2rem) / 3rem repeat(auto-fit, 5rem);
+  grid-template: repeat(96, auto) / repeat(auto-fit, 6rem);
   column-gap: 0.25rem;
   row-gap: 0;
   display: flex;
@@ -55,11 +55,9 @@
 
 @media screen and (min-width: 600px) {
   .calendar {
-    grid-auto-flow: column;
   }
 
   .calendar-date {
-    grid-row: 1 / 100;
   }
 
   .calendar .movies {
