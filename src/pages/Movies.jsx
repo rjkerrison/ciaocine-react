@@ -1,10 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import {
-  useNavigate,
-  useParams,
-  useSearchParams,
-  useLocation,
-} from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import service from '../api/service'
 import Filters from '../components/filters/Filters'
 import ViewSwitches from '../components/filters/ViewSwitches'
@@ -23,7 +18,6 @@ const getData = async ({ yyyy, mm, dd, ...criteria }) => {
 
 const Movies = () => {
   const navigate = useNavigate()
-  const location = useLocation()
 
   const [isLoading, setIsLoading] = useState(true)
   const [searchParams, setSearchParams] = useSearchParams()
