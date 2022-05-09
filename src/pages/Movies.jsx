@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import service from '../api/service'
@@ -6,10 +7,11 @@ import ViewSwitches from '../components/filters/ViewSwitches'
 import MovieList from '../components/movies/MovieList'
 import { formatAs } from '../utils/formatDate'
 
-const getData = async ({ yyyy, mm, dd, ...criteria }) => {
+const getData = async ({ source, yyyy, mm, dd, ...criteria }) => {
   const {
     data: { movies },
   } = await service.request({
+    cancelToken: source.token,
     url: `/showtimes/${yyyy}/${mm + 1}/${dd}/`,
     params: criteria,
   })
@@ -55,23 +57,36 @@ const Movies = () => {
 
     setIsLoading(true)
 
+    let cancelled = false
+    let source = axios.CancelToken.source()
     const getMovies = async () => {
       try {
         const { movies } = await getData({
+          source,
           yyyy,
           mm,
           dd,
           cinema: cinemaId,
           ...params,
         })
-        setMovies(movies)
+        if (!cancelled) {
+          setMovies(movies)
+          setIsLoading(false)
+        }
       } catch (error) {
         console.error('error', error.message)
+        if (!axios.isCancel(error)) {
+          setIsLoading(false)
+        }
       }
-      setIsLoading(false)
     }
 
     getMovies()
+
+    return () => {
+      cancelled = true
+      source.cancel('Cancelling in cleanup')
+    }
   }, [yyyy, mm, dd, params, cinemaId])
 
   const updateFilter = (name, value) => {
