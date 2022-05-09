@@ -36,7 +36,18 @@ export const daysAhead = {
   getShortDisplay: (params) => {
     const daysAheadInt = parseInt(params.daysAhead) || 0
     const date = new Date(Date.now() + daysAheadInt * 86400 * 1000)
-    return formatAs.dateMonth(date)
+    return formatAs.dateMonth(params.date || date)
+  },
+  getIsActive: (params, value) => {
+    if (!params.date) {
+      return false
+    }
+    const daysAheadInt = parseInt(value) || 0
+    const date = new Date(Date.now() + daysAheadInt * 86400 * 1000)
+    return (
+      params.date.getDate() === date.getDate() &&
+      params.date.getMonth() === date.getMonth()
+    )
   },
 }
 

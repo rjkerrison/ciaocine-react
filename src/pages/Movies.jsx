@@ -99,7 +99,6 @@ const Movies = () => {
   const incrementDate = (increment, date) => {
     const newDate = new Date(date - 0 + 86400 * 1000 * increment)
     const { year, month, date: routeDate } = formatAs.yearMonthDate(newDate)
-    console.log({ year, month, routeDate, date, increment })
     if (cinemaId) {
       navigate(`/cinemas/${cinemaId}/${year}/${month}/${routeDate}`)
     } else {
@@ -122,7 +121,7 @@ const Movies = () => {
 
       <Filters
         updateFilter={updateFilter}
-        params={params}
+        params={{ ...params, date }}
         isCinema={!!cinemaId}
       >
         <ViewSwitches setViewParams={setViewParams} viewParams={viewParams} />

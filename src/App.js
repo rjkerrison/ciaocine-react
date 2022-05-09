@@ -30,9 +30,8 @@ function App() {
         <Route element={<Layout />}>
           <Route path='/' index element={<Index />} />
           <Route path='/cinemas' index element={<Cinemas />} />
-          <Route path='/cinemas/:cinemaId'>
-            <Route path=':year/:month/:date' element={<Movies />} />
-            <Route index element={<Movies />} />
+          <Route path='/cinemas/:cinemaId' element={<Movies />}>
+            <Route path=':year/:month/:date' />
           </Route>
           <Route path='/calendar' index element={<Calendar />} />
           <Route
@@ -49,7 +48,9 @@ function App() {
               />
             }
           />
-          <Route path='/movies' element={<Movies />}></Route>
+          <Route path='/movies' element={<Movies />}>
+            <Route path=':year/:month/:date' />
+          </Route>
           <Route path='/auth'>
             <Route path='login' element={<Login />} />
             <Route path='signup' element={<Signup />} />

@@ -9,9 +9,12 @@ const SwitchOption = ({
   updateFilter,
   values,
   defaultValue,
+  getIsActive,
 }) => {
   const { label, value } = getLabelValue(option)
-  const isActive = value.toString() === (values[name] || defaultValue)
+  const isActive = getIsActive
+    ? getIsActive(values, value)
+    : value.toString() === (values[name] || defaultValue)
 
   return (
     <Button
