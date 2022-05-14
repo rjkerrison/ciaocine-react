@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
 const Popup = ({ active = true, close }) => {

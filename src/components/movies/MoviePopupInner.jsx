@@ -1,8 +1,10 @@
 import axios from 'axios'
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { API_URL } from '../../utils/consts'
 import { formatAs } from '../../utils/formatDate'
+import Crew from './Crew'
+import './movie-popup.scss'
 
 const getData = async (movieId) => {
   const {
@@ -45,13 +47,7 @@ const MoviePopupInner = () => {
       <p>{movieInfo.extra.overview}</p>
       <p>{movieInfo.extra.vote_average} / 10 on TMDB</p>
       <p>Released {formatAs.date(movieInfo.extra.release_date)}</p>
-      <ul>
-        {movieInfo.extra.crew.slice(0, 5).map(({ job, name, id }) => (
-          <li key={id + job}>
-            {job}: {name}
-          </li>
-        ))}
-      </ul>
+      <Crew crew={movieInfo.extra.crew} />
     </div>
   )
 }

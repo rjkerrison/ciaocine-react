@@ -1,0 +1,82 @@
+.movie-popup {
+  position: fixed;
+  height: 0;
+  width: 0;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+  display: grid;
+  grid-template: 100% / 100%;
+  background: rgba(0, 0, 0, 0.5);
+  transition: padding-top 0.4s ease-in-out, padding-bottom 0.4s ease-in-out,
+    height 0.4s ease-in-out, top 0.4s ease-in-out,
+    padding-left 0.5s 0.2s ease-in-out, padding-right 0.5s 0.2s ease-in-out,
+    width 0.5s 0.2s linear, left 0.5s 0.2s linear;
+  overflow: hidden;
+
+  .movie-popup-inner {
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    position: relative;
+
+    color: var(--dark);
+
+    align-self: stretch;
+    justify-self: stretch;
+    font-size: 1.25rem;
+    overflow-y: hidden;
+
+    background-blend-mode: normal;
+    background-color: white;
+    background-image: linear-gradient(
+        var(--light) -10%,
+        #ffffff10 10%,
+        #f04e4e10 90%,
+        var(--contrast) 110%
+      ),
+      radial-gradient(transparent, #fffa 0% 30%, #000a 100% 100%),
+      var(--backdrop-path);
+    background-position: top center, center center, center center;
+    background-repeat: no-repeat;
+    background-size: 100%, auto auto, cover;
+
+    h2 {
+      text-align: center;
+    }
+  }
+
+  &.active {
+    height: 100vh;
+    width: 100vw;
+    padding: 5%;
+    top: 0;
+    left: 0;
+    transition: padding-top 0.5s 0.2s ease-in-out,
+      padding-bottom 0.5s 0.2s ease-in-out, height 0.5s 0.2s ease-in-out,
+      top 0.5s 0.2s ease-in-out, padding-left 0.4s ease-in-out,
+      padding-right 0.4s ease-in-out, width 0.4s linear, left 0.4s linear;
+
+    .movie-popup-inner {
+      height: 100%;
+      width: 100%;
+      padding: 1rem;
+    }
+
+    > div {
+      padding: 15% 5%;
+      font-size: calc(1rem + 0.5vw);
+      color: #262121;
+    }
+  }
+
+  .movie-popup button.round {
+    top: 2rem;
+    right: 2rem;
+    position: absolute;
+    display: flex;
+    font-size: 2rem;
+    height: 3rem;
+    width: 3rem;
+  }
+}

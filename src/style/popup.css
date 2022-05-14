@@ -80,11 +80,8 @@
   padding: 1rem;
 }
 
-.big-popup > div > * {
+.big-popup:not(.active) > div > * {
   display: none;
-}
-.big-popup.active > div > * {
-  display: block;
 }
 
 .big-popup > div {
@@ -102,6 +99,7 @@
     var(--backdrop-path);
   padding: 1rem;
   position: relative;
+  overflow-y: scroll;
 }
 
 .big-popup button.round {
@@ -115,7 +113,7 @@
 }
 
 .big-popup.active > div {
-  padding: 15% 5%;
+  padding: 5%;
   font-size: calc(1rem + 0.5vw);
   color: #262121;
 }
