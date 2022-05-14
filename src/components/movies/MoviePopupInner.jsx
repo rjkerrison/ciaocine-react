@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { API_URL } from '../../utils/consts'
 import { formatAs } from '../../utils/formatDate'
 import Crew from './Crew'
-import './movie-popup.scss'
+import './movie-popup-inner.scss'
 
 const getData = async (movieId) => {
   const {
@@ -41,7 +41,7 @@ const MoviePopupInner = () => {
       style={{
         '--backdrop-path': `url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${movieInfo.extra.backdrop_path})`,
       }}
-      className='movie-popup-inner'
+      className='movie-popup-inner popup-inner'
     >
       <h2>{movieInfo.extra.original_title}</h2>
       <p>{movieInfo.extra.overview}</p>

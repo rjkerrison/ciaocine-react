@@ -1,0 +1,23 @@
+.movie-popup-inner {
+  padding: 1rem;
+  position: relative;
+
+  color: var(--dark);
+  background-blend-mode: normal;
+  background-color: white;
+  background-position: top center, center center, center center;
+  background-repeat: no-repeat;
+  background-size: 100%, auto auto, cover;
+  background-image: linear-gradient(
+      var(--light) -10%,
+      #ffffff10 10%,
+      #f04e4e10 90%,
+      var(--contrast) 110%
+    ),
+    radial-gradient(transparent, #fffa 0% 30%, #000a 100% 100%),
+    var(--backdrop-path);
+
+  h2 {
+    text-align: center;
+  }
+}
