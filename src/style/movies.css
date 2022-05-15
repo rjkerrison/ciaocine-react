@@ -20,6 +20,7 @@ section.movies-section > p {
   display: grid;
   grid-template: auto / auto;
   gap: 0.5rem;
+  padding: 0.5rem;
 }
 
 .movie {

@@ -14,10 +14,10 @@
   --splash-gradient-midpoint: var(--mid);
   --splash-gradient-end: var(--light);
   --splash-shadow: var(--dark);
-  --popup-background-color: var(--contrast);
-  --popup-shadow: var(--contrast-shadow);
+  --toast-background-color: var(--contrast);
+  --toast-shadow: var(--contrast-shadow);
 
-  --popup-text-color: #3f3275;
+  --toast-text-color: #3f3275;
 
   --button-hover-background: var(--contrast-dark);
   --button-shadow: #533ea791;
