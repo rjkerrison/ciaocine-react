@@ -4,6 +4,16 @@ import { ToastContext } from '../../context/ToastContext'
 import { formatAs } from '../../utils/formatDate'
 import Authenticated from '../shared/Authenticated'
 
+const getDescription = (title, cinema, startTime, isInCalendar) => {
+  const parts = isInCalendar
+    ? { verb: 'Remove', preposition: 'from' }
+    : { verb: 'Add', preposition: 'to' }
+
+  return `${parts.verb} ${title} at ${cinema?.name} at ${formatAs.time(
+    startTime
+  )} ${parts.preposition} your calendar`
+}
+
 const AddToCalendar = ({
   _id,
   title,
@@ -15,10 +25,7 @@ const AddToCalendar = ({
   const [isInCalendar, setIsInCalendar] = useState(isInCalendarProp)
 
   const description = useMemo(
-    () =>
-      `${isInCalendar ? 'Remove' : 'Add'} ${title} at ${
-        cinema?.name
-      } at ${formatAs.time(startTime)} to your calendar`,
+    () => getDescription(title, cinema, startTime, isInCalendar),
     [title, cinema, startTime, isInCalendar]
   )
 
