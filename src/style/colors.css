@@ -10,6 +10,8 @@
   --contrast-dark-half: #cd373780;
   --contrast-shadow: #ff696967;
 
+  --positive-light: #64b364;
+
   --splash-gradient-start: var(--dark);
   --splash-gradient-midpoint: var(--mid);
   --splash-gradient-end: var(--light);
@@ -21,5 +23,5 @@
 
   --button-hover-background: var(--contrast-dark);
   --button-shadow: #533ea791;
-  --button-border: #3d2a8a;
+  --button-border: var(--mid);
 }

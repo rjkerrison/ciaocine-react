@@ -1,32 +1,52 @@
-import { useContext, useMemo } from 'react'
-import { addToCalendar } from '../../api/calendar'
+import { useContext, useMemo, useState } from 'react'
+import { addToCalendar, removeFromCalendar } from '../../api/calendar'
 import { ToastContext } from '../../context/ToastContext'
 import { formatAs } from '../../utils/formatDate'
 import Authenticated from '../shared/Authenticated'
 
-const AddToCalendar = ({ _id, title, startTime, cinema }) => {
+const AddToCalendar = ({
+  _id,
+  title,
+  startTime,
+  cinema,
+  isInCalendar: isInCalendarProp = false,
+}) => {
   const { toast } = useContext(ToastContext)
+  const [isInCalendar, setIsInCalendar] = useState(isInCalendarProp)
 
   const description = useMemo(
     () =>
-      `Add ${title} at ${cinema?.name} at ${formatAs.time(
-        startTime
-      )} to your calendar`,
-    [title, cinema, startTime]
+      `${isInCalendar ? 'Remove' : 'Add'} ${title} at ${
+        cinema?.name
+      } at ${formatAs.time(startTime)} to your calendar`,
+    [title, cinema, startTime, isInCalendar]
   )
+
+  const className = `round ${isInCalendar ? 'active' : ''}`
+  const symbol = isInCalendar ? '✔' : '+'
 
   return (
     <button
-      className='round'
+      className={className}
       title={description}
       onClick={async () => {
-        const { added } = await addToCalendar(_id)
-        if (added) {
-          toast(description.replace('Add', 'Added'))
+        if (isInCalendar) {
+          const { removed } = await removeFromCalendar(_id)
+          if (removed) {
+            toast(description.replace('Remove', 'Removed'))
+            setIsInCalendar(false)
+          }
+        } else {
+          const { added } = await addToCalendar(_id)
+          if (added) {
+            toast(description.replace('Add', 'Added'))
+            setIsInCalendar(true)
+          }
         }
       }}
     >
-      +<span className='sr-only'>{description}</span>
+      <span>{symbol}</span>
+      <span className='sr-only'>{description}</span>
     </button>
   )
 }

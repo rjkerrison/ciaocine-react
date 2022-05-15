@@ -61,11 +61,11 @@ button {
   padding: 0.25rem;
   margin: 0.125rem;
   border-radius: 0.5rem;
-  transition: all 500ms;
+  transition: all 500ms ease-in-out;
   cursor: pointer;
   color: var(--dark);
   background-color: var(--contrast);
-  border: 1px solid var(--light);
+  border: none;
   box-shadow: 0rem 0.5rem 0.5rem -0.25rem var(--button-shadow);
 }
 
@@ -83,8 +83,15 @@ button.round {
   z-index: 1;
   border-radius: 50%;
   color: var(--dark);
-  border: 0.125rem solid var(--contrast);
   font-weight: bold;
+}
+button.round span {
+  height: 1.625rem;
+}
+
+button.active {
+  background-color: var(--positive-light);
+  color: var(--dark);
 }
 button.round:hover {
   color: var(--contrast);
@@ -93,7 +100,6 @@ button.round:hover {
 button:hover {
   background-color: var(--button-hover-background);
   transform: translateY(-0.125rem);
-  border: 1px solid var(--button-border);
   box-shadow: 0rem 0.75rem 0.5rem -0.25rem var(--button-shadow);
 }
 
