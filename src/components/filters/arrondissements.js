@@ -30,7 +30,7 @@ const arrondissementFilter = {
 
       return [...areas, ...labels].join(', ')
     }
-    return `N'importe pas l'arrondissement`
+    return `N'importe quel arrondissement`
   },
 }
 

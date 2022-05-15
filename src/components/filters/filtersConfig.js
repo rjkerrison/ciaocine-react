@@ -69,7 +69,7 @@ export const time = {
     if (params.toHour) {
       return `Before ${parseInt(params.toHour) - offset}h`
     }
-    return `N'importe pas l'heure`
+    return `N'importe quelle heure`
   },
 }
 

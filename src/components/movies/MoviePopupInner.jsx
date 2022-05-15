@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { API_URL } from '../../utils/consts'
 import { formatAs } from '../../utils/formatDate'
+import Cast from './Cast'
 import Crew from './Crew'
 import './movie-popup-inner.scss'
 
@@ -48,6 +49,7 @@ const MoviePopupInner = () => {
       <p>{movieInfo.extra.vote_average} / 10 on TMDB</p>
       <p>Released {formatAs.date(movieInfo.extra.release_date)}</p>
       <Crew crew={movieInfo.extra.crew} />
+      <Cast cast={movieInfo.extra.cast} />
     </div>
   )
 }

@@ -1,29 +1,30 @@
 import './crew.scss'
-
-const CrewCard = ({ jobTitle, people }) => {
-  if (!people) {
-    return <></>
-  }
-
-  return (
-    <li key={jobTitle}>
-      <h3>{jobTitle}</h3>
-      <p>{people.map(({ name }) => name).join(', ')}</p>
-    </li>
-  )
-}
+import CrewCard from './CrewCard'
 
 const Crew = ({ crew }) => {
   const { Director: director, 'Director of Photography': dop, ...rest } = crew
 
   return (
-    <ul className='crew'>
-      <CrewCard jobTitle='Director' people={director} />
-      <CrewCard jobTitle='Director of Photography' people={dop} />
-      {Object.entries(rest).map(([jobTitle, people]) => (
-        <CrewCard key={jobTitle} jobTitle={jobTitle} people={people} />
-      ))}
-    </ul>
+    <>
+      <h3>Crew</h3>
+      <ul className='crew'>
+        <CrewCard
+          title='Director'
+          label={director?.map(({ name }) => name).join(', ')}
+        />
+        <CrewCard
+          title='Director of Photography'
+          label={dop?.map(({ name }) => name).join(', ')}
+        />
+        {Object.entries(rest).map(([title, people]) => (
+          <CrewCard
+            key={title}
+            title={title}
+            label={people?.map(({ name }) => name).join(', ')}
+          />
+        ))}
+      </ul>
+    </>
   )
 }
 
