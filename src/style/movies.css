@@ -2,7 +2,7 @@ section.movies-section {
   text-align: center;
 }
 
-section.movies-section h2 {
+section.movies-section h1 {
   font-size: 3rem;
   background-color: var(--dark);
   border-radius: 1.25rem;
@@ -180,7 +180,7 @@ section.movies-section > p {
   display: flex;
 }
 
-section.movies-section h2 {
+section.movies-section h1 {
   border-radius: 0;
   padding: 0.125rem;
   margin: 0;

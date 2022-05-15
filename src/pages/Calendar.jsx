@@ -41,7 +41,7 @@ const Calendar = () => {
 
   return (
     <section className='movies-section'>
-      <h2>Your saved screenings</h2>
+      <h1>Your saved screenings</h1>
       <div className='calendar'>{calendar}</div>
     </section>
   )

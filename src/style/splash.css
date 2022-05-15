@@ -26,7 +26,7 @@
   width: 100%;
 }
 
-.splash h2 {
+.splash h1 {
   font-size: calc(3rem + 2vw);
   text-shadow: 0.1em 0.1em 0.1em var(--splash-shadow);
   margin: 0;

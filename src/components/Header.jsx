@@ -30,7 +30,7 @@ const Header = () => {
   return (
     <header className='app-header'>
       <div className='header-main-row' onClick={toggleOpen}>
-        <h1>Ciaocine</h1>
+        <p>Ciaocine</p>
         <span
           className={'collapse-toggle hamburger' + (open ? ' active' : '')}
           data-target='main-nav'

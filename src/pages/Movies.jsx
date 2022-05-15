@@ -122,7 +122,7 @@ const Movies = () => {
 
   return (
     <section className='movies-section'>
-      <h2>Showtimes</h2>
+      <h1>Showtimes on {formatAs.weekdayDate(date)}</h1>
       <p>
         {movies.length} films are showing on {formatAs.weekdayDate(date)}{' '}
         matching your filters{' '}

@@ -6,7 +6,7 @@ const Index = () => {
   return (
     <>
       <section className='splash'>
-        <h2>{appTitle}</h2>
+        <h1>{appTitle}</h1>
         <p>{pageSubtitle}</p>
       </section>
       <section className='planning'>

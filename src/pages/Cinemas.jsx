@@ -60,7 +60,8 @@ const Cinemas = () => {
   }, [])
 
   return (
-    <section>
+    <section className='movies-section'>
+      <h1>Cinemas in Paris</h1>
       <input
         type='text'
         value={query}

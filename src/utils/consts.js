@@ -5,4 +5,4 @@ export const URL_SEPARATOR = '|'
 
 export const appTitle = 'Le cinema fait simple'
 export const pageSubtitle =
-  'Find cinema showings in Paris that fit your schedule '
+  'Find cinema showings in Paris which fit your schedule '
