@@ -79,6 +79,11 @@ const yearMonthDate = (datetime) => {
   }
 }
 
+const routeDate = (datetime) => {
+  const { year, month, date } = formatAs.yearMonthDate(datetime)
+  return `${year}/${month}/${date}`
+}
+
 export const formatAs = {
   time,
   date,
@@ -86,6 +91,7 @@ export const formatAs = {
   weekdayDate,
   fifteenMinuteIndex,
   yearMonthDate,
+  routeDate,
 }
 
 export const formats = {

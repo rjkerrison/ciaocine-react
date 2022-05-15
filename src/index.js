@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals'
 import { AuthProviderWrapper } from './context/AuthContext'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContextProvider } from './context/ToastContext'
+import { CalendarContextProvider } from './context/CalendarContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -13,7 +14,9 @@ root.render(
     <Router>
       <AuthProviderWrapper>
         <ToastContextProvider>
-          <App />
+          <CalendarContextProvider>
+            <App />
+          </CalendarContextProvider>
         </ToastContextProvider>
       </AuthProviderWrapper>
     </Router>

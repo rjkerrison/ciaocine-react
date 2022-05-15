@@ -1,11 +1,8 @@
 import { useContext } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import SingleDayView from '../components/calendar/SingleDayView'
 import { AuthContext } from '../context/AuthContext'
-import {
-  CalendarContext,
-  CalendarContextProvider,
-} from '../context/CalendarContext'
+import { CalendarContext } from '../context/CalendarContext'
 
 const Calendar = () => {
   const { isLoggedIn, isLoading } = useContext(AuthContext)
@@ -23,28 +20,31 @@ const Calendar = () => {
     return <Navigate to='/auth/login' />
   }
 
+  let calendar
+  if (calendarByDay.length > 0) {
+    calendar = calendarByDay.map(({ calendarDate, showtimes }) => (
+      <SingleDayView
+        calendarDate={calendarDate}
+        showtimes={showtimes}
+        key={calendarDate}
+      />
+    ))
+  } else {
+    calendar = (
+      <p>
+        You don't appear to have any saved screenings. Use the{' '}
+        <Link to='/movies'>movies</Link> page to find something to watch, or
+        search by <Link to='/cinemas'>cinema</Link>.
+      </p>
+    )
+  }
+
   return (
-    <section>
+    <section className='movies-section'>
       <h2>Your saved screenings</h2>
-      <div className='calendar'>
-        {calendarByDay.map(({ calendarDate, showtimes }) => (
-          <SingleDayView
-            calendarDate={calendarDate}
-            showtimes={showtimes}
-            key={calendarDate}
-          />
-        ))}
-      </div>
+      <div className='calendar'>{calendar}</div>
     </section>
   )
 }
 
-const CalendarWithContext = () => {
-  return (
-    <CalendarContextProvider>
-      <Calendar />
-    </CalendarContextProvider>
-  )
-}
-
-export default CalendarWithContext
+export default Calendar

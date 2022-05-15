@@ -5,7 +5,7 @@ import { login } from '../../api/auth'
 import './AuthPage.css'
 import UserForm from '../../components/auth/UserForm'
 
-const LoginPage = () => {
+const LoginPage = ({ message }) => {
   const { authenticateUser, isLoggedIn } = useContext(AuthContext)
   const [errorMessage, setErrorMessage] = useState(undefined)
 
@@ -38,9 +38,11 @@ const LoginPage = () => {
 
       {errorMessage && <p className='error-message'>{errorMessage}</p>}
 
-      <p>
-        Don't have an account? <Link to={'/auth/signup'}>Sign up</Link>.
-      </p>
+      {<p>{message}</p> || (
+        <p>
+          Don't have an account? <Link to={'/auth/signup'}>Sign up</Link>.
+        </p>
+      )}
     </div>
   )
 }

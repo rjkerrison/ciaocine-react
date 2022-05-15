@@ -1,5 +1,5 @@
-import { useContext, useMemo, useState } from 'react'
-import { addToCalendar, removeFromCalendar } from '../../api/calendar'
+import { useContext, useMemo } from 'react'
+import { CalendarContext } from '../../context/CalendarContext'
 import { ToastContext } from '../../context/ToastContext'
 import { formatAs } from '../../utils/formatDate'
 import Authenticated from '../shared/Authenticated'
@@ -14,15 +14,14 @@ const getDescription = (title, cinema, startTime, isInCalendar) => {
   )} ${parts.preposition} your calendar`
 }
 
-const AddToCalendar = ({
-  _id,
-  title,
-  startTime,
-  cinema,
-  isInCalendar: isInCalendarProp = false,
-}) => {
+const AddToCalendar = ({ _id, title, startTime, cinema }) => {
   const { toast } = useContext(ToastContext)
-  const [isInCalendar, setIsInCalendar] = useState(isInCalendarProp)
+  const { remove, add, getIsInCalendar } = useContext(CalendarContext)
+
+  const isInCalendar = useMemo(
+    () => getIsInCalendar(_id),
+    [_id, getIsInCalendar]
+  )
 
   const description = useMemo(
     () => getDescription(title, cinema, startTime, isInCalendar),
@@ -38,17 +37,11 @@ const AddToCalendar = ({
       title={description}
       onClick={async () => {
         if (isInCalendar) {
-          const { removed } = await removeFromCalendar(_id)
-          if (removed) {
-            toast(description.replace('Remove', 'Removed'))
-            setIsInCalendar(false)
-          }
+          await remove(_id)
+          toast(description.replace('Remove', 'Removed'))
         } else {
-          const { added } = await addToCalendar(_id)
-          if (added) {
-            toast(description.replace('Add', 'Added'))
-            setIsInCalendar(true)
-          }
+          await add(_id)
+          toast(description.replace('Add', 'Added'))
         }
       }}
     >

@@ -1,5 +1,12 @@
-import { createContext, useContext, useEffect, useState } from 'react'
-import { getCalendar, removeFromCalendar } from '../api/calendar'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
+import { addToCalendar, getCalendar, removeFromCalendar } from '../api/calendar'
 import { AuthContext } from './AuthContext'
 
 const CalendarContext = createContext()
@@ -22,8 +29,25 @@ const CalendarContextProvider = ({ children }) => {
       })
   }, [isLoggedIn, isLoading])
 
+  const allShowtimesInCalendar = useMemo(
+    () => calendarByDay.flatMap((day) => day.showtimes.map((s) => s._id)),
+    [calendarByDay]
+  )
+  const getIsInCalendar = useCallback(
+    (s) => allShowtimesInCalendar.includes(s._id),
+    [allShowtimesInCalendar]
+  )
+
   const remove = async (id) => {
     const result = await removeFromCalendar(id)
+    const calendar = await getCalendar()
+
+    setCalendarByDay(calendar)
+    return result
+  }
+
+  const add = async (id) => {
+    const result = await addToCalendar(id)
     const calendar = await getCalendar()
 
     setCalendarByDay(calendar)
@@ -34,7 +58,9 @@ const CalendarContextProvider = ({ children }) => {
     <CalendarContext.Provider
       value={{
         calendarByDay,
+        getIsInCalendar,
         remove,
+        add,
       }}
     >
       {children}

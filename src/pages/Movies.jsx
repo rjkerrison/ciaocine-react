@@ -107,12 +107,15 @@ const Movies = () => {
 
   const incrementDate = (increment, date) => {
     const newDate = new Date(date - 0 + 86400 * 1000 * increment)
-    const { year, month, date: routeDate } = formatAs.yearMonthDate(newDate)
-    if (cinemaId) {
-      navigate(`/cinemas/${cinemaId}/${year}/${month}/${routeDate}`)
-    } else {
-      navigate(`/movies/${year}/${month}/${routeDate}`)
-    }
+
+    const pathname = `/${
+      cinemaId ? `cinemas/${cinemaId}` : 'movies'
+    }/${formatAs.routeDate(newDate)}`
+
+    navigate({
+      pathname,
+      search: searchParams.toString(),
+    })
 
     setDate(newDate)
   }

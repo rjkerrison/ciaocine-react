@@ -14,6 +14,7 @@
   grid-area: head;
   grid-row: 1;
   counter-increment: column;
+  font-size: 2rem;
 }
 
 .calendar .movie .overlay {

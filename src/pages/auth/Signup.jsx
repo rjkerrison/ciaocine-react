@@ -15,7 +15,9 @@ const SignupPage = () => {
       if (!isSignedUp) {
         setErrorMessage(errorMessage)
       } else {
-        navigate('/login')
+        navigate('/auth/login', {
+          state: { message: `User ${username} created successfully!` },
+        })
       }
     } catch (error) {
       const errorDescription = error.response.data.message

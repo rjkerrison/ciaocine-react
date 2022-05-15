@@ -52,7 +52,7 @@ function App() {
             <Route path=':year/:month/:date' />
           </Route>
           <Route path='/auth'>
-            <Route path='login' element={<Login />} />
+            <Route path='login' element={<Login {...state} />} />
             <Route path='signup' element={<Signup />} />
           </Route>
         </Route>
