@@ -18,10 +18,11 @@ const AddToCalendar = ({ _id, title, startTime, cinema }) => {
   const { toast } = useContext(ToastContext)
   const { remove, add, getIsInCalendar } = useContext(CalendarContext)
 
-  const isInCalendar = useMemo(
-    () => getIsInCalendar(_id),
-    [_id, getIsInCalendar]
-  )
+  const isInCalendar = useMemo(() => {
+    const result = getIsInCalendar(_id)
+    console.log('changed isInCalendar', { _id, result })
+    return result
+  }, [_id, getIsInCalendar])
 
   const description = useMemo(
     () => getDescription(title, cinema, startTime, isInCalendar),

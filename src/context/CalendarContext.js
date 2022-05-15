@@ -34,7 +34,7 @@ const CalendarContextProvider = ({ children }) => {
     [calendarByDay]
   )
   const getIsInCalendar = useCallback(
-    (s) => allShowtimesInCalendar.includes(s._id),
+    (id) => allShowtimesInCalendar.includes(id),
     [allShowtimesInCalendar]
   )
 
