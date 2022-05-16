@@ -1,5 +1,5 @@
 const formatDate = (datetime, targetFormat) => {
-  if (typeof datetime === 'string') {
+  if (typeof datetime === 'string' || typeof datetime === 'number') {
     datetime = new Date(datetime)
   }
 
