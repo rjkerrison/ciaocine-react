@@ -32,12 +32,11 @@ const removeFromCalendar = async (id) => {
   }
 }
 
-const getCalendar = async () => {
+const getCalendar = async (username) => {
   const {
     data: { calendar },
   } = await service.request({
-    url: '/calendar',
-    headers: getHeadersWithAuth(),
+    url: `/calendar/${username}`,
   })
   return calendar
 }

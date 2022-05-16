@@ -7,8 +7,8 @@
   justify-content: center;
   align-items: center;
 
-  grid-template: 1fr / auto 1fr;
-  grid-template-areas: 'poster cinema';
+  grid-template: auto auto auto/auto 1fr;
+  grid-template-areas: 'poster heading' 'poster cinema' 'poster time';
 
   .time,
   .movie-heading,
@@ -19,34 +19,37 @@
 
   .time {
     grid-area: time;
-    display: none;
   }
   .movie-heading {
     grid-area: heading;
-    display: none;
   }
   .poster {
     grid-area: poster;
     align-self: center;
     display: flex;
     align-items: center;
+    width: 6.25rem;
   }
   .cinema {
     grid-area: cinema;
-    width: 5rem;
     justify-self: center;
   }
 
   @media screen and (min-width: 600px) {
-    grid-template: 1fr auto / 1fr;
-    grid-template-areas: 'poster' 'cinema';
-    width: 5.5rem;
+    grid-template: auto auto auto / 1fr;
+    grid-template-areas: 'time' 'poster' 'heading' 'cinema';
+    width: 6.5rem;
 
     .poster {
-      width: 5.75rem;
+      width: 6.75rem;
     }
     .cinema {
-      width: 5.25rem;
+      width: 6.25rem;
+    }
+    .movie-heading h3 {
+      font-size: 1rem;
+      width: 6rem;
+      word-break: break-word;
     }
   }
 }

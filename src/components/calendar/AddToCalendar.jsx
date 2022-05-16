@@ -20,7 +20,6 @@ const AddToCalendar = ({ _id, title, startTime, cinema }) => {
 
   const isInCalendar = useMemo(() => {
     const result = getIsInCalendar(_id)
-    console.log('changed isInCalendar', { _id, result })
     return result
   }, [_id, getIsInCalendar])
 

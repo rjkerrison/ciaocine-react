@@ -9,7 +9,8 @@ section.movies-section h1 {
   padding: 0.5rem;
   margin: 0.25rem;
 }
-section.movies-section > p {
+section.movies-section > p,
+section.movies-section ul li {
   background-color: var(--mid);
   border-radius: 1rem;
   padding: 0.5rem;

@@ -1,5 +1,5 @@
 const formatDate = (datetime, targetFormat) => {
-  if (typeof datetime === 'string') {
+  if (typeof datetime === 'string' || typeof datetime === 'number') {
     datetime = new Date(datetime)
   }
 
@@ -92,6 +92,13 @@ export const formatAs = {
   fifteenMinuteIndex,
   yearMonthDate,
   routeDate,
+}
+
+export const areSameDay = (date, ymd) => {
+  const { year: y1, month: m1, date: d1 } = formatAs.yearMonthDate(date)
+  // instead of this, assuming the ymd format, we should cover all cases so that any date-like object is valid
+  const { year: y2, month: m2, date: d2 } = ymd
+  return y1 === parseInt(y2) && m1 === parseInt(m2) && d1 === parseInt(d2)
 }
 
 export const formats = {

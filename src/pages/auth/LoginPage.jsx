@@ -31,7 +31,13 @@ const LoginPage = ({ message }) => {
   }
 
   return (
-    <div className='auth-page'>
+    <div
+      onClick={(e) => e.stopPropagation()}
+      style={{
+        '--backdrop-path': `url(https://www.gannett-cdn.com/-mm-/18e5734ece714b32cb52522096349e5f2501493c/c=77-102-1501-906/local/-/media/Louisville/Louisville/2014/07/08/1404839052000-lcjdc5-6b0iz0ln7vq5d6rub04-original.jpg)`,
+      }}
+      className='movie-popup-inner auth-page popup-inner'
+    >
       <h1>Login</h1>
 
       <UserForm submitUserInfo={handleLoginSubmit} submitLabel='Login' />

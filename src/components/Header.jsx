@@ -16,7 +16,9 @@ const AccountNav = ({ logOutUser }) => (
 const AnonymousNav = () => {
   return (
     <nav aria-label='login or signup'>
-      <Link to='/auth/login'>Login</Link>
+      <Link to='/auth/login' state={{ backgroundLocation: '/' }}>
+        Login
+      </Link>
       <Link to='/auth/signup'>Signup</Link>
     </nav>
   )

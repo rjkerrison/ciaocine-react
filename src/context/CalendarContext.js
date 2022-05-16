@@ -2,7 +2,6 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useState,
 } from 'react'
@@ -12,26 +11,40 @@ import { AuthContext } from './AuthContext'
 const CalendarContext = createContext()
 
 const CalendarContextProvider = ({ children }) => {
-  const [calendarByDay, setCalendarByDay] = useState([])
-  const { isLoggedIn, isLoading } = useContext(AuthContext)
+  const [userCalendars, setUserCalendars] = useState({})
+  const { isLoggedIn, isLoading, user } = useContext(AuthContext)
 
-  useEffect(() => {
-    if (isLoading || !isLoggedIn) {
-      return
+  const updateCalendarForUsername = useCallback(async (username) => {
+    const calendar = await getCalendar(username)
+    setUserCalendars((calendars) => ({
+      ...calendars,
+      [username]: calendar,
+    }))
+  }, [])
+
+  const getCalendarForUsername = useCallback(
+    (username) => {
+      const foundCalendar = userCalendars[username]
+      if (foundCalendar) {
+        return foundCalendar
+      }
+      updateCalendarForUsername(username)
+
+      return []
+    },
+    [userCalendars, updateCalendarForUsername]
+  )
+  const getCalendarForUser = useCallback(() => {
+    if (isLoading || !isLoggedIn || !user) {
+      return []
     }
-
-    getCalendar()
-      .then((calendar) => {
-        setCalendarByDay(calendar)
-      })
-      .catch((error) => {
-        console.log('error', error)
-      })
-  }, [isLoggedIn, isLoading])
+    return getCalendarForUsername(user.username)
+  }, [isLoading, isLoggedIn, user, getCalendarForUsername])
 
   const allShowtimesInCalendar = useMemo(
-    () => calendarByDay.flatMap((day) => day.showtimes.map((s) => s._id)),
-    [calendarByDay]
+    () =>
+      getCalendarForUser().flatMap((day) => day.showtimes.map((s) => s._id)),
+    [getCalendarForUser]
   )
   const getIsInCalendar = useCallback(
     (id) => allShowtimesInCalendar.includes(id),
@@ -40,27 +53,24 @@ const CalendarContextProvider = ({ children }) => {
 
   const remove = async (id) => {
     const result = await removeFromCalendar(id)
-    const calendar = await getCalendar()
-
-    setCalendarByDay(calendar)
+    await updateCalendarForUsername(user.username)
     return result
   }
 
   const add = async (id) => {
     const result = await addToCalendar(id)
-    const calendar = await getCalendar()
-
-    setCalendarByDay(calendar)
+    await updateCalendarForUsername(user.username)
     return result
   }
 
   return (
     <CalendarContext.Provider
       value={{
-        calendarByDay,
         getIsInCalendar,
         remove,
         add,
+        getCalendarForUsername,
+        getCalendarForUser,
       }}
     >
       {children}

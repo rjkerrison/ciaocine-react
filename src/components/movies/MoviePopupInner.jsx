@@ -1,21 +1,10 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { API_URL } from '../../utils/consts'
+import { getMovieData } from '../../api/movie'
 import { formatAs } from '../../utils/formatDate'
 import Cast from './Cast'
 import Crew from './Crew'
 import './movie-popup-inner.scss'
-
-const getData = async (movieId) => {
-  const {
-    data: { movie, tmdbInfo },
-  } = await axios({
-    baseURL: API_URL,
-    url: `/movies/${movieId}/`,
-  })
-  return { ...movie, extra: tmdbInfo[0] }
-}
 
 const MoviePopupInner = () => {
   const { movieId } = useParams()
@@ -26,7 +15,7 @@ const MoviePopupInner = () => {
       return
     }
     const getMovie = async () => {
-      const movieInfo = await getData(movieId)
+      const movieInfo = await getMovieData(movieId)
       setMovieInfo(movieInfo)
     }
     getMovie()
@@ -48,6 +37,7 @@ const MoviePopupInner = () => {
       <p>{movieInfo.extra.overview}</p>
       <p>{movieInfo.extra.vote_average} / 10 on TMDB</p>
       <p>Released {formatAs.date(movieInfo.extra.release_date)}</p>
+      <p>Runtime: {movieInfo.extra.runtime} minutes</p>
       <Crew crew={movieInfo.extra.crew} />
       <Cast cast={movieInfo.extra.cast} />
     </div>

@@ -1,29 +1,41 @@
+import { useEffect, useMemo, useState } from 'react'
+import { getMovieData } from '../../api/movie'
 import { formatAs } from '../../utils/formatDate'
 import CalendarMovieSummary from './CalendarMovieSummary'
 
 const CalendarEntryCard = ({ ...showtime }) => {
-  // adjust to start day at 8am
-  const index = formatAs.fifteenMinuteIndex(showtime.startTime) - 32
+  const [movieInfo, setMovieInfo] = useState({ extra: { runtime: 120 } })
+  const length = useMemo(
+    () => Math.floor(movieInfo.extra.runtime / 15),
+    [movieInfo.extra.runtime]
+  )
+  const index = useMemo(
+    // adjust to start day at 8am
+    () => formatAs.fifteenMinuteIndex(showtime.startTime) - 32,
+    [showtime.startTime]
+  )
+
+  useEffect(() => {
+    if (!showtime.movie._id) {
+      return
+    }
+    const getMovie = async () => {
+      const movieInfo = await getMovieData(showtime.movie._id)
+      setMovieInfo(movieInfo)
+    }
+    getMovie()
+  }, [showtime.movie._id])
 
   return (
     <>
       <div
         style={{
-          gridRow: index,
-          gridColumn: 'span 1',
-          textAlign: 'right',
-          borderTop: '1px solid black',
-        }}
-      >
-        {formatAs.time(showtime.startTime)}
-      </div>
-      <div
-        style={{
           gridRowStart: index,
-          gridRowEnd: 'span 8',
+          gridRowEnd: `span ${length}`,
+          padding: '0.25rem',
         }}
       >
-        <CalendarMovieSummary {...showtime} />
+        <CalendarMovieSummary {...showtime} runtime={movieInfo.extra.runtime} />
       </div>
     </>
   )
