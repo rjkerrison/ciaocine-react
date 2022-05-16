@@ -6,7 +6,7 @@ import { CalendarContext } from '../context/CalendarContext'
 import { areSameDay, formatAs } from '../utils/formatDate'
 
 const CalendarSingleDay = () => {
-  const { isLoggedIn, isLoading } = useContext(AuthContext)
+  const { isLoggedIn, isLoading, user } = useContext(AuthContext)
   const { year, month, date } = useParams()
   const { getCalendarForUsername, getCalendarForUser } =
     useContext(CalendarContext)
@@ -20,8 +20,14 @@ const CalendarSingleDay = () => {
     )
   }
 
-  if (!isLoggedIn) {
-    return <Navigate to='/auth/login' />
+  if (!username) {
+    if (!isLoggedIn) {
+      return <Navigate to='/auth/login' />
+    } else {
+      return (
+        <Navigate to={`/calendar/${user.username}/${year}/${month}/${date}`} />
+      )
+    }
   }
 
   const calendarByDay = username

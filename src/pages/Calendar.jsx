@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext'
 import { CalendarContext } from '../context/CalendarContext'
 
 const Calendar = () => {
-  const { isLoggedIn, isLoading } = useContext(AuthContext)
+  const { isLoggedIn, isLoading, user } = useContext(AuthContext)
   const { getCalendarForUsername, getCalendarForUser } =
     useContext(CalendarContext)
   const { username } = useParams()
@@ -18,8 +18,12 @@ const Calendar = () => {
     )
   }
 
-  if (!username && !isLoggedIn) {
-    return <Navigate to='/auth/login' />
+  if (!username) {
+    if (!isLoggedIn) {
+      return <Navigate to='/auth/login' />
+    } else {
+      return <Navigate to={`/calendar/${user.username}`} />
+    }
   }
 
   const calendarByDay = username

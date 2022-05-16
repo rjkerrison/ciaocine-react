@@ -14,21 +14,25 @@ const CalendarContextProvider = ({ children }) => {
   const [userCalendars, setUserCalendars] = useState({})
   const { isLoggedIn, isLoading, user } = useContext(AuthContext)
 
+  const updateCalendarForUsername = useCallback(async (username) => {
+    const calendar = await getCalendar(username)
+    setUserCalendars((calendars) => ({
+      ...calendars,
+      [username]: calendar,
+    }))
+  }, [])
+
   const getCalendarForUsername = useCallback(
     (username) => {
       const foundCalendar = userCalendars[username]
       if (foundCalendar) {
         return foundCalendar
       }
-      getCalendar(username).then((calendar) => {
-        setUserCalendars((calendars) => ({
-          ...calendars,
-          [username]: calendar,
-        }))
-      })
+      updateCalendarForUsername(username)
+
       return []
     },
-    [userCalendars]
+    [userCalendars, updateCalendarForUsername]
   )
   const getCalendarForUser = useCallback(() => {
     if (isLoading || !isLoggedIn || !user) {
@@ -49,13 +53,13 @@ const CalendarContextProvider = ({ children }) => {
 
   const remove = async (id) => {
     const result = await removeFromCalendar(id)
-    await getCalendarForUser()
+    await updateCalendarForUsername(user.username)
     return result
   }
 
   const add = async (id) => {
     const result = await addToCalendar(id)
-    await getCalendarForUser()
+    await updateCalendarForUsername(user.username)
     return result
   }
 
