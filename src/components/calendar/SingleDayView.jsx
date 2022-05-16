@@ -5,7 +5,9 @@ import CalendarEntryCard from './CalendarEntryCard'
 const SingleDayView = ({ calendarDate, showtimes }) => {
   return (
     <div className='calendar-date' key={calendarDate}>
-      <h3 className='calendar-head'>{formatAs.date(calendarDate)}</h3>
+      <Link to={`/calendar/${formatAs.routeDate(calendarDate)}`}>
+        <h3 className='calendar-head'>{formatAs.date(calendarDate)}</h3>
+      </Link>
       <div className='movies'>
         {showtimes.map((showtime) => (
           <CalendarEntryCard key={showtime._id} {...showtime} />
