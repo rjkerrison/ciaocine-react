@@ -8,7 +8,9 @@ import { areSameDay, formatAs } from '../utils/formatDate'
 const CalendarSingleDay = () => {
   const { isLoggedIn, isLoading } = useContext(AuthContext)
   const { year, month, date } = useParams()
-  const { calendarByDay } = useContext(CalendarContext)
+  const { getCalendarForUsername, getCalendarForUser } =
+    useContext(CalendarContext)
+  const { username } = useParams()
 
   if (isLoading) {
     return (
@@ -22,12 +24,20 @@ const CalendarSingleDay = () => {
     return <Navigate to='/auth/login' />
   }
 
+  const calendarByDay = username
+    ? getCalendarForUsername(username)
+    : getCalendarForUser()
+
   let calendar
   const calendarDay = calendarByDay.find(({ calendarDate }) => {
     return areSameDay(calendarDate, { year, month, date })
   })
   if (calendarDay) {
-    calendar = <SingleDayView {...calendarDay} />
+    calendar = (
+      <div className='calendar'>
+        <SingleDayView {...calendarDay} />
+      </div>
+    )
   } else {
     calendar = (
       <p>
@@ -41,12 +51,11 @@ const CalendarSingleDay = () => {
   return (
     <section className='movies-section'>
       <h1>Your saved screenings</h1>
-      <div className='calendar'>{calendar}</div>
-
+      {calendar}
       <ul>
         {calendarByDay.map(({ calendarDate }) => {
           if (areSameDay(calendarDate, { year, month, date })) {
-            return <></>
+            return null
           }
           return (
             <li key={calendarDate}>

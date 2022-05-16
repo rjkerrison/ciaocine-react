@@ -25,6 +25,13 @@ function App() {
   // the <Routes> so we show the gallery in the background, behind the modal.
   const state = location.state
 
+  const calendarRoutes = (
+    <>
+      <Route path='' element={<Calendar />} />
+      <Route path=':year/:month/:date' element={<CalendarSingleDay />} />
+    </>
+  )
+
   return (
     <div className='App'>
       <Routes location={state?.backgroundLocation || location}>
@@ -34,11 +41,17 @@ function App() {
           <Route path='/cinemas/:cinemaId' element={<Movies />}>
             <Route path=':year/:month/:date' />
           </Route>
-          <Route path='/calendar' element={<Calendar />} />
+          <Route path='/calendar'>
+            {/* I haven't found a better way to make early routing optional */}
+            {calendarRoutes}
+            <Route path=':username'>{calendarRoutes}</Route>
+          </Route>
           <Route
             path='/calendar/:year/:month/:date'
             element={<CalendarSingleDay />}
-          />
+          >
+            <Route path=':username' />
+          </Route>
           <Route
             path='/movies/:movieId'
             element={

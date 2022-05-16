@@ -1,12 +1,14 @@
 import { useContext } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import SingleDayView from '../components/calendar/SingleDayView'
 import { AuthContext } from '../context/AuthContext'
 import { CalendarContext } from '../context/CalendarContext'
 
 const Calendar = () => {
   const { isLoggedIn, isLoading } = useContext(AuthContext)
-  const { calendarByDay } = useContext(CalendarContext)
+  const { getCalendarForUsername, getCalendarForUser } =
+    useContext(CalendarContext)
+  const { username } = useParams()
 
   if (isLoading) {
     return (
@@ -16,19 +18,28 @@ const Calendar = () => {
     )
   }
 
-  if (!isLoggedIn) {
+  if (!username && !isLoggedIn) {
     return <Navigate to='/auth/login' />
   }
 
+  const calendarByDay = username
+    ? getCalendarForUsername(username)
+    : getCalendarForUser()
+
   let calendar
   if (calendarByDay.length > 0) {
-    calendar = calendarByDay.map(({ calendarDate, showtimes }) => (
-      <SingleDayView
-        calendarDate={calendarDate}
-        showtimes={showtimes}
-        key={calendarDate}
-      />
-    ))
+    calendar = (
+      <div className='calendar'>
+        {calendarByDay.map(({ calendarDate, showtimes }) => (
+          <SingleDayView
+            username={username}
+            calendarDate={calendarDate}
+            showtimes={showtimes}
+            key={calendarDate}
+          />
+        ))}
+      </div>
+    )
   } else {
     calendar = (
       <p>
@@ -42,7 +53,7 @@ const Calendar = () => {
   return (
     <section className='movies-section'>
       <h1>Your saved screenings</h1>
-      <div className='calendar'>{calendar}</div>
+      {calendar}
     </section>
   )
 }
