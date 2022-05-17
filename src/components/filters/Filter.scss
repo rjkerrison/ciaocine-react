@@ -15,8 +15,9 @@
   &.top-level {
     grid-column: auto;
 
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: 900px) {
       grid-row: 1;
+      grid-column-end: -1;
     }
   }
 }
