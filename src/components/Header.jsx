@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
+import { getCalendarRoute } from '../utils/routeHelpers'
 import ProfilePicture from './ProfilePicture'
 
 const AccountNav = ({ logOutUser }) => (
   <>
     <nav aria-label='account navigation'>
-      <Link to='/calendar'>Calendar</Link>
+      <Link to={getCalendarRoute()}>Calendar</Link>
       <button onClick={logOutUser}>Logout</button>
     </nav>
     <ProfilePicture />
