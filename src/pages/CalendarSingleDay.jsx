@@ -4,13 +4,13 @@ import SingleDayView from '../components/calendar/SingleDayView'
 import { AuthContext } from '../context/AuthContext'
 import { CalendarContext } from '../context/CalendarContext'
 import { areSameDay, formatAs } from '../utils/formatDate'
+import { getCalendarRoute } from '../utils/routeHelpers'
 
 const CalendarSingleDay = () => {
   const { isLoggedIn, isLoading, user } = useContext(AuthContext)
-  const { year, month, date } = useParams()
   const { getCalendarForUsername, getCalendarForUser } =
     useContext(CalendarContext)
-  const { username } = useParams()
+  const { username, year, month, date } = useParams()
 
   if (isLoading) {
     return (
@@ -66,7 +66,7 @@ const CalendarSingleDay = () => {
           return (
             <li key={calendarDate}>
               View calendar for{' '}
-              <Link to={`/calendar/${formatAs.routeDate(calendarDate)}`}>
+              <Link to={getCalendarRoute({ username, calendarDate })}>
                 {formatAs.date(calendarDate)}
               </Link>
               .
@@ -74,7 +74,7 @@ const CalendarSingleDay = () => {
           )
         })}
         <li>
-          View <Link to={`/calendar/`}>full calendar</Link>.
+          View <Link to={getCalendarRoute({ username })}>full calendar</Link>.
         </li>
       </ul>
     </section>

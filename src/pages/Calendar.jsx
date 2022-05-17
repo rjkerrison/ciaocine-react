@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import SingleDayView from '../components/calendar/SingleDayView'
 import { AuthContext } from '../context/AuthContext'
 import { CalendarContext } from '../context/CalendarContext'
+import { getCalendarRoute } from '../utils/routeHelpers'
 
 const Calendar = () => {
   const { isLoggedIn, isLoading, user } = useContext(AuthContext)
@@ -20,9 +21,11 @@ const Calendar = () => {
 
   if (!username) {
     if (!isLoggedIn) {
-      return <Navigate to='/auth/login' />
+      return (
+        <Navigate to='/auth/login' state={{ redirect: getCalendarRoute() }} />
+      )
     } else {
-      return <Navigate to={`/calendar/${user.username}`} />
+      return <Navigate to={getCalendarRoute({ username: user.username })} />
     }
   }
 
