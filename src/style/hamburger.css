@@ -50,7 +50,7 @@
   transition: top 0.2s ease-in 0s, opacity 0s 0.2s;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 900px) {
   .hamburger {
     display: none;
   }

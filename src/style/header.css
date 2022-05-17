@@ -26,12 +26,6 @@
   flex-direction: column;
 }
 
-.app-header h1 {
-  padding: 0;
-  margin: 0;
-  font-size: 1.5rem;
-}
-
 .app-header nav {
   display: flex;
   flex-direction: column;
@@ -41,7 +35,6 @@
 
 .account-header {
   display: flex;
-  /* height: 4rem; */
   gap: 1rem;
   background: var(--contrast);
   padding: 0.5rem;
@@ -92,16 +85,11 @@
   margin: 0;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 900px) {
   .app-header {
     flex-direction: row;
     align-items: center;
     font-size: 1.5rem;
-  }
-
-  .app-header h1 {
-    padding: 1rem;
-    font-size: 2rem;
   }
 
   .app-header nav {
@@ -115,7 +103,7 @@
     flex-grow: 100%;
   }
   .account-header {
-    height: 4rem;
+    height: var(--header-height);
     flex-direction: row;
   }
 }
