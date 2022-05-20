@@ -1,25 +1,19 @@
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getCinemas } from '../api/cinemas'
-import { getLikedCinemas } from '../api/likes'
 import FavouriteCinema from '../components/FavouriteCinema'
-import { AuthContext } from '../context/AuthContext'
+import { LikesContext } from '../context/LikesContext'
 
 const Cinemas = () => {
-  const { isLoggedIn, isLoading } = useContext(AuthContext)
+  const { likedCinemas, changeLikeCinema } = useContext(LikesContext)
   const [cinemas, setCinemas] = useState([])
-  const [likedCinemas, setLikedCinemas] = useState([])
+
   const [filteredCinemas, setFilteredCinemas] = useState([])
   const [query, setQuery] = useState('')
 
   const updateCinemas = async () => {
     const cinemas = await getCinemas()
     setCinemas(cinemas)
-  }
-
-  const updateLikedCinemas = async () => {
-    const likedCinemas = await getLikedCinemas()
-    setLikedCinemas(likedCinemas)
   }
 
   useEffect(() => {
@@ -38,26 +32,9 @@ const Cinemas = () => {
     setFilteredCinemas(filtered)
   }, [query, cinemas, likedCinemas])
 
-  useEffect(() => {
-    if (isLoading || !isLoggedIn) {
-      return
-    }
-
-    updateLikedCinemas()
-  }, [isLoading, isLoggedIn])
-
   const handleQueryChange = (e) => {
     setQuery(e.target.value)
   }
-
-  const handleFavouriteCinemaChange = useCallback((cinemaId, liked) => {
-    if (liked) {
-      const newEntry = { cinema: { _id: cinemaId } }
-      setLikedCinemas((lc) => [...lc, newEntry])
-    } else {
-      setLikedCinemas((lc) => lc.filter((x) => x.cinema._id !== cinemaId))
-    }
-  }, [])
 
   return (
     <section className='movies-section'>
@@ -82,7 +59,7 @@ const Cinemas = () => {
               <FavouriteCinema
                 likedCinemas={likedCinemas}
                 cinema={cinema}
-                setLiked={handleFavouriteCinemaChange}
+                setLiked={changeLikeCinema}
               />
             </div>
             <ul className='member-card-list'>

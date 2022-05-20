@@ -1,4 +1,4 @@
-ul.crew {
+.crew {
   grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
   display: grid;
   grid-auto-rows: minmax(min-content, 5rem);
@@ -8,28 +8,27 @@ ul.crew {
   list-style: none;
   margin: 0;
   padding: 0;
-}
 
-ul.crew li {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  background-color: #533ea780;
-  padding: 0.5rem;
-  transition: all 1s;
-  border-radius: 0.25rem;
+  .crew-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    transition: all 1s;
+    border-radius: 0.25rem;
 
-  h4,
-  p {
-    margin: 0;
-    text-align: center;
-  }
+    h4,
+    p {
+      margin: 0;
+      text-align: center;
+    }
 
-  p {
-    overflow-y: scroll;
-    font-size: 1rem;
+    p {
+      overflow-y: scroll;
+      font-size: 1rem;
+    }
   }
 }

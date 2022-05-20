@@ -15,6 +15,7 @@ import Calendar from './pages/Calendar'
 import MoviePopupInner from './components/movies/MoviePopupInner'
 import Popup from './components/Popup'
 import CalendarSingleDay from './pages/CalendarSingleDay'
+import Showtime from './pages/Showtime'
 
 function App() {
   const location = useLocation()
@@ -69,6 +70,7 @@ function App() {
           <Route path='/movies' element={<Movies />}>
             <Route path=':year/:month/:date' />
           </Route>
+          <Route path='/showtimes/:showtimeId' element={<Showtime />} />
           <Route path='/auth'>
             <Route path='login' element={<Login {...state} />} />
             <Route path='signup' element={<Signup />} />

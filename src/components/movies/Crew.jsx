@@ -7,7 +7,7 @@ const Crew = ({ crew }) => {
   return (
     <>
       <h3>Crew</h3>
-      <ul className='crew'>
+      <div className='crew'>
         <CrewCard
           title='Director'
           label={director?.map(({ name }) => name).join(', ')}
@@ -23,7 +23,7 @@ const Crew = ({ crew }) => {
             label={people?.map(({ name }) => name).join(', ')}
           />
         ))}
-      </ul>
+      </div>
     </>
   )
 }

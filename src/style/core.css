@@ -167,3 +167,10 @@ main {
   min-height: 100vh;
   padding: var(--header-height) 0 var(--footer-height);
 }
+
+.line {
+  display: block;
+}
+.line.sub {
+  font-size: 0.75em;
+}

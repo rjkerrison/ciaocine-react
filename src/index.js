@@ -7,6 +7,7 @@ import { AuthProviderWrapper } from './context/AuthContext'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContextProvider } from './context/ToastContext'
 import { CalendarContextProvider } from './context/CalendarContext'
+import { LikesContextProvider } from './context/LikesContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -15,7 +16,9 @@ root.render(
       <AuthProviderWrapper>
         <ToastContextProvider>
           <CalendarContextProvider>
-            <App />
+            <LikesContextProvider>
+              <App />
+            </LikesContextProvider>
           </CalendarContextProvider>
         </ToastContextProvider>
       </AuthProviderWrapper>

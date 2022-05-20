@@ -4,10 +4,10 @@ const CrewCard = ({ title, label }) => {
   }
 
   return (
-    <li>
+    <div className='crew-card'>
       <h4>{title}</h4>
       <p>{label}</p>
-    </li>
+    </div>
   )
 }
 

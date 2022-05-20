@@ -6,8 +6,7 @@ import Cast from './Cast'
 import Crew from './Crew'
 import './movie-popup-inner.scss'
 
-const MoviePopupInner = () => {
-  const { movieId } = useParams()
+export const MovieFullInfo = ({ movieId }) => {
   const [movieInfo, setMovieInfo] = useState(null)
 
   useEffect(() => {
@@ -24,7 +23,6 @@ const MoviePopupInner = () => {
   if (!movieInfo) {
     return <></>
   }
-
   return (
     <div
       onClick={(e) => e.stopPropagation()}
@@ -42,6 +40,11 @@ const MoviePopupInner = () => {
       <Cast cast={movieInfo.extra.cast} />
     </div>
   )
+}
+
+export const MoviePopupInner = () => {
+  const { movieId } = useParams()
+  return <MovieFullInfo movieId={movieId} />
 }
 
 export default MoviePopupInner
