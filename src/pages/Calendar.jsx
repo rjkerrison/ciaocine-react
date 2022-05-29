@@ -51,8 +51,8 @@ const Calendar = () => {
     calendar = (
       <p>
         You don't appear to have any saved screenings. Use the{' '}
-        <Link to='/movies'>movies</Link> page to find something to watch, or
-        search by <Link to='/cinemas'>cinema</Link>.
+        <Link to='/showtimes'>showtimes</Link> page to find something to watch,
+        or search by <Link to='/cinemas'>cinema</Link>.
       </p>
     )
   }
