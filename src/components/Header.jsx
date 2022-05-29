@@ -52,7 +52,7 @@ const Header = () => {
         <nav aria-label='main navigation'>
           <Link to='/'>Home</Link>
           <Link to='/cinemas'>Cinemas</Link>
-          <Link to='/movies'>Showtimes</Link>
+          <Link to='/showtimes'>Showtimes</Link>
         </nav>
         <div className='account-header'>
           {isLoggedIn ? (
