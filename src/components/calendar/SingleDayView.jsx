@@ -16,8 +16,8 @@ const SingleDayView = ({ calendarDate, showtimes, username }) => {
       </div>
       <p>
         Find more{' '}
-        <Link to={`/movies/${formatAs.routeDate(calendarDate)}`}>
-          movies for {formatAs.date(calendarDate)}
+        <Link to={`/showtimes/${formatAs.routeDate(calendarDate)}`}>
+          showtimes for {formatAs.date(calendarDate)}
         </Link>
         .
       </p>

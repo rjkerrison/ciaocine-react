@@ -40,16 +40,22 @@
 }
 .planning h2 {
   font-size: calc(2rem + 0.5vw);
+  margin-top: 0.5rem;
   font-family: inherit;
-  text-shadow: 0.1em 0.1em 0.1em var(--light-half);
+  text-shadow: 0.05em 0.05em 0.05em var(--light-half);
 }
 .planning h2 strong {
   font-family: 'Courier New', Courier, monospace;
 }
 
+.planning h3 {
+  font-size: calc(1.25rem + 0.25vw);
+  padding: 0.5rem 0;
+}
 .planning p {
-  font-size: calc(1rem + 0.5vw);
+  font-size: calc(1rem + 0.25vw);
   text-shadow: 0.05em 0.05em 0.05em var(--light-half);
+  padding: 0.5rem;
 }
 
 .planning picture {
@@ -59,6 +65,36 @@
 
 .planning button .sr-only {
   font-size: inherit;
+}
+
+.planning ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 66rem;
+}
+.planning ul li {
+  flex: 20rem 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 1rem;
+  border: 0.125rem solid currentColor;
+  box-shadow: 0rem 0.5rem 0.75rem -0.125rem var(--splash-shadow);
+  overflow: hidden;
+}
+
+.features ul li {
+  flex: 30rem 1 0;
+}
+
+.planning ul li h3 {
+  background-color: var(--mid);
+  color: var(--text);
 }
 
 .splash {
@@ -77,21 +113,19 @@
 }
 
 .big-link {
-  background-image: linear-gradient(
-    var(--mid) 0,
-    var(--dark) 50%,
-    var(--mid) 100%
-  );
-  font-size: 2rem;
-  padding: 1rem;
+  display: block;
+  background-image: radial-gradient(var(--dark) 53%, var(--mid) 100%);
+  font-size: calc(1rem + 0.25vw);
+  padding: 0.25rem;
+  margin: 0.25rem 0.5rem;
   border-radius: 1rem;
-  transition: all 0.5s ease-in-out;
-  box-shadow: 0 1rem 1rem -0.5rem var(--splash-shadow);
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 0.25rem 0.25rem -0.125rem var(--splash-shadow);
 }
 
 .big-link:hover {
-  transform: translateY(-0.25rem);
-  box-shadow: 0 2rem 2rem -1rem var(--splash-shadow);
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.5rem 0.5rem -0.25rem var(--splash-shadow);
 }
 
 @keyframes enter {

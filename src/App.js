@@ -58,7 +58,7 @@ function App() {
               <Navigate
                 state={{
                   backgroundLocation: {
-                    pathname: '/movies',
+                    pathname: '/showtimes',
                     search: location.search,
                   },
                 }}
@@ -66,7 +66,7 @@ function App() {
               />
             }
           />
-          <Route path='/movies' element={<Movies />}>
+          <Route path='/showtimes' element={<Movies />}>
             <Route path=':year/:month/:date' />
           </Route>
           <Route path='/auth'>

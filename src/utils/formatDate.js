@@ -1,8 +1,14 @@
-const formatDate = (datetime, targetFormat) => {
-  if (typeof datetime === 'string' || typeof datetime === 'number') {
-    datetime = new Date(datetime)
+const sanitiseDate = (datetime) => {
+  if (!datetime) {
+    return new Date()
+  } else if (typeof datetime === 'string' || typeof datetime === 'number') {
+    return new Date(datetime)
   }
+  return datetime
+}
 
+const formatDate = (datetime, targetFormat) => {
+  datetime = sanitiseDate(datetime)
   try {
     let { format } = Intl.DateTimeFormat('fr-FR', targetFormat)
     return format(datetime, { timeZone: 'Europe/Paris' })
@@ -55,23 +61,17 @@ const dateMonth = getFormatter(dateMonthFormat)
 const weekdayDate = getFormatter(weekdayDateFormat)
 const fifteenMinuteIndex = (datetime) => {
   try {
-    if (typeof datetime === 'string') {
-      datetime = new Date(datetime)
-    }
+    datetime = sanitiseDate(datetime)
     return datetime.getHours() * 4 + Math.floor(datetime.getMinutes() / 15)
   } catch (error) {
     console.log('errored with datetime', datetime, error)
     return 1
   }
 }
+
 const yearMonthDate = (datetime) => {
-  try {
-    if (typeof datetime === 'string') {
-      datetime = new Date(datetime)
-    }
-  } catch (error) {
-    datetime = new Date()
-  }
+  datetime = sanitiseDate(datetime)
+
   return {
     year: datetime.getFullYear(),
     month: datetime.getMonth() + 1,

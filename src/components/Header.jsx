@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 import { getCalendarRoute } from '../utils/routeHelpers'
 import ProfilePicture from './ProfilePicture'
@@ -15,9 +15,10 @@ const AccountNav = ({ logOutUser }) => (
 )
 
 const AnonymousNav = () => {
+  const location = useLocation()
   return (
     <nav aria-label='login or signup'>
-      <Link to='/auth/login' state={{ backgroundLocation: '/' }}>
+      <Link to='/auth/login' state={{ backgroundLocation: location }}>
         Login
       </Link>
       <Link to='/auth/signup'>Signup</Link>
@@ -51,7 +52,7 @@ const Header = () => {
         <nav aria-label='main navigation'>
           <Link to='/'>Home</Link>
           <Link to='/cinemas'>Cinemas</Link>
-          <Link to='/movies'>Movies</Link>
+          <Link to='/movies'>Showtimes</Link>
         </nav>
         <div className='account-header'>
           {isLoggedIn ? (
