@@ -109,7 +109,7 @@ const Movies = () => {
     const newDate = new Date(date - 0 + 86400 * 1000 * increment)
 
     const pathname = `/${
-      cinemaId ? `cinemas/${cinemaId}` : 'movies'
+      cinemaId ? `cinemas/${cinemaId}` : 'showtimes'
     }/${formatAs.routeDate(newDate)}`
 
     navigate({

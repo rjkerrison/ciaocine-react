@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 import Index from './pages/Index'
 import Cinemas from './pages/Cinemas'
-import Movies from './pages/Movies'
+import Showtimes from './pages/Showtimes'
 import Layout from './pages/Layout'
 import Login from './pages/auth/LoginPage'
 import Signup from './pages/auth/Signup'
@@ -38,7 +38,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path='/' index element={<Index />} />
           <Route path='/cinemas' index element={<Cinemas />} />
-          <Route path='/cinemas/:cinemaId' element={<Movies />}>
+          <Route path='/cinemas/:cinemaId' element={<Showtimes />}>
             <Route path=':year/:month/:date' />
           </Route>
           <Route path='/calendar'>
@@ -66,7 +66,7 @@ function App() {
               />
             }
           />
-          <Route path='/showtimes' element={<Movies />}>
+          <Route path='/showtimes' element={<Showtimes />}>
             <Route path=':year/:month/:date' />
           </Route>
           <Route path='/auth'>
