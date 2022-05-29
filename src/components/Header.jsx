@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 import { getCalendarRoute } from '../utils/routeHelpers'
 import ProfilePicture from './ProfilePicture'
+import PopupLink from './shared/PopupLink'
 
 const AccountNav = ({ logOutUser }) => (
   <>
@@ -15,12 +16,9 @@ const AccountNav = ({ logOutUser }) => (
 )
 
 const AnonymousNav = () => {
-  const location = useLocation()
   return (
     <nav aria-label='login or signup'>
-      <Link to='/auth/login' state={{ backgroundLocation: location }}>
-        Login
-      </Link>
+      <PopupLink to='/auth/login'>Login</PopupLink>
       <Link to='/auth/signup'>Signup</Link>
     </nav>
   )
