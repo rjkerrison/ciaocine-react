@@ -1,4 +1,14 @@
-# Getting Started with Create React App
+# Ciaocine Frontend
+
+This repository is a frontend for the [rjkerrison/ciaocine][express] API.
+
+[Ciaocine][ciaocine] is a website for finding cinema showtimes in Paris.
+
+[ciaocine]: https://www.ciaocine.com "Ciaocine"
+[express]: https://github.com/rjkerrison/ciaocine "rjkerrison/ciaocine on Github"
+
+
+## About React
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
