@@ -1,10 +1,12 @@
 import { useContext, useMemo } from 'react'
 import { likeCinema } from '../api/likes'
 import { ToastContext } from '../context/ToastContext'
+import { LikedContext } from '../context/LikedContext'
 import Authenticated from './shared/Authenticated'
 
-const FavouriteCinema = ({ cinema, likedCinemas, setLiked }) => {
+const FavouriteCinema = ({ cinema }) => {
   const { toast } = useContext(ToastContext)
+  const { likedCinemas, setLikedCinema } = useContext(LikedContext)
 
   const liked = useMemo(
     () =>
@@ -25,7 +27,7 @@ const FavouriteCinema = ({ cinema, likedCinemas, setLiked }) => {
       className={'favourite-cinema' + (liked ? ' liked' : '')}
       onClick={() =>
         likeCinema(cinema._id, liked).then(({ liked: newLiked }) => {
-          setLiked(cinema._id, newLiked)
+          setLikedCinema(cinema._id, newLiked)
           toast(
             `${cinema.name} ${
               newLiked ? 'added to' : 'removed from'
