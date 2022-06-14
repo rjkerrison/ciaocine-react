@@ -1,22 +1,11 @@
 import axios from 'axios'
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import service from '../api/service'
+import { getShowtimes } from '../api/showtimes'
 import Filters from '../components/filters/Filters'
 import ViewSwitches from '../components/filters/ViewSwitches'
 import MovieList from '../components/movies/MovieList'
 import { formatAs } from '../utils/formatDate'
-
-const getData = async ({ source, yyyy, mm, dd, ...criteria }) => {
-  const {
-    data: { movies },
-  } = await service.request({
-    cancelToken: source.token,
-    url: `/showtimes/${yyyy}/${mm + 1}/${dd}/`,
-    params: criteria,
-  })
-  return { movies }
-}
 
 const Movies = () => {
   const navigate = useNavigate()
@@ -26,7 +15,7 @@ const Movies = () => {
   const [viewParams, setViewParams] = useState({ isTiles: false })
   const [movies, setMovies] = useState([])
   const {
-    cinemaId,
+    cinemaIdOrSlug,
     year: routeYear,
     month: routeMonth,
     date: routeDate,
@@ -61,12 +50,12 @@ const Movies = () => {
     let source = axios.CancelToken.source()
     const getMovies = async () => {
       try {
-        const { movies } = await getData({
+        const { movies } = await getShowtimes({
           source,
           yyyy,
           mm,
           dd,
-          cinema: cinemaId,
+          cinema: cinemaIdOrSlug,
           ...params,
         })
         if (!cancelled) {
@@ -87,7 +76,7 @@ const Movies = () => {
       cancelled = true
       source.cancel('Cancelling in cleanup')
     }
-  }, [yyyy, mm, dd, params, cinemaId])
+  }, [yyyy, mm, dd, params, cinemaIdOrSlug])
 
   const updateFilter = (name, value) => {
     if (name === 'daysAhead') {
@@ -109,7 +98,7 @@ const Movies = () => {
     const newDate = new Date(date - 0 + 86400 * 1000 * increment)
 
     const pathname = `/${
-      cinemaId ? `cinemas/${cinemaId}` : 'showtimes'
+      cinemaIdOrSlug ? `cinemas/${cinemaIdOrSlug}` : 'showtimes'
     }/${formatAs.routeDate(newDate)}`
 
     navigate({
@@ -126,7 +115,7 @@ const Movies = () => {
       <p>
         {movies.length} films are showing on {formatAs.weekdayDate(date)}{' '}
         matching your filters{' '}
-        {cinemaId &&
+        {cinemaIdOrSlug &&
           movies?.[0]?.showtimes?.[0]?.cinema?.name &&
           `at ${movies?.[0]?.showtimes?.[0]?.cinema?.name}`}
       </p>
@@ -134,7 +123,7 @@ const Movies = () => {
       <Filters
         updateFilter={updateFilter}
         params={{ ...params, date }}
-        isCinema={!!cinemaId}
+        isCinema={!!cinemaIdOrSlug}
       >
         <ViewSwitches setViewParams={setViewParams} viewParams={viewParams} />
       </Filters>

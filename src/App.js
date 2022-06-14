@@ -38,7 +38,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path='/' index element={<Index />} />
           <Route path='/cinemas' index element={<Cinemas />} />
-          <Route path='/cinemas/:cinemaId' element={<Showtimes />}>
+          <Route path='/cinemas/:cinemaIdOrSlug' element={<Showtimes />}>
             <Route path=':year/:month/:date' />
           </Route>
           <Route path='/calendar'>
