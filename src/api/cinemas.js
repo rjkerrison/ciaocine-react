@@ -9,4 +9,13 @@ const getCinemas = async () => {
   return cinemas
 }
 
-export { getCinemas }
+const getCinema = async (cinemaIdOrSlug) => {
+  const {
+    data: { cinema },
+  } = await service.request({
+    url: `/cinemas/${cinemaIdOrSlug}`,
+  })
+  return cinema
+}
+
+export { getCinema, getCinemas }

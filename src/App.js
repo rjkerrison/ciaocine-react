@@ -15,6 +15,7 @@ import Calendar from './pages/Calendar'
 import MoviePopupInner from './components/movies/MoviePopupInner'
 import Popup from './components/Popup'
 import CalendarSingleDay from './pages/CalendarSingleDay'
+import Cinema from './pages/Cinema'
 
 function App() {
   const location = useLocation()
@@ -38,7 +39,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path='/' index element={<Index />} />
           <Route path='/cinemas' index element={<Cinemas />} />
-          <Route path='/cinemas/:cinemaId' element={<Showtimes />}>
+          <Route path='/cinemas/:cinemaIdOrSlug' element={<Cinema />}>
             <Route path=':year/:month/:date' />
           </Route>
           <Route path='/calendar'>

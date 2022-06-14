@@ -1,14 +1,17 @@
 import { stripProtocol } from '../utils/urls'
 import PopupLink from './shared/PopupLink'
 
-const MovieHeading = ({ title, poster, _id }) => {
+import './MovieHeading.scss'
+
+const MovieHeading = ({ title, poster, slug, castingShort: { directors } }) => {
   return (
     <>
-      <PopupLink to={`/movies/${_id}`} className='movie-heading'>
+      <PopupLink to={`/movies/${slug}`} className='movie-heading'>
         <h3>{title}</h3>
+        <p>de {directors}</p>
       </PopupLink>
       <picture className='poster' title={title}>
-        <PopupLink to={`/movies/${_id}`}>
+        <PopupLink to={`/movies/${slug}`}>
           <img src={stripProtocol(poster)} alt={title} />
         </PopupLink>
       </picture>

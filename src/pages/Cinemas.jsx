@@ -1,25 +1,17 @@
-import { useCallback, useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
 import { getCinemas } from '../api/cinemas'
-import { getLikedCinemas } from '../api/likes'
-import FavouriteCinema from '../components/FavouriteCinema'
-import { AuthContext } from '../context/AuthContext'
+import CinemaCard from '../components/cinemas/CinemaCard'
+import { LikedContext } from '../context/LikedContext'
 
 const Cinemas = () => {
-  const { isLoggedIn, isLoading } = useContext(AuthContext)
+  const { likedCinemas } = useContext(LikedContext)
   const [cinemas, setCinemas] = useState([])
-  const [likedCinemas, setLikedCinemas] = useState([])
   const [filteredCinemas, setFilteredCinemas] = useState([])
   const [query, setQuery] = useState('')
 
   const updateCinemas = async () => {
     const cinemas = await getCinemas()
     setCinemas(cinemas)
-  }
-
-  const updateLikedCinemas = async () => {
-    const likedCinemas = await getLikedCinemas()
-    setLikedCinemas(likedCinemas)
   }
 
   useEffect(() => {
@@ -38,26 +30,9 @@ const Cinemas = () => {
     setFilteredCinemas(filtered)
   }, [query, cinemas, likedCinemas])
 
-  useEffect(() => {
-    if (isLoading || !isLoggedIn) {
-      return
-    }
-
-    updateLikedCinemas()
-  }, [isLoading, isLoggedIn])
-
   const handleQueryChange = (e) => {
     setQuery(e.target.value)
   }
-
-  const handleFavouriteCinemaChange = useCallback((cinemaId, liked) => {
-    if (liked) {
-      const newEntry = { cinema: { _id: cinemaId } }
-      setLikedCinemas((lc) => [...lc, newEntry])
-    } else {
-      setLikedCinemas((lc) => lc.filter((x) => x.cinema._id !== cinemaId))
-    }
-  }, [])
 
   return (
     <section className='movies-section'>
@@ -71,27 +46,7 @@ const Cinemas = () => {
       <ul className='cinema-list'>
         {filteredCinemas.map((cinema) => (
           <li className='cinema' key={cinema._id}>
-            <h2>
-              <Link to={`/cinemas/${cinema._id}`}>{cinema.name}</Link>
-            </h2>
-
-            <div className='address'>
-              <p>
-                {cinema.address} {cinema.zipcode} {cinema.city}
-              </p>
-              <FavouriteCinema
-                likedCinemas={likedCinemas}
-                cinema={cinema}
-                setLiked={handleFavouriteCinemaChange}
-              />
-            </div>
-            <ul className='member-card-list'>
-              {cinema.member_cards?.map((card) => (
-                <li className='member-card' key={card.code}>
-                  {card.label}
-                </li>
-              ))}
-            </ul>
+            <CinemaCard {...cinema} />
           </li>
         ))}
       </ul>

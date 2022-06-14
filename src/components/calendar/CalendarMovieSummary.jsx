@@ -20,7 +20,7 @@ const CalendarMovieSummary = ({
       </p>
       <MovieHeading {...movie} />
       <p className='cinema' title={cinema.address + ', ' + cinema.zipcode}>
-        <Link to={`/cinemas/${cinema._id}/${formatAs.routeDate(startTime)}`}>
+        <Link to={`/cinemas/${cinema.slug}/${formatAs.routeDate(startTime)}`}>
           {cinema.name}
         </Link>
       </p>
