@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getCinema } from '../api/cinemas'
-import CinemaCard from '../components/cinemas/CinemaCard'
+import CinemaHeader from '../components/cinemas/CinemaHeader'
 import ShowtimeList from '../components/showtimes/ShowtimeList'
 
 const Cinema = () => {
@@ -15,9 +15,12 @@ const Cinema = () => {
 
   return (
     <main>
-      <CinemaCard {...cinema} />
+      <CinemaHeader {...cinema} />
 
-      <ShowtimeList {...{ cinemaIdOrSlug, year, month, date }} />
+      <ShowtimeList
+        {...{ cinemaIdOrSlug, year, month, date }}
+        title={`Séances à ${cinema.name}`}
+      />
     </main>
   )
 }

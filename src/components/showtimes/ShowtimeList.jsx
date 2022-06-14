@@ -7,7 +7,13 @@ import ViewSwitches from '../filters/ViewSwitches'
 import MovieList from '../movies/MovieList'
 import { formatAs } from '../../utils/formatDate'
 
-const ShowtimeList = ({ cinemaIdOrSlug, year, month, date }) => {
+const ShowtimeList = ({
+  title = 'Séances',
+  cinemaIdOrSlug,
+  year,
+  month,
+  date,
+}) => {
   const navigate = useNavigate()
 
   const [isLoading, setIsLoading] = useState(true)
@@ -72,7 +78,7 @@ const ShowtimeList = ({ cinemaIdOrSlug, year, month, date }) => {
     }
   }, [yyyy, mm, dd, params, cinemaIdOrSlug])
 
-  const upsearchDateFilter = (name, value) => {
+  const updateFilter = (name, value) => {
     if (name === 'daysAhead') {
       incrementDate(value, new Date())
       return
@@ -105,17 +111,16 @@ const ShowtimeList = ({ cinemaIdOrSlug, year, month, date }) => {
 
   return (
     <section className='movies-section'>
-      <h1>Showtimes on {formatAs.weekdayDate(searchDate)}</h1>
+      <h1>
+        {title} le {formatAs.weekdayDate(searchDate)}
+      </h1>
       <p>
-        {movies.length} films are showing on {formatAs.weekdayDate(searchDate)}{' '}
-        matching your filters{' '}
-        {cinemaIdOrSlug &&
-          movies?.[0]?.showtimes?.[0]?.cinema?.name &&
-          `at ${movies?.[0]?.showtimes?.[0]?.cinema?.name}`}
+        Il y a {movies.length} films avec des séances le{' '}
+        {formatAs.weekdayDate(searchDate)} qui satisfait vos filtres.
       </p>
 
       <Filters
-        upsearchDateFilter={upsearchDateFilter}
+        updateFilter={updateFilter}
         params={{ ...params, searchDate }}
         isCinema={!!cinemaIdOrSlug}
       >

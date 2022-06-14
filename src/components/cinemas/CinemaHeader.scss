@@ -1,0 +1,17 @@
+.cinema-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  background: var(--contrast-dark);
+
+  h2 {
+    color: var(--text);
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  a {
+    color: inherit;
+  }
+}
