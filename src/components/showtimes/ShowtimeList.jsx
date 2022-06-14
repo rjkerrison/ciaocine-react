@@ -99,7 +99,7 @@ const ShowtimeList = ({
 
     const pathname = `/${
       cinemaIdOrSlug ? `cinemas/${cinemaIdOrSlug}` : 'showtimes'
-    }/${formatAs.date(newDate)}`
+    }/${formatAs.routeDate(newDate)}`
 
     navigate({
       pathname,
