@@ -2,18 +2,28 @@ import { createContext, useCallback, useEffect, useState } from 'react'
 
 const ToastContext = createContext()
 
+const seconds = (a) => a * 1000
+const TOAST_TIMEOUT = seconds(3)
+
 const ToastContextProvider = ({ children }) => {
   const [message, setMessage] = useState('')
   const [active, setActive] = useState('')
+  const [resetTimeout, setResetTimeout] = useState(null)
 
-  const toast = useCallback((message) => {
-    setMessage(message)
-    setActive(true)
-  }, [])
+  const toast = useCallback(
+    (message) => {
+      clearTimeout(resetTimeout)
+      setMessage(message)
+      setActive(true)
+    },
+    [resetTimeout]
+  )
 
   const reset = useCallback(() => {
     setActive(false)
-    setTimeout(() => setMessage(''), 500)
+    // reset the reset
+    const timeout = setTimeout(() => setMessage(''), 500)
+    setResetTimeout(timeout)
   }, [])
 
   useEffect(() => {
@@ -21,7 +31,7 @@ const ToastContextProvider = ({ children }) => {
       return
     }
     // Deactivate after 1s
-    setTimeout(reset, 2000)
+    setTimeout(reset, TOAST_TIMEOUT)
   }, [active, reset])
 
   return (

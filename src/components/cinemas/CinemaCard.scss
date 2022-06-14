@@ -1,0 +1,70 @@
+.cinema-list {
+  list-style: none;
+  display: grid;
+  grid-template: auto / repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+  padding: 0;
+
+  .cinema {
+    position: relative;
+    display: grid;
+    grid-template-areas: 'name name' 'address cards';
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr 1fr;
+
+    grid-template: 'name' 4rem 'address' 4rem 'cards' auto / 1fr;
+    gap: 0.25rem;
+
+    border-radius: 1rem;
+    background-size: 0% 200%;
+    background-image: linear-gradient(
+      var(--dark) 0,
+      var(--mid) 50%,
+      var(--light) 100%
+    );
+    padding: 0.5rem;
+    background-size: 100% 150%;
+    grid-template: 'name' auto 'address' 1fr 'cards' 1fr / 1fr;
+    text-align: center;
+
+    h2 {
+      font-size: 1.5rem;
+      padding: 0;
+      margin: 0.5rem 0;
+      grid-area: name;
+      font-size: 2rem;
+    }
+
+    .address {
+      grid-area: address;
+    }
+  }
+}
+
+button.favourite-cinema {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  width: 2rem;
+  height: 2rem;
+
+  &,
+  &.liked:hover {
+    color: var(--text);
+    background-color: var(--mid);
+  }
+
+  &.liked,
+  &:hover {
+    color: var(--dark);
+    background-color: var(--contrast);
+  }
+}
+
+section.movies-section {
+  > p,
+  ul li {
+    background-color: var(--dark);
+    padding: 0.25rem;
+  }
+}

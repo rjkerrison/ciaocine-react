@@ -36,7 +36,7 @@ const FavouriteCinema = ({ cinema }) => {
         })
       }
     >
-      {liked ? 'Starred!' : 'Star me'}
+      {liked ? '⭐️' : '☆'}
     </button>
   )
 }

@@ -1,28 +1,3 @@
-.cinema-list {
-  list-style: none;
-  display: grid;
-  grid-template: auto / repeat(auto-fill, minmax(16rem, 1fr));
-  gap: 1rem;
-}
-
-.cinema-list .cinema {
-  position: relative;
-  border-radius: 1rem;
-  padding: 0.5rem 0.5rem 2rem;
-  overflow: hidden;
-  background-size: 0% 200%;
-  background-image: linear-gradient(
-    var(--dark) 0,
-    var(--mid) 50%,
-    var(--light) 100%
-  );
-}
-
-.cinema-list .cinema h2 {
-  padding: 0;
-  margin: 0.5rem 0;
-}
-
 .member-card-list {
   display: flex;
   padding: 0;
@@ -61,17 +36,6 @@
   transform-origin: 75% 200%;
 }
 
-button.favourite-cinema,
-button.favourite-cinema.liked:hover {
-  color: white;
-  background-color: transparent;
-}
-button.favourite-cinema.liked,
-button.favourite-cinema:hover {
-  color: var(--dark);
-  background-color: var(--contrast);
-}
-
 .showtime {
   display: grid;
   grid-template-rows: subgrid;
@@ -83,23 +47,6 @@ button.favourite-cinema:hover {
 
 .showtimes {
   display: contents;
-}
-
-.cinema-list {
-  grid-template: auto / repeat(auto-fill, minmax(30rem, 1fr));
-  padding: 0;
-}
-
-.cinema-list .cinema {
-  display: grid;
-  grid-template-areas: 'name name' 'address cards';
-  grid-template-rows: auto 1fr;
-  grid-template-columns: 1fr 1fr;
-}
-
-.cinema-list .cinema h2 {
-  grid-area: name;
-  font-size: 2rem;
 }
 
 .member-card-list {
@@ -114,28 +61,4 @@ button.favourite-cinema:hover {
   /* padding: 0.125rem; */
   padding: 0.25rem;
   text-align: center;
-}
-
-.cinema .address {
-  grid-area: address;
-}
-
-.cinema-list .cinema {
-  background-size: 100% 150%;
-}
-
-.cinema-list .cinema {
-  grid-template: 'name' auto 'address' 1fr 'cards' 1fr / 1fr;
-}
-
-.cinema-list .cinema h2 {
-  text-align: center;
-}
-
-.cinema .address {
-  text-align: center;
-}
-
-.cinema-list {
-  grid-template: auto / repeat(auto-fill, minmax(15rem, 1fr));
 }

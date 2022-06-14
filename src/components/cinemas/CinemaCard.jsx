@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import FavouriteCinema from '../FavouriteCinema'
 
+import './CinemaCard.scss'
+
 const CinemaCard = (cinema) => {
   return (
     <>
