@@ -9,6 +9,20 @@ const getCinemas = async () => {
   return cinemas
 }
 
+const getNearbyCinemas = async ({ lat, lon, q }) => {
+  const {
+    data: { cinemas },
+  } = await service.request({
+    url: '/cinemas/nearby',
+    params: {
+      lat,
+      lon,
+      q,
+    },
+  })
+  return cinemas
+}
+
 const getCinema = async (cinemaIdOrSlug) => {
   const {
     data: { cinema },
@@ -18,4 +32,4 @@ const getCinema = async (cinemaIdOrSlug) => {
   return cinema
 }
 
-export { getCinema, getCinemas }
+export { getCinema, getCinemas, getNearbyCinemas }
