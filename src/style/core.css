@@ -57,17 +57,23 @@ picture img {
   height: auto;
 }
 
-button {
+button,
+input {
   font-size: 1.25rem;
   padding: 0.25rem;
   margin: 0.125rem;
   border-radius: 0.5rem;
   transition: all 500ms ease-in-out;
   cursor: pointer;
-  color: var(--dark);
-  background-color: var(--contrast);
   border: none;
   box-shadow: 0rem 0.5rem 0.5rem -0.25rem var(--button-shadow);
+}
+
+button,
+input[type='button'],
+input[type='submit'] {
+  color: var(--dark);
+  background-color: var(--contrast);
 }
 
 button.round {
