@@ -21,7 +21,7 @@ const MoviePopupInner = () => {
     getMovie()
   }, [movieId])
 
-  if (!movieInfo) {
+  if (!movieInfo || !movieInfo.extra) {
     return <></>
   }
 

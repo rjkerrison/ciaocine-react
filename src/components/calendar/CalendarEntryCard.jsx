@@ -5,10 +5,15 @@ import CalendarMovieSummary from './CalendarMovieSummary'
 
 const CalendarEntryCard = ({ ...showtime }) => {
   const [movieInfo, setMovieInfo] = useState({ extra: { runtime: 120 } })
-  const length = useMemo(
-    () => Math.floor(movieInfo.extra.runtime / 15),
-    [movieInfo.extra.runtime]
-  )
+
+  const length = useMemo(() => {
+    const runtime = movieInfo?.extra?.runtime
+    if (!runtime) {
+      return 'unknown'
+    }
+
+    return Math.floor(runtime / 15)
+  }, [movieInfo?.extra?.runtime])
   const index = useMemo(
     // adjust to start day at 8am
     () => formatAs.fifteenMinuteIndex(showtime.startTime) - 32,
@@ -35,7 +40,10 @@ const CalendarEntryCard = ({ ...showtime }) => {
           padding: '0.25rem',
         }}
       >
-        <CalendarMovieSummary {...showtime} runtime={movieInfo.extra.runtime} />
+        <CalendarMovieSummary
+          {...showtime}
+          runtime={movieInfo?.extra?.runtime}
+        />
       </div>
     </>
   )
