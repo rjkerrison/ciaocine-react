@@ -16,6 +16,7 @@ import MoviePopupInner from './components/movies/MoviePopupInner'
 import Popup from './components/Popup'
 import CalendarSingleDay from './pages/CalendarSingleDay'
 import Cinema from './pages/Cinema'
+import NearbySoon from './pages/NearbySoon'
 
 function App() {
   const location = useLocation()
@@ -38,6 +39,7 @@ function App() {
       <Routes location={state?.backgroundLocation || location}>
         <Route element={<Layout />}>
           <Route path='/' index element={<Index />} />
+          <Route path='/nearby' index element={<NearbySoon />} />
           <Route path='/cinemas' index element={<Cinemas />} />
           <Route path='/cinemas/:cinemaIdOrSlug' element={<Cinema />}>
             <Route path=':year/:month/:date' />
