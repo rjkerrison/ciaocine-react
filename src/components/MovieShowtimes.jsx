@@ -41,7 +41,7 @@ const MovieShowtimes = ({ showtimes, movie }) => {
         {toHide}
         <Button
           isActive={isExpanded}
-          label={isExpanded ? 'Hide' : 'Show more'}
+          label={isExpanded ? 'Hide' : 'Show all ' + showtimes.length}
           onClick={() => {
             setIsExpanded((c) => !c)
           }}

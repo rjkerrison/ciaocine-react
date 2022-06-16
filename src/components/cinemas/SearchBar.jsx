@@ -14,32 +14,23 @@ const SearchBar = ({ query, setQuery, setCinemas }) => {
 
   const currentPositionCallback = async (location) => {
     const { latitude: lat, longitude: lon } = location.coords
+    // ideally we'd get a human name for the location (quartier, street) from the API
+    setLocation(`near me`)
 
     const cinemas = await getNearbyCinemas({ lat, lon })
     setCinemas(cinemas)
   }
 
   const handleFindNearMe = () => {
-    const result = navigator.geolocation.getCurrentPosition(
-      currentPositionCallback,
-      (error) => toast(`Could not locate you due to: "${error.message}."`)
+    navigator.geolocation.getCurrentPosition(currentPositionCallback, (error) =>
+      toast(`Could not locate you due to: "${error.message}."`)
     )
-    console.log({ result })
   }
 
   return (
     <div className='search-bar'>
       <h2>Search</h2>
-      <form>
-        <h3>By name</h3>
-        <input
-          type='text'
-          name='name'
-          value={query}
-          placeholder='filter by name'
-          onChange={handleQueryChange}
-        />
-      </form>
+
       <form
         onSubmit={async (e) => {
           e.preventDefault()
@@ -49,16 +40,30 @@ const SearchBar = ({ query, setQuery, setCinemas }) => {
           setCinemas(cinemas)
         }}
       >
-        <h3>By location</h3>
+        <h3>Find near…</h3>
+        <label htmlFor='location'>Search by location</label>{' '}
         <input
           type='text'
           name='location'
+          id='location'
           value={location}
           placeholder='filter by location'
           onChange={(e) => setLocation(e.target.value)}
         />
-        <input type='submit' value='Find nearby' />
-        <input type='button' value='Find near me' onClick={handleFindNearMe} />
+        <input type='submit' value='Search' />
+        <input type='button' value='Find me' onClick={handleFindNearMe} />
+      </form>
+      <form>
+        <h3>Quick filter</h3>
+        <label htmlFor='name'>By name</label>{' '}
+        <input
+          type='text'
+          id='name'
+          name='name'
+          value={query}
+          placeholder="e.g. 'MK2', 'Bastille', etc"
+          onChange={handleQueryChange}
+        />
       </form>
     </div>
   )
