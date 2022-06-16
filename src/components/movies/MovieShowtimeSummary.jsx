@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import MovieHeading from '../MovieHeading'
 import MovieShowtimes from '../MovieShowtimes'
+import MovieActions from './MovieActions'
 
 const MovieShowtimeSummary = ({ movie, showtimes }) => {
   const [isHidden, setIsHidden] = useState(false)
@@ -13,7 +14,7 @@ const MovieShowtimeSummary = ({ movie, showtimes }) => {
     <div className='movie overlay-container expander-container'>
       <MovieHeading {...movie} />
       <MovieShowtimes showtimes={showtimes} movie={movie} />
-      <button onClick={setIsHidden}>Cacher ce film</button>
+      <MovieActions setIsHidden={setIsHidden} {...movie} />
     </div>
   )
 }

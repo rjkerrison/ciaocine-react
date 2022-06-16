@@ -109,6 +109,12 @@ const ShowtimeList = ({
     setSearchDate(newDate)
   }
 
+  useEffect(() => {
+    document.title = `Ciaocine | ${title} le ${formatAs.weekdayDate(
+      searchDate
+    )}`
+  }, [title, searchDate])
+
   return (
     <section className='movies-section'>
       <h1>

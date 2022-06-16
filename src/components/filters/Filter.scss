@@ -36,7 +36,6 @@
   animation: 1s enter ease-in-out;
   padding: 0.5rem;
   border-radius: 0.25rem;
-  font-size: calc(1.25rem + 0.5vw);
 
   &.selected {
     background-color: var(--contrast-dark);
