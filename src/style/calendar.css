@@ -52,7 +52,7 @@
 
   .calendar .movies {
     display: grid;
-    grid-template: repeat(96, auto) / auto;
+    grid-template: repeat(96, 4rem) / auto;
     grid-auto-columns: auto;
     column-gap: 0.5rem;
   }

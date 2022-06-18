@@ -4,15 +4,8 @@ import MovieHeading from '../MovieHeading'
 import AddToCalendar from './AddToCalendar'
 import './CalendarMovieSummary.scss'
 
-const CalendarMovieSummary = ({
-  movie,
-  startTime,
-  cinema,
-  _id,
-  runtime = 120,
-}) => {
-  const endTime = new Date(startTime) - 0 + runtime * 60 * 1000
-  console.log({ endTime })
+const CalendarMovieSummary = ({ movie, startTime, cinema, _id }) => {
+  const endTime = new Date(startTime) - 0 + (movie.runtime || 7200) * 1000
   return (
     <div className='movie calendar-movie'>
       <p className='time'>
