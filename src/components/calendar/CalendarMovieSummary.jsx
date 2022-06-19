@@ -21,7 +21,7 @@ const CalendarMovieSummary = ({ movie, startTime, cinema, _id }) => {
       </p>
       <FloatingButtons>
         <ConcurrencyExclusionButton {...{ _id, startTime, movie }} />
-        <AddToCalendar {...{ movie, startTime, cinema, _id }} />
+        <AddToCalendar {...{ title: movie.title, startTime, cinema, _id }} />
       </FloatingButtons>
     </div>
   )
