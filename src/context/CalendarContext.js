@@ -12,7 +12,21 @@ const CalendarContext = createContext()
 
 const CalendarContextProvider = ({ children }) => {
   const [userCalendars, setUserCalendars] = useState({})
+  const [selectedShowtimeIds, setSelectedShowtimeIds] = useState([])
   const { isLoggedIn, isLoading, user } = useContext(AuthContext)
+
+  const isSelectedShowtimeId = (id) => {
+    return selectedShowtimeIds.includes(id)
+  }
+
+  const toggleSelectedShowtimeId = (id) => {
+    setSelectedShowtimeIds((current) => {
+      if (current.includes(id)) {
+        return current.filter((x) => x !== id)
+      }
+      return [...current, id]
+    })
+  }
 
   const updateCalendarForUsername = useCallback(async (username) => {
     const calendar = await getCalendar(username)
@@ -71,6 +85,9 @@ const CalendarContextProvider = ({ children }) => {
         add,
         getCalendarForUsername,
         getCalendarForUser,
+        toggleSelectedShowtimeId,
+        isSelectedShowtimeId,
+        selectedShowtimeIds,
       }}
     >
       {children}

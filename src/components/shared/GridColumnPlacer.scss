@@ -1,3 +1,5 @@
-.grid-column-placer {
-  border-left: var(--text) solid 0.25rem;
+@media screen and (min-width: 600px) {
+  .grid-column-placer {
+    border-left: var(--text) solid 0.25rem;
+  }
 }

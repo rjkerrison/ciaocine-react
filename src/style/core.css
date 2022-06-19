@@ -77,7 +77,6 @@ input[type='submit'] {
 }
 
 button.round {
-  position: absolute;
   width: 1.5rem;
   height: 1.5rem;
   padding: 0;
@@ -85,8 +84,6 @@ button.round {
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  top: -0.5rem;
-  right: -0.5rem;
   z-index: 1;
   border-radius: 50%;
   color: var(--dark);
