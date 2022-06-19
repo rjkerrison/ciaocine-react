@@ -22,11 +22,15 @@ const ConcurrencyExclusionButton = ({ _id, movie, startTime }) => {
       title={title}
       onClick={async () => {
         toggleSelectedShowtimeId(_id)
-        if (!isSelected) {
-          toast(`Showing only films that can be seen along with ${description}`)
-        } else {
-          toast(`Removed concurrency exclusion check with ${description}`)
-        }
+        toast(
+          <>
+            {!isSelected
+              ? 'Showing only films that can be seen along with'
+              : 'Removed concurrency exclusion check with'}{' '}
+            <strong>{movie.title}</strong> at{' '}
+            <strong>{formatAs.time(startTime)}</strong>
+          </>
+        )
       }}
     >
       <span>{isSelected ? '💫' : '☄️'}</span>

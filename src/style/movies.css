@@ -153,9 +153,11 @@ section.movies-section ul li {
   width: 15rem;
   height: 15rem;
   animation: spin 1.9s infinite;
+}
+
+.loading.centre {
   position: absolute;
   left: calc(50% - 7.5rem);
-  right: 50%;
   top: 50%;
 }
 

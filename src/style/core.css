@@ -100,6 +100,9 @@ button.active {
 button.round:hover {
   color: var(--contrast);
 }
+button.loading {
+  animation: spin 0.75s infinite;
+}
 
 button:hover {
   background-color: var(--button-hover-background);
@@ -169,4 +172,13 @@ main {
   position: relative;
   min-height: 100vh;
   padding: var(--header-height) 0 var(--footer-height);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(100%);
+  }
 }

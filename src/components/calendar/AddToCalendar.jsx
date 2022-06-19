@@ -1,8 +1,9 @@
-import { useContext, useMemo } from 'react'
+import { useContext, useMemo, useState } from 'react'
 import { CalendarContext } from '../../context/CalendarContext'
 import { ToastContext } from '../../context/ToastContext'
 import { formatAs } from '../../utils/formatDate'
 import Authenticated from '../shared/Authenticated'
+import CalendarChangeToastMessage from './CalendarChangeToastMessage'
 
 const getDescription = (title, cinema, startTime, isInCalendar) => {
   const parts = isInCalendar
@@ -17,6 +18,7 @@ const getDescription = (title, cinema, startTime, isInCalendar) => {
 const AddToCalendar = ({ _id, title, startTime, cinema }) => {
   const { toast } = useContext(ToastContext)
   const { remove, add, getIsInCalendar } = useContext(CalendarContext)
+  const [loading, setLoading] = useState(false)
 
   const isInCalendar = useMemo(() => {
     const result = getIsInCalendar(_id)
@@ -28,7 +30,9 @@ const AddToCalendar = ({ _id, title, startTime, cinema }) => {
     [title, cinema, startTime, isInCalendar]
   )
 
-  const className = `round ${isInCalendar ? 'active' : ''}`
+  const className = `round ${isInCalendar ? 'active' : ''} ${
+    loading ? 'loading' : ''
+  }`
   const symbol = isInCalendar ? '✔' : '+'
 
   return (
@@ -36,13 +40,25 @@ const AddToCalendar = ({ _id, title, startTime, cinema }) => {
       className={className}
       title={description}
       onClick={async () => {
+        setLoading(true)
         if (isInCalendar) {
           await remove(_id)
-          toast(description.replace('Remove', 'Removed'))
+          toast(
+            <CalendarChangeToastMessage
+              {...{ movie: { title }, startTime, cinema }}
+              isRemove={true}
+            />
+          )
         } else {
           await add(_id)
-          toast(description.replace('Add', 'Added'))
+          toast(
+            <CalendarChangeToastMessage
+              {...{ movie: { title }, startTime, cinema }}
+              isRemove={false}
+            />
+          )
         }
+        setLoading(false)
       }}
     >
       <span>{symbol}</span>

@@ -3,6 +3,7 @@ import { CalendarContext } from '../../context/CalendarContext'
 import { ToastContext } from '../../context/ToastContext'
 import { formatAs } from '../../utils/formatDate'
 import Authenticated from '../shared/Authenticated'
+import CalendarChangeToastMessage from './CalendarChangeToastMessage'
 
 const RemoveFromCalendar = ({ _id, movie, startTime, cinema }) => {
   const { toast } = useContext(ToastContext)
@@ -23,7 +24,12 @@ const RemoveFromCalendar = ({ _id, movie, startTime, cinema }) => {
       onClick={async () => {
         const { removed } = await remove(_id)
         if (removed) {
-          toast(description.replace('Remove', 'Removed'))
+          toast(
+            <CalendarChangeToastMessage
+              {...{ movie, startTime, cinema }}
+              isRemove={removed}
+            />
+          )
         }
       }}
     >
