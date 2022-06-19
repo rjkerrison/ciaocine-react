@@ -47,7 +47,10 @@ const AddToCalendar = ({ _id, title, startTime, cinema }) => {
             <CalendarChangeToastMessage
               {...{ movie: { title }, startTime, cinema }}
               isRemove={true}
-            />
+            />,
+            async () => {
+              await add(_id)
+            }
           )
         } else {
           await add(_id)
@@ -55,7 +58,10 @@ const AddToCalendar = ({ _id, title, startTime, cinema }) => {
             <CalendarChangeToastMessage
               {...{ movie: { title }, startTime, cinema }}
               isRemove={false}
-            />
+            />,
+            async () => {
+              await remove(_id)
+            }
           )
         }
         setLoading(false)

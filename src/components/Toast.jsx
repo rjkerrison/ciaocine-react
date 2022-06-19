@@ -3,11 +3,14 @@ import { ToastContext } from '../context/ToastContext'
 import './toast.scss'
 
 const Toast = () => {
-  const { message, active } = useContext(ToastContext)
+  const { message, active, undo } = useContext(ToastContext)
 
   return (
     <div className={'toast-container ' + (active ? '' : 'bye-bye-bye')}>
-      <p className='toast'>{message}</p>
+      <div className='toast'>
+        <p>{message}</p>
+        {undo.action && <button onClick={undo.action}>Undo</button>}
+      </div>
     </div>
   )
 }

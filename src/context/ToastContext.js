@@ -7,13 +7,15 @@ const TOAST_TIMEOUT = seconds(3)
 
 const ToastContextProvider = ({ children }) => {
   const [message, setMessage] = useState('')
+  const [undo, setUndo] = useState({ action: null })
   const [active, setActive] = useState('')
   const [resetTimeout, setResetTimeout] = useState(null)
 
   const toast = useCallback(
-    (message) => {
+    (message, undoCallback) => {
       clearTimeout(resetTimeout)
       setMessage(message)
+      setUndo({ action: undoCallback })
       setActive(true)
     },
     [resetTimeout]
@@ -24,6 +26,7 @@ const ToastContextProvider = ({ children }) => {
     // reset the reset
     const timeout = setTimeout(() => setMessage(''), 500)
     setResetTimeout(timeout)
+    setUndo({ action: null })
   }, [])
 
   useEffect(() => {
@@ -40,6 +43,7 @@ const ToastContextProvider = ({ children }) => {
         message,
         active,
         toast,
+        undo,
       }}
     >
       {children}
