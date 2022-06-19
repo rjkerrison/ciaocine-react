@@ -1,10 +1,11 @@
 import { useEffect, useMemo } from 'react'
 import { formatAs } from '../../utils/formatDate'
+import GridColumnPlacer from '../shared/GridColumnPlacer'
 import CalendarMovieSummary from './CalendarMovieSummary'
 
 const CalendarEntryCard = ({ indexOffset = 32, ...showtime }) => {
   const length = useMemo(() => {
-    return Math.floor(showtime.movie.runtime / (15 * 60))
+    return Math.ceil(showtime.movie.runtime / (15 * 60))
   }, [showtime])
 
   const index = useMemo(
@@ -21,15 +22,9 @@ const CalendarEntryCard = ({ indexOffset = 32, ...showtime }) => {
 
   return (
     <>
-      <div
-        style={{
-          gridRowStart: index,
-          gridRowEnd: `span ${length}`,
-          padding: '0.25rem',
-        }}
-      >
+      <GridColumnPlacer rowStart={index} rowEndSpan={length}>
         <CalendarMovieSummary {...showtime} />
-      </div>
+      </GridColumnPlacer>
     </>
   )
 }

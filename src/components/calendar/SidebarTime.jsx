@@ -1,18 +1,10 @@
-import React from 'react'
 import { formatAs } from '../../utils/formatDate'
+
+import './SidebarTime.scss'
 
 const SidebarTime = ({ time, gridRowStart }) => {
   return (
-    <div
-      style={{
-        gridRowStart,
-        gridRowEnd: 'span 4',
-        gridColumn: 1,
-        padding: '0.25rem',
-        color: 'white',
-        borderTop: 'white solid 1px',
-      }}
-    >
+    <div className='sidebar-time' style={{ gridRowStart }}>
       {formatAs.time(time)}
     </div>
   )

@@ -1,0 +1,11 @@
+.sidebar-time {
+  display: none;
+  grid-column: 1;
+  color: white;
+  border-top: 1px solid white;
+  padding: 0.25rem;
+
+  @media screen and (min-width: 600px) {
+    display: block;
+  }
+}

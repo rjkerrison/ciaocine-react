@@ -5,30 +5,60 @@ import { getCalendarRoute } from '../../utils/routeHelpers'
 import CalendarEntryCard from './CalendarEntryCard'
 import SidebarTime from './SidebarTime'
 
+const summariseShowtimes = (showtimes) => {
+  const earliestStart = new Date(showtimes[0].startTime)
+
+  const latestFinish = showtimes.reduce((latest, showtime) => {
+    const startTimeMs = new Date(showtime.startTime) * 1
+    const runtimeMs = showtime.movie.runtime * 1000
+    const endtimeMs = startTimeMs + runtimeMs
+    const endtime = new Date(endtimeMs)
+    console.log({
+      startTime: showtime.startTime,
+      startTimeMs,
+      runtimeMs,
+      endtimeMs,
+      endtime,
+      latest,
+      showtime,
+    })
+    if (endtime > latest) {
+      return endtime
+    }
+
+    return latest
+  }, earliestStart)
+
+  const creneaux =
+    1 +
+    formatAs.fifteenMinuteIndex(latestFinish) -
+    formatAs.fifteenMinuteIndex(earliestStart)
+
+  return { earliestStart, latestFinish, creneaux }
+}
+
 const SingleDayView = ({ calendarDate, showtimes, username }) => {
-  const earliestShowtime = showtimes[0].startTime
+  const { earliestStart, latestFinish, creneaux } = useMemo(() => {
+    return summariseShowtimes(showtimes)
+  }, [showtimes])
 
   const startingHours = useMemo(() => {
-    const startTime = new Date(earliestShowtime)
-    startTime.setMinutes(0)
+    const startTime = new Date(earliestStart)
 
-    const hours = [startTime]
-    let previousHour = startTime
+    const hours = []
+    let hour = startTime
 
-    while (
-      previousHour.getDate() === startTime.getDate() &&
-      hours.length < 24
-    ) {
-      const hour = new Date(previousHour)
-      console.log(hour)
-      hour.setHours(hour.getHours() + 1)
+    while (hour < latestFinish && hours.length < 24) {
       hours.push(hour)
-      previousHour = hour
-      console.log(hours)
+
+      const nextHour = new Date(hour)
+      nextHour.setMinutes(0)
+      nextHour.setHours(hour.getHours() + 1)
+      hour = nextHour
     }
 
     return hours
-  }, [earliestShowtime])
+  }, [earliestStart, latestFinish])
 
   const indexOffset = useMemo(
     () => formatAs.fifteenMinuteIndex(startingHours[0]) - 1,
@@ -40,9 +70,14 @@ const SingleDayView = ({ calendarDate, showtimes, username }) => {
       <Link to={getCalendarRoute({ username, calendarDate })}>
         <h3 className='calendar-head'>{formatAs.date(calendarDate)}</h3>
       </Link>
-      <div className='movies'>
-        {startingHours.map((hour, i) => (
-          <SidebarTime time={hour} gridRowStart={1 + i * 4} />
+      <div className='movies' style={{ '--row-count': creneaux }}>
+        {startingHours.map((hour) => (
+          <SidebarTime
+            time={hour}
+            gridRowStart={
+              (formatAs.fifteenMinuteIndex(hour) - indexOffset + 96) % 96
+            }
+          />
         ))}
 
         {showtimes.map((showtime) => (

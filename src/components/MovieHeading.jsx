@@ -35,8 +35,7 @@ const MovieHeading = ({
           </h3>
           {castingShort && <p>de {castingShort?.directors}</p>}
         </PopupLink>
-        <p> View on</p>
-        <ul>
+        <ul className='external-links'>
           <li>
             <a
               href={`https://www.allocine.fr/film/fichefilm_gen_cfilm=${allocineId}.html`}

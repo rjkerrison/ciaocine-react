@@ -40,7 +40,7 @@
   grid-area: shows;
   display: flex;
   flex-direction: column;
-  row-gap: 0;
+  row-gap: 0.25rem;
   overflow-x: scroll;
   max-width: 100%;
 }
@@ -52,7 +52,10 @@
 
   .calendar .movies {
     display: grid;
-    grid-template: repeat(96, 4rem) / auto;
+    row-gap: 0;
+    /* default can be overriden by JS */
+    --row-count: 96;
+    grid-template: repeat(var(--row-count), 4rem) / auto;
     grid-auto-columns: auto;
     column-gap: 0.5rem;
   }
