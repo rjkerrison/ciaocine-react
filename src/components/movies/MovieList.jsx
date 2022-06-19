@@ -2,7 +2,7 @@ import MovieShowtimeSummary from './MovieShowtimeSummary'
 
 const MovieList = ({ movies, isLoading, className }) => {
   if (isLoading) {
-    return <div className='loading'>LOADING</div>
+    return <div className='centre loading'></div>
   }
 
   return (

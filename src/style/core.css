@@ -77,7 +77,6 @@ input[type='submit'] {
 }
 
 button.round {
-  position: absolute;
   width: 1.5rem;
   height: 1.5rem;
   padding: 0;
@@ -85,8 +84,6 @@ button.round {
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  top: -0.5rem;
-  right: -0.5rem;
   z-index: 1;
   border-radius: 50%;
   color: var(--dark);
@@ -102,6 +99,9 @@ button.active {
 }
 button.round:hover {
   color: var(--contrast);
+}
+button.loading {
+  animation: spin 0.75s infinite;
 }
 
 button:hover {
@@ -172,4 +172,13 @@ main {
   position: relative;
   min-height: 100vh;
   padding: var(--header-height) 0 var(--footer-height);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(100%);
+  }
 }

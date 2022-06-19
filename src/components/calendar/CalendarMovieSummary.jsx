@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import { formatAs } from '../../utils/formatDate'
 import MovieHeading from '../MovieHeading'
+import FloatingButtons from '../shared/FloatingButtons'
 import AddToCalendar from './AddToCalendar'
 import './CalendarMovieSummary.scss'
+import ConcurrencyExclusionButton from './ConcurrencyExclusionButton'
 
 const CalendarMovieSummary = ({ movie, startTime, cinema, _id }) => {
   const endTime = new Date(startTime) - 0 + (movie.runtime || 7200) * 1000
@@ -17,7 +19,10 @@ const CalendarMovieSummary = ({ movie, startTime, cinema, _id }) => {
           {cinema.name}
         </Link>
       </p>
-      <AddToCalendar {...{ movie, startTime, cinema, _id }} />
+      <FloatingButtons>
+        <ConcurrencyExclusionButton {...{ _id, startTime, movie }} />
+        <AddToCalendar {...{ title: movie.title, startTime, cinema, _id }} />
+      </FloatingButtons>
     </div>
   )
 }
