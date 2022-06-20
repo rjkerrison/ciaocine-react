@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getShowtimes } from '../../api/showtimes'
 import Filters from '../filters/Filters'
@@ -78,36 +78,42 @@ const ShowtimeList = ({
     }
   }, [yyyy, mm, dd, params, cinemaIdOrSlug])
 
-  const updateFilter = (name, value) => {
-    if (name === 'daysAhead') {
-      incrementDate(value, new Date())
-      return
-    }
-    const newParams = { ...params }
+  const incrementDate = useCallback(
+    (increment, searchDate) => {
+      const newDate = new Date(searchDate - 0 + 86400 * 1000 * increment)
 
-    if (value === null) {
-      delete newParams[name]
+      const pathname = `/${
+        cinemaIdOrSlug ? `cinemas/${cinemaIdOrSlug}` : 'showtimes'
+      }/${formatAs.routeDate(newDate)}`
+
+      navigate({
+        pathname,
+        search: searchParams.toString(),
+      })
+
+      setSearchDate(newDate)
+    },
+    [cinemaIdOrSlug, navigate, searchParams]
+  )
+
+  const updateFilter = useCallback(
+    (name, value) => {
+      if (name === 'daysAhead') {
+        incrementDate(value, new Date())
+        return
+      }
+      const newParams = { ...params }
+
+      if (value === null) {
+        delete newParams[name]
+        setSearchParams(newParams)
+      } else {
+        newParams[name] = value
+      }
       setSearchParams(newParams)
-    } else {
-      newParams[name] = value
-    }
-    setSearchParams(newParams)
-  }
-
-  const incrementDate = (increment, searchDate) => {
-    const newDate = new Date(searchDate - 0 + 86400 * 1000 * increment)
-
-    const pathname = `/${
-      cinemaIdOrSlug ? `cinemas/${cinemaIdOrSlug}` : 'showtimes'
-    }/${formatAs.routeDate(newDate)}`
-
-    navigate({
-      pathname,
-      search: searchParams.toString(),
-    })
-
-    setSearchDate(newDate)
-  }
+    },
+    [incrementDate, params, setSearchParams]
+  )
 
   useEffect(() => {
     document.title = `Ciaocine | ${title} le ${formatAs.weekdayDate(
