@@ -1,0 +1,20 @@
+ul.external-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  justify-content: center;
+  align-self: center;
+
+  li {
+    padding: 0 !important;
+    margin: 0 !important;
+
+    a {
+      display: block;
+      padding: 0.25rem;
+    }
+  }
+}

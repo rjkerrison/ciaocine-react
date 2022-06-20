@@ -26,9 +26,9 @@ section.movies-section ul li {
 
 .movie {
   display: grid;
-  grid-template-areas: 'poster heading' 'showtimes showtimes' 'actions actions';
+  grid-template-areas: 'poster heading' 'poster links' 'showtimes showtimes' 'actions actions';
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto 3rem;
+  grid-template-rows: auto auto auto 3rem;
   text-align: center;
   background-image: linear-gradient(
     var(--dark) 0,
@@ -63,6 +63,10 @@ section.movies-section ul li {
   z-index: 1;
   display: flex;
   gap: 1rem;
+}
+
+.movie .external-links {
+  grid-area: links;
 }
 
 .movie .movie-showtimes {
