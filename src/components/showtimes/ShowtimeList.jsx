@@ -109,8 +109,8 @@ const ShowtimeList = ({
         setSearchParams(newParams)
       } else {
         newParams[name] = value
+        setSearchParams(newParams)
       }
-      setSearchParams(newParams)
     },
     [incrementDate, params, setSearchParams]
   )
