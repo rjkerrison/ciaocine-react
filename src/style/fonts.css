@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Cutive+Mono&display=swap');
+
+:root {
+  --font-text: 'Baloo 2', sans-serif;
+  --font-mono: 'Cutive Mono', 'Courier New', Courier, monospace;
+}

@@ -34,19 +34,17 @@ export const daysAhead = {
   label: 'Date',
   defaultValue: '0',
   getShortDisplay: (params) => {
-    const daysAheadInt = parseInt(params.daysAhead) || 0
-    const date = new Date(Date.now() + daysAheadInt * 86400 * 1000)
-    return formatAs.dateMonth(params.date || date)
+    return formatAs.dateMonth(params.searchDate || new Date())
   },
   getIsActive: (params, value) => {
-    if (!params.date) {
+    if (!params.searchDate) {
       return false
     }
     const daysAheadInt = parseInt(value) || 0
     const date = new Date(Date.now() + daysAheadInt * 86400 * 1000)
     return (
-      params.date.getDate() === date.getDate() &&
-      params.date.getMonth() === date.getMonth()
+      params.searchDate.getDate() === date.getDate() &&
+      params.searchDate.getMonth() === date.getMonth()
     )
   },
 }

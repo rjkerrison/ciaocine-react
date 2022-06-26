@@ -4,6 +4,8 @@ import MovieShowtimes from '../MovieShowtimes'
 import ExternalLinks from './ExternalLinks'
 import MovieActions from './MovieActions'
 
+import './MovieShowtimeSummary.scss'
+
 const MovieShowtimeSummary = ({ movie, showtimes }) => {
   const [isHidden, setIsHidden] = useState(false)
 

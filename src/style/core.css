@@ -15,25 +15,33 @@ body {
   min-height: stretch;
   min-height: -moz-available;
   min-height: -webkit-fill-available;
-}
 
-body {
   padding: 0;
   margin: 0;
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
   color: var(--text);
   max-width: 100vw;
   overflow-x: hidden;
   background: var(--dark);
+  font-family: var(--font-text);
+  font-weight: 200;
 }
 
 section {
   padding: 0.5rem 0.5rem;
 }
 
+a,
+button,
+input {
+  transition: all 300ms ease-in-out;
+}
+
 a {
   color: var(--link);
   text-decoration: none;
+}
+a:hover {
+  color: var(--link-hover);
 }
 
 h1,
@@ -42,7 +50,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-mono);
   margin: 0;
   padding: 0;
 }
@@ -63,7 +71,6 @@ input {
   padding: 0.25rem;
   margin: 0.125rem;
   border-radius: 0.5rem;
-  transition: all 500ms ease-in-out;
   cursor: pointer;
   border: none;
   box-shadow: 0rem 0.5rem 0.5rem -0.25rem var(--button-shadow);
@@ -105,6 +112,7 @@ button.loading {
 }
 
 button:hover {
+  color: var(--positive-light);
   background-color: var(--button-hover-background);
   transform: translateY(-0.125rem);
   box-shadow: 0rem 0.75rem 0.5rem -0.25rem var(--button-shadow);

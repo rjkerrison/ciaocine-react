@@ -3,11 +3,7 @@ import { formatAs } from '../../utils/formatDate'
 import GridColumnPlacer from '../shared/GridColumnPlacer'
 import CalendarMovieSummary from './CalendarMovieSummary'
 
-const CalendarEntryCard = ({
-  toggleSelected,
-  indexOffset = 32,
-  ...showtime
-}) => {
+const CalendarEntryCard = ({ indexOffset = 32, ...showtime }) => {
   const length = useMemo(() => {
     return Math.ceil(showtime.movie.runtime / (15 * 60))
   }, [showtime])
@@ -27,7 +23,7 @@ const CalendarEntryCard = ({
   return (
     <>
       <GridColumnPlacer rowStart={index} rowEndSpan={length}>
-        <CalendarMovieSummary {...showtime} toggleSelected={toggleSelected} />
+        <CalendarMovieSummary {...showtime} />
       </GridColumnPlacer>
     </>
   )

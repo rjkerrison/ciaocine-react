@@ -26,12 +26,14 @@ const MovieList = ({ movies, isLoading, className }) => {
   }
 
   return (
-    <div className={['movies', className].join(' ')}>
+    <>
       <QuickFilter setCurrentQuery={setCurrentQuery} />
-      {filteredMovies.map((props) => (
-        <MovieShowtimeSummary key={props.movie._id} {...props} />
-      ))}
-    </div>
+      <div className={['movies', className].join(' ')}>
+        {filteredMovies.map((props) => (
+          <MovieShowtimeSummary key={props.movie._id} {...props} />
+        ))}
+      </div>
+    </>
   )
 }
 

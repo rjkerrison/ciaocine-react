@@ -3,9 +3,9 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getShowtimes } from '../../api/showtimes'
 import Filters from '../filters/Filters'
-import ViewSwitches from '../filters/ViewSwitches'
 import MovieList from '../movies/MovieList'
 import { formatAs } from '../../utils/formatDate'
+import { startTransition } from 'react'
 
 const ShowtimeList = ({
   title = 'Séances',
@@ -18,7 +18,6 @@ const ShowtimeList = ({
 
   const [isLoading, setIsLoading] = useState(true)
   const [searchParams, setSearchParams] = useSearchParams()
-  const [viewParams, setViewParams] = useState({ isTiles: false })
   const [movies, setMovies] = useState([])
 
   const [searchDate, setSearchDate] = useState(null)
@@ -44,7 +43,7 @@ const ShowtimeList = ({
       return
     }
 
-    setIsLoading(true)
+    // setIsLoading(true)
 
     let cancelled = false
     let source = axios.CancelToken.source()
@@ -98,19 +97,21 @@ const ShowtimeList = ({
 
   const updateFilter = useCallback(
     (name, value) => {
-      if (name === 'daysAhead') {
-        incrementDate(value, new Date())
-        return
-      }
-      const newParams = { ...params }
+      startTransition(() => {
+        if (name === 'daysAhead') {
+          incrementDate(value, new Date())
+          return
+        }
+        const newParams = { ...params }
 
-      if (value === null) {
-        delete newParams[name]
-        setSearchParams(newParams)
-      } else {
-        newParams[name] = value
-        setSearchParams(newParams)
-      }
+        if (value === null) {
+          delete newParams[name]
+          setSearchParams(newParams)
+        } else {
+          newParams[name] = value
+          setSearchParams(newParams)
+        }
+      })
     },
     [incrementDate, params, setSearchParams]
   )
@@ -135,15 +136,9 @@ const ShowtimeList = ({
         updateFilter={updateFilter}
         params={{ ...params, searchDate }}
         isCinema={!!cinemaIdOrSlug}
-      >
-        <ViewSwitches setViewParams={setViewParams} viewParams={viewParams} />
-      </Filters>
-
-      <MovieList
-        isLoading={isLoading}
-        movies={movies}
-        className={viewParams.isTiles ? 'poster-tile-view' : ''}
       />
+
+      <MovieList isLoading={isLoading} movies={movies} />
     </section>
   )
 }

@@ -3,11 +3,11 @@ section.movies-section {
 }
 
 section.movies-section h1 {
-  font-size: calc(2rem + 1vw);
+  font-size: calc(1rem + 1vw);
+  margin: 0 2rem;
+  padding: 0.5rem;
   background-color: var(--dark);
   border-radius: 1.25rem;
-  padding: 0.5rem;
-  margin: 0.25rem;
 }
 section.movies-section > p,
 section.movies-section ul li {
@@ -22,61 +22,6 @@ section.movies-section ul li {
   grid-template: auto / auto;
   gap: 0.5rem;
   padding: 0.5rem;
-}
-
-.movie {
-  display: grid;
-  grid-template-areas: 'poster heading' 'poster links' 'showtimes showtimes' 'actions actions';
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto 3rem;
-  text-align: center;
-  background-image: linear-gradient(
-    var(--dark) 0,
-    var(--mid) 50%,
-    var(--light) 100%
-  );
-  border-radius: 1rem;
-  padding: 0.5rem;
-  gap: 0.5rem;
-}
-
-.movie .actions {
-  grid-area: actions;
-  display: flex;
-  justify-content: center;
-}
-
-.movie .poster {
-  grid-area: poster;
-  justify-self: center;
-  align-self: center;
-  box-shadow: 0.5rem 0.5rem 1rem -0.25rem var(--dark);
-}
-
-.movie .movie-heading {
-  grid-area: heading;
-  margin: 0;
-  align-self: center;
-  justify-self: center;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  display: flex;
-  gap: 1rem;
-}
-
-.movie .external-links {
-  grid-area: links;
-}
-
-.movie .movie-showtimes {
-  grid-area: showtimes;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
-  grid-auto-rows: 5rem;
-  grid-gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
 }
 
 .movie-showtimes.expanded {
@@ -152,17 +97,46 @@ section.movies-section ul li {
 }
 
 .loading {
-  background-image: conic-gradient(red, blue, purple, red);
+  background-image: conic-gradient(
+    var(--contrast-dark) 0%,
+    var(--contrast-dark) 15%,
+    var(--dark) 15%,
+    var(--dark) 35%,
+    var(--contrast) 35%,
+    var(--contrast-dark) 100%
+  );
   border-radius: 50%;
   width: 15rem;
   height: 15rem;
-  animation: spin 1.9s infinite;
+  transform-origin: center;
+  animation: spin 2s infinite;
+}
+.loading::after {
+  --size: 50%;
+  display: block;
+  background-image: conic-gradient(
+    var(--contrast),
+    var(--contrast-dark),
+    var(--mid),
+    var(--contrast-dark),
+    var(--contrast)
+  );
+  background: var(--dark);
+  position: absolute;
+  left: calc(50% - var(--size) / 2);
+  top: calc(50% - var(--size) / 2);
+  transform-origin: center;
+  content: '';
+  border-radius: 50%;
+  width: var(--size);
+  height: var(--size);
+  /* animation: spin 0.5s infinite reverse linear; */
 }
 
 .loading.centre {
   position: absolute;
   left: calc(50% - 7.5rem);
-  top: 50%;
+  top: calc(50% - 7.5rem);
 }
 
 @keyframes spin {

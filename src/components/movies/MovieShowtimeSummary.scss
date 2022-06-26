@@ -1,0 +1,58 @@
+.movie {
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  display: grid;
+  grid-template-areas: 'poster heading' 'poster links' 'showtimes showtimes' 'actions actions';
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto 3rem;
+  text-align: center;
+  background-image: linear-gradient(
+    var(--dark) 0,
+    var(--mid) 50%,
+    var(--light) 100%
+  );
+  border-radius: 1rem;
+  padding: 0.5rem;
+  gap: 0.5rem;
+
+  .actions {
+    grid-area: actions;
+    display: flex;
+    justify-content: center;
+  }
+
+  .poster {
+    grid-area: poster;
+    justify-self: center;
+    align-self: center;
+    box-shadow: 0.5rem 0.5rem 1rem -0.25rem var(--dark);
+  }
+
+  .movie-heading {
+    grid-area: heading;
+    margin: 0;
+    align-self: center;
+    justify-self: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .external-links {
+    grid-area: links;
+  }
+
+  .movie-showtimes {
+    grid-area: showtimes;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    grid-auto-rows: 5rem;
+    grid-gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+}
