@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import FavouriteCinema from '../FavouriteCinema'
 
@@ -5,7 +6,26 @@ import './CinemaHeader.scss'
 
 const CinemaHeader = (cinema) => {
   return (
-    <header class='cinema-header'>
+    <header className='cinema-header'>
+      <Helmet>
+        <title>{`${cinema.name} on Ciaocine`}</title>
+        <meta
+          prefix='og: http://ogp.me/ns#'
+          property='og:title'
+          content={`${cinema.name} | Ciaocine`}
+        />
+
+        <meta
+          prefix='og: http://ogp.me/ns#'
+          property='og:description'
+          content={`Showtimes at ${cinema.name} on Ciaocine`}
+        />
+        <meta
+          prefix='og: http://ogp.me/ns#'
+          property='og:url'
+          content={`/cinemas/${cinema.slug}`}
+        />
+      </Helmet>
       <h2>
         <Link to={`/cinemas/${cinema.slug}`}>{cinema.name}</Link>
       </h2>
