@@ -1,4 +1,4 @@
-import buildSitemap from './sitemap-builder.js'
+import buildSitemap from './sitemap-builder.mjs'
 
 buildSitemap(
   './src/routes/AllRoutes.jsx',

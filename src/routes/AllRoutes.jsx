@@ -1,15 +1,15 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import Index from './pages/Index'
-import Cinemas from './pages/Cinemas'
-import Showtimes from './pages/Showtimes'
-import Layout from './pages/Layout'
-import Login from './pages/auth/LoginPage'
-import Signup from './pages/auth/Signup'
-import Calendar from './pages/Calendar'
-import CalendarSingleDay from './pages/CalendarSingleDay'
-import Cinema from './pages/Cinema'
-import NearbySoon from './pages/NearbySoon'
+import Index from '../pages/Index'
+import Cinemas from '../pages/Cinemas'
+import Showtimes from '../pages/Showtimes'
+import Layout from '../pages/Layout'
+import Login from '../pages/auth/LoginPage'
+import Signup from '../pages/auth/Signup'
+import Calendar from '../pages/Calendar'
+import CalendarSingleDay from '../pages/CalendarSingleDay'
+import Cinema from '../pages/Cinema'
+import NearbySoon from '../pages/NearbySoon'
 
 const AllRoutes = ({ location, ...state }) => {
   const calendarRoutes = (
