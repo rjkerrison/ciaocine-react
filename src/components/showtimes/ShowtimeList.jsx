@@ -5,7 +5,6 @@ import { getShowtimes } from '../../api/showtimes'
 import Filters from '../filters/Filters'
 import MovieList from '../movies/MovieList'
 import { formatAs } from '../../utils/formatDate'
-import { startTransition } from 'react'
 
 const ShowtimeList = ({
   title = 'Séances',
@@ -97,21 +96,19 @@ const ShowtimeList = ({
 
   const updateFilter = useCallback(
     (name, value) => {
-      startTransition(() => {
-        if (name === 'daysAhead') {
-          incrementDate(value, new Date())
-          return
-        }
-        const newParams = { ...params }
+      if (name === 'daysAhead') {
+        incrementDate(value, new Date())
+        return
+      }
+      const newParams = { ...params }
 
-        if (value === null) {
-          delete newParams[name]
-          setSearchParams(newParams)
-        } else {
-          newParams[name] = value
-          setSearchParams(newParams)
-        }
-      })
+      if (value === null) {
+        delete newParams[name]
+        setSearchParams(newParams)
+      } else {
+        newParams[name] = value
+        setSearchParams(newParams)
+      }
     },
     [incrementDate, params, setSearchParams]
   )
