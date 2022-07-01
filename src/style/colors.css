@@ -18,9 +18,9 @@
   --splash-gradient-end: var(--light);
   --splash-shadow: var(--dark);
 
-  --toast-background-color: var(--light);
+  --toast-background-color: var(--contrast-dark);
   --toast-shadow: var(--light-half);
-  --toast-text-color: var(--dark);
+  --toast-text-color: var(--text);
 
   --button-hover-background: var(--contrast-dark);
   --button-shadow: #533ea791;

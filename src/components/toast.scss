@@ -9,6 +9,10 @@
   transition: all 1s ease-in-out;
   font-size: 1rem;
   z-index: 3;
+
+  &.bye-bye-bye {
+    left: -100%;
+  }
 }
 
 .toast {
@@ -17,8 +21,4 @@
   box-shadow: 0.5rem 0.5rem 0.25rem -0.25rem var(--toast-shadow);
   padding: 1rem;
   border-radius: 1rem;
-}
-
-.toast-container.bye-bye-bye {
-  left: -100%;
 }

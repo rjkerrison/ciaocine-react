@@ -29,9 +29,9 @@ nav.filters {
   grid-auto-flow: row;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
 
   @media screen and (min-width: 900px) {
+    gap: 0.5rem;
     grid-template-columns: repeat(5, 1fr);
   }
 }
@@ -40,11 +40,14 @@ nav.filters {
   background-color: var(--mid);
   text-align: center;
   align-self: center;
-  padding: 1rem;
-  border-radius: 3rem;
-  position: relative;
-  z-index: 10;
 
+  position: relative;
+  padding: 0.5rem;
+
+  @media screen and (min-width: 600px) {
+    padding: 1rem;
+    border-radius: 3rem;
+  }
   h3 {
     font-size: 1.25rem;
 
