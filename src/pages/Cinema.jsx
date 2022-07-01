@@ -7,11 +7,15 @@ import ShowtimeList from '../components/showtimes/ShowtimeList'
 const Cinema = () => {
   const { cinemaIdOrSlug, year, month, date } = useParams()
 
-  const [cinema, setCinema] = useState({})
+  const [cinema, setCinema] = useState(null)
 
   useEffect(() => {
     getCinema(cinemaIdOrSlug).then(setCinema)
   }, [cinemaIdOrSlug])
+
+  if (!cinema) {
+    return <div className='centre loading'></div>
+  }
 
   return (
     <main>

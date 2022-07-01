@@ -1,0 +1,127 @@
+.app-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: var(--mid);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 3;
+
+  .header-main-row {
+    display: flex;
+    height: var(--header-height);
+    padding: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mobile-collapsible {
+    display: flex;
+    flex-direction: column;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  @media screen and (min-width: 900px) {
+    flex-direction: row;
+    align-items: center;
+
+    nav {
+      flex-direction: row;
+      align-items: center;
+      padding: 0;
+    }
+
+    .mobile-collapsible {
+      display: contents;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-grow: 100%;
+    }
+    .account-header {
+      height: var(--header-height);
+      flex-direction: row;
+    }
+  }
+}
+
+.account-header {
+  display: flex;
+  gap: 1rem;
+  background: var(--contrast);
+  padding: 0.5rem;
+  color: var(--mid);
+
+  flex-direction: column;
+
+  nav {
+    display: contents;
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+  }
+
+  picture {
+    height: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 0.125rem solid var(--light);
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      height: auto;
+      width: auto;
+    }
+  }
+
+  a,
+  button {
+    color: var(--mid);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: inherit;
+    border: none;
+    background: none;
+    box-shadow: none;
+    height: 100%;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+
+    @media screen and (min-width: 900px) {
+      justify-content: center;
+    }
+
+    &:hover {
+      color: var(--positive-light);
+
+      transform: none;
+      background-color: var(--button-hover-background);
+      box-shadow: 0rem 0.75rem 0.5rem -0.25rem var(--button-shadow);
+    }
+  }
+  p {
+    margin: 0;
+  }
+
+  @media screen and (min-width: 900px) {
+    justify-content: center;
+    align-items: center;
+  }
+}

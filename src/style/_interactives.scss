@@ -1,0 +1,68 @@
+a,
+button,
+input {
+  transition: all 300ms ease-in-out;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--link-hover);
+}
+
+button,
+input[type='button'],
+input[type='submit'] {
+  color: var(--dark);
+  background-color: var(--contrast);
+
+  &:hover {
+    color: var(--positive-light);
+    background-color: var(--button-hover-background);
+    transform: translateY(-0.125rem);
+    box-shadow: 0rem 0.75rem 0.5rem -0.25rem var(--button-shadow);
+  }
+}
+
+button,
+input {
+  font-family: var(--font-text);
+  font-size: 1.25rem;
+  padding: 0.25rem;
+  margin: 0.125rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0rem 0.5rem 0.5rem -0.25rem var(--button-shadow);
+}
+
+button {
+  &.loading {
+    animation: spin 0.75s infinite;
+  }
+
+  &.round {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    border-radius: 50%;
+    color: var(--dark);
+    font-weight: bold;
+
+    &:hover {
+      color: var(--contrast);
+    }
+  }
+
+  &.active {
+    background-color: var(--positive-light);
+    color: var(--dark);
+  }
+}

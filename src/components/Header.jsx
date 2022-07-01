@@ -5,6 +5,8 @@ import { getCalendarRoute } from '../utils/routeHelpers'
 import ProfilePicture from './ProfilePicture'
 import PopupLink from './shared/PopupLink'
 
+import './Header.scss'
+
 const AccountNav = ({ logOutUser }) => (
   <>
     <nav aria-label='account navigation'>

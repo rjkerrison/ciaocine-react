@@ -36,7 +36,7 @@
 }
 
 .planning h2 strong {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-mono);
 }
 
 .planning h3 {

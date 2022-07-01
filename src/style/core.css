@@ -15,25 +15,19 @@ body {
   min-height: stretch;
   min-height: -moz-available;
   min-height: -webkit-fill-available;
-}
 
-body {
   padding: 0;
   margin: 0;
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
   color: var(--text);
   max-width: 100vw;
   overflow-x: hidden;
   background: var(--dark);
+  font-family: var(--font-text);
+  font-weight: 200;
 }
 
 section {
   padding: 0.5rem 0.5rem;
-}
-
-a {
-  color: var(--link);
-  text-decoration: none;
 }
 
 h1,
@@ -42,7 +36,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-mono);
   margin: 0;
   padding: 0;
 }
@@ -55,59 +49,6 @@ picture img {
   display: block;
   max-width: 100%;
   height: auto;
-}
-
-button,
-input {
-  font-size: 1.25rem;
-  padding: 0.25rem;
-  margin: 0.125rem;
-  border-radius: 0.5rem;
-  transition: all 500ms ease-in-out;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0rem 0.5rem 0.5rem -0.25rem var(--button-shadow);
-}
-
-button,
-input[type='button'],
-input[type='submit'] {
-  color: var(--dark);
-  background-color: var(--contrast);
-}
-
-button.round {
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 0;
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  border-radius: 50%;
-  color: var(--dark);
-  font-weight: bold;
-}
-button.round span {
-  height: 1.625rem;
-}
-
-button.active {
-  background-color: var(--positive-light);
-  color: var(--dark);
-}
-button.round:hover {
-  color: var(--contrast);
-}
-button.loading {
-  animation: spin 0.75s infinite;
-}
-
-button:hover {
-  background-color: var(--button-hover-background);
-  transform: translateY(-0.125rem);
-  box-shadow: 0rem 0.75rem 0.5rem -0.25rem var(--button-shadow);
 }
 
 .sr-only {

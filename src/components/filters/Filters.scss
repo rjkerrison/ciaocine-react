@@ -21,23 +21,35 @@
 
 nav.filters {
   display: grid;
-  z-index: 1;
+
   position: relative;
-  background-color: var(--mid);
+  z-index: 2;
+
   grid-template-columns: 1fr;
   grid-auto-flow: row;
   align-items: center;
+  justify-content: center;
 
   @media screen and (min-width: 900px) {
+    gap: 0.5rem;
     grid-template-columns: repeat(5, 1fr);
   }
 }
 
 .movies-filters-menu {
   background-color: var(--mid);
+  text-align: center;
+  align-self: center;
 
+  position: relative;
+  padding: 0.5rem;
+
+  @media screen and (min-width: 600px) {
+    padding: 1rem;
+    border-radius: 3rem;
+  }
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 
     @media screen and (min-width: 600px) {
       grid-row: 1;
