@@ -60,11 +60,3 @@ button.favourite-cinema {
     background-color: var(--contrast);
   }
 }
-
-section.movies-section {
-  > p,
-  ul li {
-    background-color: var(--dark);
-    padding: 0.25rem;
-  }
-}

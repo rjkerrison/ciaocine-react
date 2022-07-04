@@ -1,6 +1,8 @@
 import { formatAs } from '../utils/formatDate'
 import AddToCalendar from './calendar/AddToCalendar'
 
+import './ShowtimeCard.scss'
+
 const ShowtimeCard = ({
   _id,
   startTime,
@@ -10,7 +12,7 @@ const ShowtimeCard = ({
   showDate = false,
 }) => {
   return (
-    <div className={`movie-showtime ${className}`}>
+    <div className={`showtime-card ${className}`}>
       <h4>{formatAs.time(startTime)}</h4>
       {showDate && <p>{formatAs.dateMonth(startTime)}</p>}
       <p className='extra-info'>{cinema.name}</p>

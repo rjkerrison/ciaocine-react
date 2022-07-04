@@ -9,13 +9,6 @@ section.movies-section h1 {
   background-color: var(--dark);
   border-radius: 1.25rem;
 }
-section.movies-section > p,
-section.movies-section ul li {
-  background-color: var(--mid);
-  border-radius: 1rem;
-  padding: 0.5rem;
-  margin: 0.25rem;
-}
 
 .movies {
   display: grid;
@@ -24,9 +17,6 @@ section.movies-section ul li {
   padding: 0.5rem;
 }
 
-.movie-showtimes.expanded {
-  height: min-content;
-}
 .movies.poster-tile-view {
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 }
@@ -38,56 +28,8 @@ section.movies-section ul li {
   display: none;
 }
 
-.movie-showtime {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  padding: 0.25rem;
-  transition: all 1s;
-  border-radius: 0.25rem;
-}
-
-.movie-showtime .extra-info {
-  margin: 0;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  max-height: 100%;
-}
-
 .movie h3 {
   font-size: 1.5rem;
-}
-.movie-showtime h3,
-.movie-showtime h4,
-.movie-showtime p {
-  margin: 0;
-}
-.movie-showtime h4 {
-  font-size: 1.25rem;
-}
-
-.movie-showtime:hover .extra-info,
-.movie-showtime.show-overlay .extra-info {
-  display: block;
-  width: 100%;
-  text-align: center;
-}
-
-.movie-showtime .overlay {
-  display: flex;
-  align-items: center;
-  height: 2rem;
-  height: 100%;
-  top: 0;
-  transform: rotateX(0.5turn);
-}
-
-.movie-showtime:hover .overlay,
-.movie-showtime.show-overlay .overlay {
-  transform: rotateX(1turn);
 }
 
 @media screen and (min-width: 600px) {

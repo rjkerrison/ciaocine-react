@@ -7,7 +7,7 @@ const Crew = ({ crew }) => {
   return (
     <>
       <h3>Crew</h3>
-      <ul className='crew'>
+      <ul className='crew expander-container'>
         <CrewCard
           title='Director'
           label={director?.map(({ name }) => name).join(', ')}
@@ -16,13 +16,15 @@ const Crew = ({ crew }) => {
           title='Director of Photography'
           label={dop?.map(({ name }) => name).join(', ')}
         />
-        {Object.entries(rest).map(([title, people]) => (
-          <CrewCard
-            key={title}
-            title={title}
-            label={people?.map(({ name }) => name).join(', ')}
-          />
-        ))}
+        {Object.entries(rest)
+          .slice(0, 3)
+          .map(([title, people]) => (
+            <CrewCard
+              key={title}
+              title={title}
+              label={people?.map(({ name }) => name).join(', ')}
+            />
+          ))}
       </ul>
     </>
   )

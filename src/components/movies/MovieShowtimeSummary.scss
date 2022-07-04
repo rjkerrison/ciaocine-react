@@ -13,6 +13,7 @@
     var(--mid) 50%,
     var(--light) 100%
   );
+  color: var(--text);
   border-radius: 1rem;
   padding: 0.5rem;
   gap: 0.5rem;
@@ -44,6 +45,13 @@
 
   .external-links {
     grid-area: links;
+
+    li {
+      background-color: var(--dark);
+      border-radius: 1rem;
+      padding: 0.5rem;
+      margin: 0.25rem;
+    }
   }
 
   .movie-showtimes {
@@ -54,5 +62,9 @@
     grid-gap: 0.5rem;
     justify-content: center;
     align-items: center;
+
+    &.expanded {
+      height: min-content;
+    }
   }
 }

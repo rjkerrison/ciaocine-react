@@ -17,6 +17,7 @@ import Popup from './components/Popup'
 import CalendarSingleDay from './pages/CalendarSingleDay'
 import Cinema from './pages/Cinema'
 import NearbySoon from './pages/NearbySoon'
+import Movies from './pages/Movies'
 
 function App() {
   const location = useLocation()
@@ -55,6 +56,7 @@ function App() {
           >
             <Route path=':username' />
           </Route>
+          <Route path='/movies' index element={<Movies />} />
           <Route
             path='/movies/:movieId'
             element={
