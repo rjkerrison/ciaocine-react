@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { searchMovies } from '../api/movie'
 import MovieCard from '../components/movies/MovieCard'
 import SearchBar from '../components/movies/SearchBar'
@@ -11,14 +11,10 @@ const Movies = () => {
   const [filteredMovies, setFilteredMovies] = useState([])
   const [query, setQuery] = useState('')
 
-  useEffect(() => {
-    const updateMovies = async () => {
-      const movies = await searchMovies()
-      setMovies(movies)
-    }
-
-    updateMovies()
-  }, [])
+  const updateMovies = useCallback(async () => {
+    const movies = await searchMovies(query)
+    setMovies(movies)
+  }, [query])
 
   useEffect(() => {
     const filtered = movies.filter(
@@ -37,7 +33,11 @@ const Movies = () => {
   return (
     <section className='movies-section'>
       <h1>All our movies</h1>
-      <SearchBar query={query} setQuery={setQuery} setMovies={setMovies} />
+      <SearchBar
+        query={query}
+        setQuery={setQuery}
+        updateMovies={updateMovies}
+      />
       <ul className='movie-list'>
         {filteredMovies.map((movie) => (
           <li className='movie' key={movie._id}>

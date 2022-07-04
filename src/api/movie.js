@@ -12,11 +12,11 @@ export const getMovieData = async (movieId) => {
   return { ...movie, extra: tmdbInfo[0], showtimes }
 }
 
-export const searchMovies = async () => {
+export const searchMovies = async (searchTerm) => {
   const {
     data: { movies },
   } = await service.request({
-    url: `/movies/`,
+    url: `/movies/search/${searchTerm}`,
   })
   return movies
 }

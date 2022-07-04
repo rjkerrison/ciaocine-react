@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getMovieData } from '../../api/movie'
 import { formatAs } from '../../utils/formatDate'
-import ShowtimeList from '../showtimes/ShowtimeList'
 import Cast from './Cast'
 import Crew from './Crew'
-import './movie-popup-inner.scss'
 import MovieShowtimeSummary from './MovieShowtimeSummary'
+
+import './movie-popup-inner.scss'
 
 const MoviePopupInner = () => {
   const { movieId } = useParams()
