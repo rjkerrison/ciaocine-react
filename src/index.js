@@ -14,19 +14,17 @@ import { LikedContextProvider } from './context/LikedContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <React.StrictMode>
-    <Router>
-      <AuthProviderWrapper>
-        <ToastContextProvider>
-          <LikedContextProvider>
-            <CalendarContextProvider>
-              <App />
-            </CalendarContextProvider>
-          </LikedContextProvider>
-        </ToastContextProvider>
-      </AuthProviderWrapper>
-    </Router>
-  </React.StrictMode>
+  <Router>
+    <AuthProviderWrapper>
+      <ToastContextProvider>
+        <LikedContextProvider>
+          <CalendarContextProvider>
+            <App />
+          </CalendarContextProvider>
+        </LikedContextProvider>
+      </ToastContextProvider>
+    </AuthProviderWrapper>
+  </Router>
 )
 
 // If you want to start measuring performance in your app, pass a function

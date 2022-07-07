@@ -12,6 +12,7 @@ const CalendarContext = createContext()
 
 const CalendarContextProvider = ({ children }) => {
   const [userCalendars, setUserCalendars] = useState({})
+  const [usernamesPendingRequests, setUsernamesPendingRequests] = useState([])
   const [selectedShowtimeIds, setSelectedShowtimeIds] = useState([])
   const { isLoggedIn, isLoading, user } = useContext(AuthContext)
 
@@ -28,13 +29,25 @@ const CalendarContextProvider = ({ children }) => {
     })
   }
 
-  const updateCalendarForUsername = useCallback(async (username) => {
-    const calendar = await getCalendar(username)
-    setUserCalendars((calendars) => ({
-      ...calendars,
-      [username]: calendar,
-    }))
-  }, [])
+  const requestCalendarForUsername = useCallback(
+    async (username) => {
+      // No need to request pending calendars
+      if (usernamesPendingRequests.includes(username)) {
+        return
+      }
+
+      setUsernamesPendingRequests((v) => [...v, username])
+
+      const calendar = await getCalendar(username)
+
+      setUsernamesPendingRequests((v) => v.filter((x) => x !== username))
+      setUserCalendars((calendars) => ({
+        ...calendars,
+        [username]: calendar,
+      }))
+    },
+    [usernamesPendingRequests]
+  )
 
   const getCalendarForUsername = useCallback(
     (username) => {
@@ -42,11 +55,12 @@ const CalendarContextProvider = ({ children }) => {
       if (foundCalendar) {
         return foundCalendar
       }
-      updateCalendarForUsername(username)
+
+      requestCalendarForUsername(username)
 
       return []
     },
-    [userCalendars, updateCalendarForUsername]
+    [userCalendars, requestCalendarForUsername]
   )
   const getCalendarForUser = useCallback(() => {
     if (isLoading || !isLoggedIn || !user) {
@@ -67,13 +81,13 @@ const CalendarContextProvider = ({ children }) => {
 
   const remove = async (id) => {
     const result = await removeFromCalendar(id)
-    await updateCalendarForUsername(user.username)
+    await requestCalendarForUsername(user.username)
     return result
   }
 
   const add = async (id) => {
     const result = await addToCalendar(id)
-    await updateCalendarForUsername(user.username)
+    await requestCalendarForUsername(user.username)
     return result
   }
 

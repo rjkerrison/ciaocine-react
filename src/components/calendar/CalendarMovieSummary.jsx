@@ -12,7 +12,7 @@ const CalendarMovieSummary = ({ movie, startTime, cinema, _id }) => {
   return (
     <div className='movie calendar-movie'>
       <p className='time'>
-        {formatAs.time(startTime)} to {formatAs.time(endTime)}
+        {formatAs.time(startTime)} à&nbsp;{formatAs.time(endTime)}
       </p>
       <MovieHeading {...movie} />
       <ExternalLinks {...movie} />
