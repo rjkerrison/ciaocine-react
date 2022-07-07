@@ -1,7 +1,6 @@
 import service from '../api/service'
 
 const getShowtimes = async ({ source, yyyy, mm, dd, cinema, ...params }) => {
-  console.log(cinema)
   const showtimeDateUrl = `/showtimes/${yyyy}/${mm + 1}/${dd}/`
   const url = cinema ? `/cinemas/${cinema}${showtimeDateUrl}` : showtimeDateUrl
 

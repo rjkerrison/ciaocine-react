@@ -41,13 +41,14 @@
   }
 
   @media screen and (min-width: 600px) {
-    grid-template: 1.5rem 2.5rem 4.5rem auto/1fr 1fr;
-    grid-template-areas: 'poster time' 'poster cinema' 'poster links' 'heading heading';
-    width: 15rem;
+    grid-template: 3.5rem 4.5rem min-content min-content/6rem 5rem;
+    grid-template-areas: 'poster time' 'poster links' 'heading heading' 'cinema cinema';
+    padding-top: 0;
 
     .poster {
-      width: 6.75rem;
-      padding: 0.25rem;
+      position: relative;
+      left: -0.375rem;
+      align-self: flex-start;
     }
     .movie-heading h3 {
       font-size: 1rem;
