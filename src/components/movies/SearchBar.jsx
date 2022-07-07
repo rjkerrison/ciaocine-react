@@ -14,9 +14,9 @@ const SearchBar = ({ query, setQuery, updateMovies }) => {
     <div className='search-bar'>
       <h2>Recherche des films</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='name'>Titre</label>{' '}
+        <label htmlFor='name'>Titre</label>
         <input
-          type='text'
+          type='search'
           id='name'
           name='name'
           value={query}
