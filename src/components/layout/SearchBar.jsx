@@ -39,7 +39,7 @@ const NavigationSearchBar = () => {
         id='name'
         name='name'
         value={query}
-        placeholder="e.g. 'Portrait de la jeune fille en feu', 'Vertigo', etc"
+        placeholder='Search by movie'
         onChange={handleQueryChange}
       />
       <input type='submit' value='🔍' aria-label='Search' className='glass' />
