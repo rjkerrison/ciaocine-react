@@ -56,7 +56,7 @@ function App() {
           >
             <Route path=':username' />
           </Route>
-          <Route path='/movies' index element={<Movies />} />
+          <Route path='/search/movies' index element={<Movies />} />
           <Route
             path='/movies/:movieId'
             element={

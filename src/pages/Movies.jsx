@@ -1,45 +1,35 @@
 import { useCallback, useContext, useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { searchMovies } from '../api/movie'
 import MovieCard from '../components/movies/MovieCard'
-import SearchBar from '../components/movies/SearchBar'
 import { LikedContext } from '../context/LikedContext'
 
 const Movies = () => {
   const { likedMovies } = useContext(LikedContext)
 
   const [movies, setMovies] = useState([])
-  const [filteredMovies, setFilteredMovies] = useState([])
-  const [query, setQuery] = useState('')
+
+  const [searchParams] = useSearchParams()
+
+  const query = searchParams.get('q')
 
   const updateMovies = useCallback(async () => {
+    if (!query) {
+      return
+    }
     const movies = await searchMovies(query)
     setMovies(movies)
   }, [query])
 
   useEffect(() => {
-    const filtered = movies.filter(
-      ({ title, castingShort }) =>
-        title.toLowerCase().includes(query.toLowerCase()) ||
-        castingShort?.directors?.toLowerCase()?.includes(query.toLowerCase())
-    )
-    if (likedMovies) {
-      const ids = likedMovies.map((a) => a.movie._id)
-      filtered.sort((a, b) => ids.indexOf(b._id) - ids.indexOf(a._id))
-    }
-
-    setFilteredMovies(filtered)
-  }, [query, movies, likedMovies])
+    updateMovies()
+  }, [updateMovies])
 
   return (
     <section className='movies-section'>
-      <h1>All our movies</h1>
-      <SearchBar
-        query={query}
-        setQuery={setQuery}
-        updateMovies={updateMovies}
-      />
+      <h1>Movies matching your search</h1>
       <ul className='movie-list'>
-        {filteredMovies.map((movie) => (
+        {movies.map((movie) => (
           <li className='movie' key={movie._id}>
             <MovieCard {...movie} />
           </li>

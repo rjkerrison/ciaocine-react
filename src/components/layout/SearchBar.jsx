@@ -1,13 +1,26 @@
+import { useState } from 'react'
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom'
 import './SearchBar.scss'
 
-const NavigationSearchBar = ({ query, setQuery, updateMovies }) => {
+const NavigationSearchBar = () => {
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const [query, setQuery] = useState('')
+
   const handleQueryChange = (e) => {
     setQuery(e.target.value)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    updateMovies()
+    navigate({
+      pathname: '/search/movies',
+      search: createSearchParams({ ...searchParams, q: query }).toString(),
+    })
   }
 
   return (
