@@ -1,7 +1,7 @@
 .navigation-search-bar {
   display: flex;
   padding: 0.25rem;
-  justify-content: space-around;
+  justify-content: center;
   align-self: stretch;
   position: relative;
 
@@ -25,13 +25,6 @@
       color: var(--dark);
     }
   }
-  // input[type='submit'] {
-  //   position: absolute;
-  //   right: 0;
-  //   background: transparent;
-  //   color: transparent;
-  //   box-shadow: none;
-  // }
 
   .glass {
     right: 0.75rem;

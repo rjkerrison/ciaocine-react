@@ -23,8 +23,16 @@ const NavigationSearchBar = () => {
     })
   }
 
+  const handleClick = (e) => {
+    e.stopPropagation()
+  }
+
   return (
-    <form className='navigation-search-bar' onSubmit={handleSubmit}>
+    <form
+      className='navigation-search-bar'
+      onSubmit={handleSubmit}
+      onClick={handleClick}
+    >
       <label htmlFor='name'>Titre</label>
       <input
         type='search'

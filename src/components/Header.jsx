@@ -21,7 +21,7 @@ const Header = () => {
           <span className='hamburger-inner'></span>
         </span>
       </div>
-      <Navbar />
+      <Navbar {...{ toggleOpen, open }} />
     </header>
   )
 }
