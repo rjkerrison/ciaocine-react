@@ -27,8 +27,6 @@ const MoviePopupInner = () => {
     return <></>
   }
 
-  console.log({ movieInfo })
-
   const { showtimes, ...movie } = { ...movieInfo, showDate: true }
 
   return (
