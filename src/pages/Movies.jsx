@@ -27,14 +27,18 @@ const Movies = () => {
 
   return (
     <section className='movies-section'>
-      <h1>Movies matching your search</h1>
-      <ul className='movie-list'>
-        {movies.map((movie) => (
-          <li className='movie' key={movie._id}>
-            <MovieCard {...movie} />
-          </li>
-        ))}
-      </ul>
+      <h1>Movies matching "{query}"</h1>
+      {movies.length > 0 ? (
+        <ul className='movie-list'>
+          {movies.map((movie) => (
+            <li className='movie' key={movie._id}>
+              <MovieCard {...movie} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No movies found for "{query}"</p>
+      )}
     </section>
   )
 }

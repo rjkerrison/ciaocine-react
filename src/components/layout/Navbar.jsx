@@ -36,7 +36,7 @@ const Navbar = ({ toggleOpen, open }) => {
         <Link to='/'>Home</Link>
         <Link to='/cinemas'>Cinemas</Link>
         <Link to='/showtimes'>Showtimes</Link>
-        <NavigationSearchBar />
+        <NavigationSearchBar {...{ toggleOpen }} />
       </nav>
       <div className='account-header'>
         {isLoggedIn ? <AccountNav logOutUser={logOutUser} /> : <AnonymousNav />}

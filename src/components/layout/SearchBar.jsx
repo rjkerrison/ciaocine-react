@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 import './SearchBar.scss'
 
-const NavigationSearchBar = () => {
+const NavigationSearchBar = ({ toggleOpen }) => {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const [query, setQuery] = useState('')
@@ -21,6 +21,7 @@ const NavigationSearchBar = () => {
       pathname: '/search/movies',
       search: createSearchParams({ ...searchParams, q: query }).toString(),
     })
+    toggleOpen()
   }
 
   const handleClick = (e) => {
