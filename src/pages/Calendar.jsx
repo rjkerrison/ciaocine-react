@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import SingleDayView from '../components/calendar/SingleDayView'
+import LoadingSpinner from '../components/shared/LoadingSpinner'
 import { AuthContext } from '../context/AuthContext'
 import { CalendarContext } from '../context/CalendarContext'
 import { getCalendarRoute } from '../utils/routeHelpers'
@@ -12,11 +13,7 @@ const Calendar = () => {
   const { username } = useParams()
 
   if (isLoading) {
-    return (
-      <section>
-        <p>Loading</p>
-      </section>
-    )
+    return <LoadingSpinner />
   }
 
   if (!username) {
