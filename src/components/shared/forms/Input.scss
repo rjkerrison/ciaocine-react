@@ -1,0 +1,46 @@
+label.off-screen {
+  position: absolute;
+  left: 100vw;
+}
+
+input.ciaocine-input {
+  font-size: 0.875rem;
+  height: 1.75rem;
+  margin: 0;
+  background-color: var(--light);
+  color: var(--text);
+  padding: 0 1rem;
+  border-radius: 1rem;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover,
+  &:focus {
+    transform: none;
+    color: var(--text);
+    background-color: var(--contrast-dark);
+  }
+
+  &[type='search'] {
+    width: 10rem;
+
+    &:hover,
+    &:focus {
+      background-color: var(--text);
+      color: var(--dark);
+    }
+  }
+
+  &[type='submit'] {
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1px;
+    margin-right: 0.5rem;
+    width: 3rem;
+    transition: all 0.25s;
+  }
+}

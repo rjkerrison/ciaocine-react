@@ -5,7 +5,8 @@ import {
   useNavigate,
   useSearchParams,
 } from 'react-router-dom'
-import './SearchBar.scss'
+
+import SearchForm from '../shared/forms/SearchForm'
 
 const NavigationSearchBar = ({ toggleOpen }) => {
   const navigate = useNavigate()
@@ -32,33 +33,10 @@ const NavigationSearchBar = ({ toggleOpen }) => {
     toggleOpen?.()
   }
 
-  const handleClick = (e) => {
-    e.stopPropagation()
-  }
-
   return (
-    <form
-      className='navigation-search-bar'
-      onSubmit={handleSubmit}
-      onClick={handleClick}
-    >
-      <label htmlFor='name'>Titre</label>
-      <input
-        type='search'
-        id='name'
-        name='name'
-        value={query}
-        placeholder='Search by movie'
-        onInput={handleQueryChange}
-      />
-      <input
-        type='submit'
-        value='🔍'
-        aria-label='Search'
-        className='glass'
-        disabled={!query}
-      />
-    </form>
+    <SearchForm
+      {...{ handleSubmit, handleQueryChange, query, name: 'search' }}
+    />
   )
 }
 

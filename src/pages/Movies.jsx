@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { searchMovies } from '../api/movie'
-import NavigationSearchBar from '../components/layout/SearchBar'
+import NavigationSearchBar from '../components/layout/NavigationSearchBar'
 import MovieSearchResults from '../components/movies/MovieSearchResults'
 import LoadingSpinner from '../components/shared/LoadingSpinner'
 
