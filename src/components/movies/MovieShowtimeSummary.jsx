@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import MovieHeading from '../MovieHeading'
-import MovieShowtimes from '../MovieShowtimes'
+import MovieShowtimes from './MovieShowtimes'
 import ExternalLinks from './ExternalLinks'
 import MovieActions from './MovieActions'
 

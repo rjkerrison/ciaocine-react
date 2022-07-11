@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
 import {
   createSearchParams,
@@ -8,12 +9,19 @@ import './SearchBar.scss'
 
 const NavigationSearchBar = ({ toggleOpen }) => {
   const navigate = useNavigate()
-  const [searchParams] = useSearchParams()
   const [query, setQuery] = useState('')
+  const [searchParams] = useSearchParams()
 
   const handleQueryChange = (e) => {
     setQuery(e.target.value)
   }
+
+  const q = searchParams.get('q')
+  useEffect(() => {
+    if (q) {
+      setQuery(q)
+    }
+  }, [q])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -21,7 +29,7 @@ const NavigationSearchBar = ({ toggleOpen }) => {
       pathname: '/search/movies',
       search: createSearchParams({ ...searchParams, q: query }).toString(),
     })
-    toggleOpen()
+    toggleOpen?.()
   }
 
   const handleClick = (e) => {
@@ -41,9 +49,15 @@ const NavigationSearchBar = ({ toggleOpen }) => {
         name='name'
         value={query}
         placeholder='Search by movie'
-        onChange={handleQueryChange}
+        onInput={handleQueryChange}
       />
-      <input type='submit' value='🔍' aria-label='Search' className='glass' />
+      <input
+        type='submit'
+        value='🔍'
+        aria-label='Search'
+        className='glass'
+        disabled={!query}
+      />
     </form>
   )
 }

@@ -2,7 +2,8 @@ import { useCallback, useContext, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { searchMovies } from '../api/movie'
 import NavigationSearchBar from '../components/layout/SearchBar'
-import MovieCard from '../components/movies/MovieCard'
+import MovieSearchResults from '../components/movies/MovieSearchResults'
+import LoadingSpinner from '../components/shared/LoadingSpinner'
 import { LikedContext } from '../context/LikedContext'
 import './Movies.scss'
 
@@ -10,6 +11,7 @@ const Movies = () => {
   const { likedMovies } = useContext(LikedContext)
 
   const [movies, setMovies] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   const [searchParams] = useSearchParams()
 
@@ -19,8 +21,10 @@ const Movies = () => {
     if (!query) {
       return
     }
+    setIsLoading(true)
     const movies = await searchMovies(query)
     setMovies(movies)
+    setIsLoading(false)
   }, [query])
 
   useEffect(() => {
@@ -31,16 +35,10 @@ const Movies = () => {
     <section className='movies-section'>
       <h1>Movies matching "{query}"</h1>
       <NavigationSearchBar />
-      {movies.length > 0 ? (
-        <ul className='movie-list'>
-          {movies.map((movie) => (
-            <li className='movie' key={movie._id}>
-              <MovieCard {...movie} />
-            </li>
-          ))}
-        </ul>
+      {isLoading ? (
+        <LoadingSpinner />
       ) : (
-        <p>No movies found for "{query}"</p>
+        <MovieSearchResults movies={movies} query={query} />
       )}
     </section>
   )

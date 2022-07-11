@@ -46,4 +46,10 @@
   &.show-overlay .overlay {
     transform: rotateX(1turn);
   }
+
+  .showtime-card-buttons {
+    position: absolute;
+    right: -0.25rem;
+    top: -0.25rem;
+  }
 }

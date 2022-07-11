@@ -27,15 +27,10 @@
   }
 
   .glass {
-    right: 0.75rem;
-    height: calc(100% - 0.5rem);
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--light);
-    color: var(--text);
     margin-left: 1px;
-    height: 100%;
     width: 2.5rem;
     border-radius: 0 1rem 1rem 0;
     transition: all 0.25s;

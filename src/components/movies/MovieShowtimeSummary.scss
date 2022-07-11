@@ -53,18 +53,4 @@
       margin: 0.25rem;
     }
   }
-
-  .movie-showtimes {
-    grid-area: showtimes;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
-    grid-auto-rows: 5rem;
-    grid-gap: 0.5rem;
-    justify-content: center;
-    align-items: center;
-
-    &.expanded {
-      height: min-content;
-    }
-  }
 }
