@@ -20,7 +20,6 @@ body {
   margin: 0;
   color: var(--text);
   max-width: 100vw;
-  overflow-x: hidden;
   background: var(--dark);
   font-family: var(--font-text);
   font-weight: 200;
@@ -68,7 +67,6 @@ footer {
 main {
   min-height: 100vh;
   width: 100%;
-  overflow-x: hidden;
 }
 
 .mobile-collapsible {
@@ -102,7 +100,6 @@ main {
 @-moz-document url-prefix() {
   html {
     height: 100%;
-    overflow-y: scroll;
   }
   body {
     height: 100%;
