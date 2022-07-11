@@ -4,7 +4,6 @@ import { getMovieData } from '../../api/movie'
 import { formatAs } from '../../utils/formatDate'
 import Cast from './Cast'
 import Crew from './Crew'
-import MovieShowtimeSummary from './MovieShowtimeSummary'
 
 import './movie-popup-inner.scss'
 
@@ -27,8 +26,6 @@ const MoviePopupInner = () => {
     return <></>
   }
 
-  const { showtimes, ...movie } = { ...movieInfo, showDate: true }
-
   return (
     <div
       onClick={(e) => e.stopPropagation()}
@@ -37,11 +34,6 @@ const MoviePopupInner = () => {
       }}
       className='movie-popup-inner popup-inner'
     >
-      <MovieShowtimeSummary
-        key={movie._id}
-        movie={movie}
-        showtimes={showtimes}
-      />
       <h2>{movieInfo.extra.original_title}</h2>
       <p>{movieInfo.extra.overview}</p>
       <p>{movieInfo.extra.vote_average} / 10 on TMDB</p>
