@@ -18,6 +18,7 @@ import CalendarSingleDay from './pages/CalendarSingleDay'
 import Cinema from './pages/Cinema'
 import NearbySoon from './pages/NearbySoon'
 import Movies from './pages/Movies'
+import NotFound from './pages/NotFound'
 
 function App() {
   const location = useLocation()
@@ -39,6 +40,7 @@ function App() {
     <div className='App'>
       <Routes location={state?.backgroundLocation || location}>
         <Route element={<Layout />}>
+          <Route path='*' element={<NotFound />} />
           <Route path='/' index element={<Index />} />
           <Route path='/nearby' index element={<NearbySoon />} />
           <Route path='/cinemas' index element={<Cinemas />} />

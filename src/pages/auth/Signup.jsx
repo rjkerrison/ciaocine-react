@@ -33,6 +33,10 @@ const SignupPage = () => {
       className='movie-popup-inner auth-page popup-inner'
     >
       <h1>Sign Up</h1>
+      <blockquote>
+        Welcome to the party, pal.
+        <cite>Die Hard</cite>
+      </blockquote>
 
       <UserForm submitUserInfo={handleSignupSubmit} submitLabel='Sign Up' />
 

@@ -5,7 +5,7 @@ import './CinemaHeader.scss'
 
 const CinemaHeader = (cinema) => {
   return (
-    <header class='cinema-header'>
+    <header className='cinema-header'>
       <h2>
         <Link to={`/cinemas/${cinema.slug}`}>{cinema.name}</Link>
       </h2>

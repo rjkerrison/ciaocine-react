@@ -55,7 +55,7 @@ const SearchBar = ({ query, setQuery, setCinemas }) => {
       <Input
         placeholder="e.g. 'MK2', 'Grand', etc"
         label='By name'
-        {...{ handleQueryChange, query, name: 'cinemaName' }}
+        {...{ onInput: handleQueryChange, query, name: 'cinemaName' }}
       />
     </div>
   )

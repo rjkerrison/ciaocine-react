@@ -39,6 +39,10 @@ const LoginPage = ({ message }) => {
       className='movie-popup-inner auth-page popup-inner'
     >
       <h1>Login</h1>
+      <blockquote>
+        This is a private residence, man.
+        <cite>The Big Lebowski</cite>
+      </blockquote>
 
       <UserForm submitUserInfo={handleLoginSubmit} submitLabel='Login' />
 
