@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import PopupLink from '../shared/PopupLink'
 import { getCalendarRoute } from '../../utils/routeHelpers'
-import NavigationSearchBar from './SearchBar'
+import NavigationSearchBar from './NavigationSearchBar'
 
 const AccountNav = ({ logOutUser }) => (
   <>
@@ -18,7 +18,7 @@ const AnonymousNav = () => {
   return (
     <nav aria-label='login or signup'>
       <PopupLink to='/auth/login'>Login</PopupLink>
-      <Link to='/auth/signup'>Signup</Link>
+      <PopupLink to='/auth/signup'>Signup</PopupLink>
     </nav>
   )
 }
@@ -36,11 +36,17 @@ const Navbar = ({ toggleOpen, open }) => {
         <Link to='/'>Home</Link>
         <Link to='/cinemas'>Cinemas</Link>
         <Link to='/showtimes'>Showtimes</Link>
-        <NavigationSearchBar {...{ toggleOpen }} />
       </nav>
-      <div className='account-header'>
-        {isLoggedIn ? <AccountNav logOutUser={logOutUser} /> : <AnonymousNav />}
-      </div>
+      <nav className='additional' aria-label='additional navigation'>
+        <NavigationSearchBar {...{ toggleOpen }} />
+        <div className='account-header'>
+          {isLoggedIn ? (
+            <AccountNav logOutUser={logOutUser} />
+          ) : (
+            <AnonymousNav />
+          )}
+        </div>
+      </nav>
     </div>
   )
 }

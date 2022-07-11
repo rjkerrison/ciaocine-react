@@ -2,8 +2,11 @@
   width: 100%;
   display: flex;
   margin: 1rem 0;
+  align-items: center;
+  gap: 0.25rem;
 }
 .label-input-group label,
 .label-input-group input {
   flex: 50% 1 1;
+  width: 50%;
 }

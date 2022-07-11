@@ -25,7 +25,12 @@ const Calendar = () => {
         <Navigate to='/auth/login' state={{ redirect: getCalendarRoute() }} />
       )
     } else {
-      return <Navigate to={getCalendarRoute({ username: user.username })} />
+      return (
+        <Navigate
+          to={getCalendarRoute({ username: user.username })}
+          replace={true}
+        />
+      )
     }
   }
 
