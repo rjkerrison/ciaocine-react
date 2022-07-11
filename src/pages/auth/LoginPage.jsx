@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import { login } from '../../api/auth'
 import './AuthPage.css'
@@ -44,11 +44,13 @@ const LoginPage = ({ message }) => {
 
       {errorMessage && <p className='error-message'>{errorMessage}</p>}
 
-      {<p>{message}</p> || (
-        <p>
-          Don't have an account? <Link to={'/auth/signup'}>Sign up</Link>.
-        </p>
-      )}
+      <p>
+        {message || (
+          <>
+            Don't have an account? <Link to={'/auth/signup'}>Sign up</Link>.
+          </>
+        )}
+      </p>
     </div>
   )
 }

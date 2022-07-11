@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Input from '../shared/forms/Input'
 import './UserForm.css'
 
 const UserForm = ({ submitUserInfo, submitLabel }) => {
@@ -15,8 +16,9 @@ const UserForm = ({ submitUserInfo, submitLabel }) => {
   return (
     <form onSubmit={onSubmit} className='user-form'>
       <div className='label-input-group'>
-        <label>Username:</label>
-        <input
+        <label htmlFor='username'>Username</label>
+        <Input
+          id='username'
           type='text'
           name='username'
           value={username}
@@ -25,16 +27,18 @@ const UserForm = ({ submitUserInfo, submitLabel }) => {
       </div>
 
       <div className='label-input-group'>
-        <label>Password:</label>
-        <input
+        <label htmlFor='password'>Password</label>
+        <Input
+          id='password'
           type='password'
           name='password'
           value={password}
           onChange={handlePassword}
         />
       </div>
-
-      <button type='submit'>{submitLabel}</button>
+      <div className='label-input-group'>
+        <Input type='submit' value='Login' />
+      </div>
     </form>
   )
 }

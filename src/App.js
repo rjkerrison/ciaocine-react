@@ -93,6 +93,7 @@ function App() {
           >
             <Route path='movies/:movieId' element={<MoviePopupInner />} />
             <Route path='auth/login' element={<Login />} />
+            <Route path='auth/signup' element={<Signup />} />
           </Route>
         </Routes>
       )}

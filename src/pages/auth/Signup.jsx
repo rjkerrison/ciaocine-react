@@ -26,7 +26,12 @@ const SignupPage = () => {
   }
 
   return (
-    <div className='auth-page'>
+    <div
+      style={{
+        '--backdrop-path': `url(https://www.cnet.com/a/img/resize/24fba7a8eb4f59a9d49969fe2e2ebffc0d470fa8/2015/12/23/899bd25f-a772-45c5-8ee0-37ccdd2348f3/die-hard.jpg?auto=webp&fit=crop&height=675&width=1200)`,
+      }}
+      className='movie-popup-inner auth-page popup-inner'
+    >
       <h1>Sign Up</h1>
 
       <UserForm submitUserInfo={handleSignupSubmit} submitLabel='Sign Up' />

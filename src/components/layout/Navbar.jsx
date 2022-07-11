@@ -18,7 +18,7 @@ const AnonymousNav = () => {
   return (
     <nav aria-label='login or signup'>
       <PopupLink to='/auth/login'>Login</PopupLink>
-      <Link to='/auth/signup'>Signup</Link>
+      <PopupLink to='/auth/signup'>Signup</PopupLink>
     </nav>
   )
 }
