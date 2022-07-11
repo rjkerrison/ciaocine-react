@@ -1,15 +1,13 @@
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { searchMovies } from '../api/movie'
 import NavigationSearchBar from '../components/layout/SearchBar'
 import MovieSearchResults from '../components/movies/MovieSearchResults'
 import LoadingSpinner from '../components/shared/LoadingSpinner'
-import { LikedContext } from '../context/LikedContext'
+
 import './Movies.scss'
 
 const Movies = () => {
-  const { likedMovies } = useContext(LikedContext)
-
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
