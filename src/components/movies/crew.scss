@@ -1,7 +1,7 @@
 ul.crew {
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
   display: grid;
-  grid-auto-rows: minmax(min-content, 5rem);
+  grid-auto-rows: minmax(min-content, 3rem);
   grid-gap: 0.5rem;
   justify-content: center;
   align-items: center;
@@ -13,12 +13,13 @@ ul.crew {
 ul.crew li {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100%;
   align-items: center;
-  justify-content: center;
-  background-color: #533ea780;
-  padding: 0.5rem;
+  justify-content: space-between;
+  background-color: var(--contrast-dark);
+  color: var(--text);
+  padding: 0.25rem;
   transition: all 1s;
   border-radius: 0.25rem;
 

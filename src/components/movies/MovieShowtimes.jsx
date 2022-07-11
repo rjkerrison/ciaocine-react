@@ -1,6 +1,9 @@
 import { useState } from 'react'
-import Button from './shared/Button'
-import ShowtimeCard from './ShowtimeCard'
+
+import './MovieShowtimes.scss'
+
+import Button from '../shared/Button'
+import ShowtimeCard from '../showtimes/ShowtimeCard'
 
 const toShowtimeCard = (showtime, movie, isHidden = false) => {
   return (
@@ -9,9 +12,7 @@ const toShowtimeCard = (showtime, movie, isHidden = false) => {
       {...showtime}
       key={showtime._id}
       className={isHidden && 'expanded-only'}
-    >
-      {JSON.stringify(showtime)}
-    </ShowtimeCard>
+    />
   )
 }
 

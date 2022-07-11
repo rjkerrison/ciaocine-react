@@ -4,6 +4,7 @@ import { getMovieData } from '../../api/movie'
 import { formatAs } from '../../utils/formatDate'
 import Cast from './Cast'
 import Crew from './Crew'
+
 import './movie-popup-inner.scss'
 
 const MoviePopupInner = () => {

@@ -1,0 +1,43 @@
+.navigation-search-bar {
+  display: flex;
+  padding: 0.25rem;
+  justify-content: center;
+  align-self: stretch;
+  position: relative;
+
+  label {
+    position: absolute;
+    left: 100vw;
+  }
+  input {
+    font-size: 0.75rem;
+    height: 1.75rem;
+    border-radius: 1rem 0 0 1rem;
+    margin: 0;
+    background-color: var(--light);
+    color: var(--text);
+    padding: 0 0.5rem;
+    width: 10rem;
+
+    &:focus {
+      outline: 0;
+      background-color: var(--text);
+      color: var(--dark);
+    }
+  }
+
+  .glass {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1px;
+    width: 2.5rem;
+    border-radius: 0 1rem 1rem 0;
+    transition: all 0.25s;
+
+    &:hover {
+      transform: none;
+      background: var(--contrast-dark);
+    }
+  }
+}

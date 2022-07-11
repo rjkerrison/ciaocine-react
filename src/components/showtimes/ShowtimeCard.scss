@@ -1,0 +1,55 @@
+.showtime-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  transition: all 1s;
+  border-radius: 0.25rem;
+
+  .extra-info {
+    margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 100%;
+    font-size: 1rem;
+  }
+
+  h3,
+  h4,
+  p {
+    margin: 0;
+  }
+  h4 {
+    font-size: 1.25rem;
+  }
+
+  &:hover .extra-info,
+  &.show-overlay .extra-info {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .overlay {
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    height: 100%;
+    top: 0;
+    transform: rotateX(0.5turn);
+  }
+
+  &:hover .overlay,
+  &.show-overlay .overlay {
+    transform: rotateX(1turn);
+  }
+
+  .showtime-card-buttons {
+    position: absolute;
+    right: -0.25rem;
+    top: -0.25rem;
+  }
+}

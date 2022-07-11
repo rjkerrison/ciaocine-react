@@ -1,0 +1,40 @@
+.movie-search-results {
+  list-style: none;
+  display: grid;
+  justify-content: center;
+  grid-template: auto / repeat(auto-fill, minmax(30rem, 1fr));
+  gap: 1rem;
+  padding: 0;
+
+  .movie-search-result {
+    position: relative;
+    display: grid;
+    grid-template-areas: 'name name' 'poster showtimes';
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
+
+    gap: 0.25rem;
+
+    border-radius: 1rem;
+    background-image: linear-gradient(
+      var(--dark) 0,
+      var(--mid) 50%,
+      var(--light) 100%
+    );
+    padding: 0.5rem;
+    background-size: 100% 150%;
+
+    text-align: center;
+
+    .movie-heading {
+      font-size: 1.25rem;
+      padding: 0;
+      margin: 0.5rem 0;
+      grid-area: name;
+    }
+
+    .poster {
+      grid-area: poster;
+    }
+  }
+}
