@@ -36,10 +36,14 @@ const MovieHeading = ({
             )}
           </h3>
           <p>
-            {castingShort && <>de {castingShort?.directors} </>}
-            <span className='year'>
-              {formatAs.yearMonthDate(releaseDate).year}
-            </span>
+            {castingShort && castingShort.directors && (
+              <>de {castingShort.directors} </>
+            )}
+            {releaseDate && (
+              <span className='year'>
+                {formatAs.yearMonthDate(releaseDate).year}
+              </span>
+            )}
           </p>
         </PopupLink>
       </div>

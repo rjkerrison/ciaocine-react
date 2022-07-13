@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Input from '../shared/forms/Input'
+import SearchForm from '../shared/forms/SearchForm'
 
 const QuickFilter = ({ setCurrentQuery }) => {
   const [query, setQuery] = useState('')
@@ -13,20 +13,19 @@ const QuickFilter = ({ setCurrentQuery }) => {
     setQuery(e.target.value)
   }
   return (
-    <form onSubmit={handleSubmit}>
+    <>
       <h3>Quick filter</h3>
-      <div className='search-form'>
-        <Input
-          label='By name'
-          id='name'
-          name='name'
-          value={query}
-          placeholder="e.g. 'Batman'"
-          onChange={handleQueryChange}
-        />
-        <Input type='submit' value={'🔍'} aria-label='Search' />
-      </div>
-    </form>
+      <SearchForm
+        label='By name'
+        type='text'
+        id='name'
+        name='name'
+        value={query}
+        placeholder='filter by name'
+        handleSubmit={handleSubmit}
+        handleQueryChange={handleQueryChange}
+      />
+    </>
   )
 }
 

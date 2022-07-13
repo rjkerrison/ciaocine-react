@@ -52,8 +52,9 @@
 
 a,
 button,
-input {
-  transition: all 300ms ease-out;
+input,
+.interactive {
+  transition: all 300ms ease-in-out;
 }
 
 a {

@@ -3,9 +3,10 @@ label.off-screen {
   left: 100vw;
 }
 
+.ciaocine-input,
 input.ciaocine-input {
   font-size: 0.875rem;
-  height: 1.75rem;
+  min-height: 1.75rem;
   margin: 0;
   background-color: var(--light);
   color: var(--text);
@@ -16,6 +17,7 @@ input.ciaocine-input {
     outline: 0;
   }
 
+  &.selected,
   &:hover,
   &:focus {
     transform: none;

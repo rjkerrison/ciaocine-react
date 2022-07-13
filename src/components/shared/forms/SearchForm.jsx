@@ -32,12 +32,7 @@ const SearchForm = ({
         placeholder={placeholder}
         onInput={handleQueryChange}
       />
-      <Input
-        type='submit'
-        value={submitValue}
-        aria-label='Search'
-        disabled={!query}
-      />
+      <Input type='submit' value={submitValue} aria-label='Search' />
       {children}
     </form>
   )

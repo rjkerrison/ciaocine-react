@@ -9,6 +9,7 @@ nav.filters {
   grid-auto-flow: row;
   align-items: stretch;
   justify-content: center;
+  gap: 0.125rem;
 
   @media screen and (min-width: 900px) {
     grid-template-columns: repeat(4, 1fr);
@@ -20,6 +21,11 @@ nav.filters {
   text-align: center;
 
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   padding: 0.5rem;
 
   display: flex;
@@ -31,8 +37,6 @@ nav.filters {
     padding: 1rem;
   }
   h3 {
-    font-size: 1.25rem;
-
     @media screen and (min-width: 600px) {
       grid-row: 1;
     }

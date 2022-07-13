@@ -9,8 +9,21 @@ const MovieList = ({ movies, isLoading, className }) => {
 
   const updateFilteredMovies = useCallback(
     (q) => {
-      const filtered = movies.filter(({ movie: { title } }) =>
-        title.toLowerCase().includes(q.toLowerCase())
+      const filtered = movies.filter(
+        ({
+          movie: { title, castingShort, originalTitle, externalIdentifiers },
+        }) => {
+          return [
+            title,
+            originalTitle,
+            castingShort?.directors,
+            castingShort?.actors,
+            externalIdentifiers?.tmdb?.title,
+            externalIdentifiers?.tmdb?.originalTitle,
+          ]
+            .filter((x) => x)
+            .some((x) => x.toLowerCase().includes(q.toLowerCase()))
+        }
       )
 
       setFilteredMovies(filtered)
