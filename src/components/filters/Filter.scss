@@ -1,11 +1,8 @@
 .movie-filter-group {
   display: flex;
-  position: absolute;
-  z-index: 2;
 
-  width: calc(100% - 2rem);
   padding: 0.5rem;
-  background: var(--dark);
+  background: var(--mid);
   border-radius: 1rem;
 
   flex-wrap: wrap;
@@ -15,6 +12,12 @@
 
   &.closed {
     display: none;
+  }
+  @media screen and (min-width: 900px) {
+    position: absolute;
+    top: 2.125rem;
+    z-index: 2;
+    width: calc(100% - 2rem);
   }
 
   &.top-level {
