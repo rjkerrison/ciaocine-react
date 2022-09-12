@@ -1,7 +1,7 @@
-import MovieHeading from '../MovieHeading'
+import MovieSummary from '../shared/MovieSummary'
 import MovieShowtimes from './MovieShowtimes'
 
-const MovieCard = ({ slug, title, ...movie }) => {
+const MovieCard = ({ ...movie }) => {
   const { showtimes, pastShowtimeCount, ...enhancedMovie } = {
     ...movie,
     showDate: true,
@@ -9,16 +9,22 @@ const MovieCard = ({ slug, title, ...movie }) => {
 
   return (
     <>
-      <MovieHeading {...enhancedMovie} title={title} slug={slug} />
-      {pastShowtimeCount > 0 && (
-        <p>
-          {pastShowtimeCount} past showtime{pastShowtimeCount > 1 && 's'}{' '}
-          hidden.
-        </p>
-      )}
-      {showtimes.length > 0 && (
-        <MovieShowtimes showtimes={showtimes} movie={enhancedMovie} />
-      )}
+      <MovieSummary movie={enhancedMovie}>
+        {showtimes.length > 0 && (
+          <MovieShowtimes
+            showtimes={showtimes}
+            movie={enhancedMovie}
+            overflowLimit={pastShowtimeCount > 0 ? 7 : 8}
+          >
+            {pastShowtimeCount > 0 && (
+              <p className='past-showtimes'>
+                {pastShowtimeCount} past showtime{pastShowtimeCount > 1 && 's'}{' '}
+                hidden.
+              </p>
+            )}
+          </MovieShowtimes>
+        )}
+      </MovieSummary>
     </>
   )
 }

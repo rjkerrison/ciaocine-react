@@ -19,9 +19,7 @@ const toShowtimeCard = (showtime, movie, isHidden = false) => {
 const toHiddenShowtimeCard = (showtime, movie) =>
   toShowtimeCard(showtime, movie, true)
 
-const overflowLimit = 6
-
-const MovieShowtimes = ({ showtimes, movie }) => {
+const MovieShowtimes = ({ showtimes, movie, children, overflowLimit = 6 }) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
   if (showtimes.length > overflowLimit) {
@@ -47,6 +45,7 @@ const MovieShowtimes = ({ showtimes, movie }) => {
             setIsExpanded((c) => !c)
           }}
         />
+        {children}
       </div>
     )
   }

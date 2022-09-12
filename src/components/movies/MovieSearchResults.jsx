@@ -17,7 +17,7 @@ const MovieSearchResults = ({ movies, query }) => {
   return (
     <ul className='movie-search-results'>
       {sortedMovies.map((movie) => (
-        <li className='movie-search-result' key={movie._id}>
+        <li key={movie._id}>
           <MovieCard {...movie} />
         </li>
       ))}

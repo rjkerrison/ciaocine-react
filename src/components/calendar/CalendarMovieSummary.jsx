@@ -11,11 +11,11 @@ const CalendarMovieSummary = ({ movie, startTime, cinema, _id }) => {
   const endTime = new Date(startTime) - 0 + (movie.runtime || 7200) * 1000
   return (
     <div className='movie calendar-movie'>
+      <MovieHeading {...movie} />
+      <ExternalLinks {...movie} />
       <p className='time'>
         {formatAs.time(startTime)} à&nbsp;{formatAs.time(endTime)}
       </p>
-      <MovieHeading {...movie} />
-      <ExternalLinks {...movie} />
       <p className='cinema' title={cinema.address + ', ' + cinema.zipcode}>
         <Link to={`/cinemas/${cinema.slug}/${formatAs.routeDate(startTime)}`}>
           {cinema.name}
