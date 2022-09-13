@@ -10,8 +10,8 @@ ul.external-links {
   font-size: 0.875rem;
 
   li {
-    padding: 0 !important;
-    margin: 0 !important;
+    background-color: var(--dark);
+    border-radius: 1rem;
 
     a {
       display: block;
