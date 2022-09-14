@@ -18,7 +18,7 @@ const LoginPage = ({ message }) => {
         setErrorMessage(errorMessage)
       } else {
         await authenticateUser()
-        navigate('/calendar')
+        navigate(-1)
       }
     } catch (error) {
       const errorDescription = error.response.data.message
@@ -27,7 +27,7 @@ const LoginPage = ({ message }) => {
   }
 
   if (isLoggedIn) {
-    navigate('/calendar')
+    navigate(-1)
   }
 
   return (

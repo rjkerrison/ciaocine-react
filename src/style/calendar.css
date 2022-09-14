@@ -49,8 +49,9 @@
     justify-items: center;
   }
 
-  .calendar .movies {
+  .calendar-date .movies {
     display: grid;
+    overflow-x: scroll;
     /* default can be overriden by JS */
     --row-count: 96;
     grid-template: repeat(var(--row-count), 2.5rem) / auto;

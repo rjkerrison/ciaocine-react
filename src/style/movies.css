@@ -34,7 +34,7 @@ section.movies-section h1 {
 
 @media screen and (min-width: 600px) {
   .movies {
-    grid-template: auto / repeat(auto-fill, minmax(22rem, 1fr));
+    grid-template: auto / repeat(auto-fill, minmax(24rem, 1fr));
   }
 }
 

@@ -1,6 +1,10 @@
 .movie-heading {
-  flex-direction: column;
   p {
     margin: 0;
+    font-size: 0.75rem;
+  }
+  h3 {
+    font-size: 1.125rem;
+    word-break: break-word;
   }
 }

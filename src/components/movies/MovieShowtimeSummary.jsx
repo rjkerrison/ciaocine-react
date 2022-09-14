@@ -1,10 +1,7 @@
 import { useState } from 'react'
-import MovieHeading from '../MovieHeading'
 import MovieShowtimes from './MovieShowtimes'
-import ExternalLinks from './ExternalLinks'
 import MovieActions from './MovieActions'
-
-import './MovieShowtimeSummary.scss'
+import MovieSummary from '../shared/MovieSummary'
 
 const MovieShowtimeSummary = ({ movie, showtimes }) => {
   const [isHidden, setIsHidden] = useState(false)
@@ -14,12 +11,20 @@ const MovieShowtimeSummary = ({ movie, showtimes }) => {
   }
 
   return (
-    <div className='movie overlay-container expander-container'>
-      <MovieHeading {...movie} />
-      <ExternalLinks {...movie} />
-      <MovieShowtimes showtimes={showtimes} movie={movie} />
-      <MovieActions setIsHidden={setIsHidden} {...movie} />
-    </div>
+    <MovieSummary movie={movie}>
+      {({ Actions, Showtimes }) => {
+        return (
+          <>
+            <Showtimes>
+              <MovieShowtimes showtimes={showtimes} movie={movie} />
+            </Showtimes>
+            <Actions>
+              <MovieActions setIsHidden={setIsHidden} {...movie} />
+            </Actions>
+          </>
+        )
+      }}
+    </MovieSummary>
   )
 }
 

@@ -1,5 +1,4 @@
 .movie-showtimes {
-  grid-area: showtimes;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
   grid-auto-rows: 5rem;

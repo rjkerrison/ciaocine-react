@@ -26,6 +26,9 @@
     align-self: center;
     display: flex;
     align-items: center;
+    justify-self: center;
+    box-shadow: 0.5rem 0.5rem 0.5rem -0.375rem var(--dark);
+    max-width: 6rem;
   }
   .cinema {
     grid-area: cinema;
@@ -34,25 +37,31 @@
   .external-links {
     grid-area: links;
   }
+  .showtimes {
+    grid-area: showtimes;
+  }
 
   @media screen and (min-width: 600px) {
     display: grid;
     padding-top: 0;
     grid-template:
-      'poster heading' 4rem
-      'poster showtimes' 1fr
+      'poster heading' 5rem
+      'poster showtimes' auto
       'links showtimes' 1fr
       / 8rem 1fr;
 
     .poster {
       align-self: flex-start;
+      max-width: 10rem;
     }
-    .movie-heading h3 {
-      font-size: 1rem;
-      word-break: break-word;
-    }
-    .movie-heading p {
-      font-size: 0.75rem;
+
+    &.vertical {
+      grid-template:
+        'poster links' auto
+        'heading heading' auto
+        'showtimes showtimes' auto
+        /
+        8rem 6rem;
     }
   }
 }

@@ -45,10 +45,6 @@
   border-radius: 4px;
 }
 
-.showtimes {
-  display: contents;
-}
-
 .member-card-list {
   grid-area: cards;
   align-self: center;

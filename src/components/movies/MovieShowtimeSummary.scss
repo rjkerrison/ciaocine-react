@@ -24,25 +24,6 @@
     justify-content: center;
   }
 
-  .poster {
-    grid-area: poster;
-    justify-self: center;
-    align-self: center;
-    box-shadow: 0.5rem 0.5rem 1rem -0.25rem var(--dark);
-  }
-
-  .movie-heading {
-    grid-area: heading;
-    margin: 0;
-    align-self: center;
-    justify-self: center;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    display: flex;
-    gap: 1rem;
-  }
-
   .external-links {
     grid-area: links;
   }
