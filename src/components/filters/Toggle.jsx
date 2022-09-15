@@ -1,4 +1,4 @@
-import Button from '../shared/Button'
+import Button from './FilterButton'
 import Filter from './Filter'
 
 const Toggle = ({ label, classes, values, updateFilter, name }) => {

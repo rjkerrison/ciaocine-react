@@ -1,5 +1,5 @@
 import { URL_SEPARATOR } from '../../utils/consts'
-import Button from '../shared/Button'
+import Button from './FilterButton'
 import Filter from './Filter'
 import { getLabelValue } from './helpers'
 

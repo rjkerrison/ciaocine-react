@@ -1,9 +1,11 @@
-const Button = ({ isActive, classes = [], onClick, label, children }) => {
-  const className = [
-    ...classes,
-    'movies-filter',
-    isActive ? 'selected' : '',
-  ].join(' ')
+const Button = ({
+  isActive = false,
+  classes = [],
+  onClick,
+  label,
+  children,
+}) => {
+  const className = [...classes, isActive ? 'selected' : ''].join(' ')
   return (
     <button className={className} onClick={onClick}>
       {label}
