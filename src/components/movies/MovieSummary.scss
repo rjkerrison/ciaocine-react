@@ -1,16 +1,20 @@
 .movie-summary {
   color: var(--text);
   border-radius: 0.25rem;
-  padding: 0.25rem;
   position: relative;
   min-height: 100%;
   justify-content: center;
   align-items: center;
   background: var(--mid);
+  padding: 0 0.25rem;
 
   display: grid;
   grid-template: auto auto auto/ auto 1fr;
-  grid-template-areas: 'poster heading' 'poster actions' 'poster showtimes';
+  grid-template-areas: 'poster heading' 'poster actions' 'showtimes showtimes';
+
+  &.vertical {
+    grid-template-areas: 'poster heading' 'poster actions' 'poster showtimes';
+  }
 
   .movie-heading,
   .poster,
@@ -23,7 +27,7 @@
   }
   .poster {
     grid-area: poster;
-    align-self: center;
+    align-self: flex-start;
     display: flex;
     align-items: center;
     justify-self: center;
@@ -43,7 +47,6 @@
 
   @media screen and (min-width: 600px) {
     display: grid;
-    padding-top: 0;
     grid-template:
       'poster heading' 5rem
       'poster showtimes' auto
