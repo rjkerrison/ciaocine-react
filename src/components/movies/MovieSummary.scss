@@ -10,7 +10,7 @@
 
   display: grid;
   grid-template: auto auto auto/ auto 1fr;
-  grid-template-areas: 'poster heading' 'poster links' 'poster showtimes';
+  grid-template-areas: 'poster heading' 'poster actions' 'poster showtimes';
 
   .movie-heading,
   .poster,
@@ -34,8 +34,8 @@
     grid-area: cinema;
     justify-self: center;
   }
-  .external-links {
-    grid-area: links;
+  .actions {
+    grid-area: actions;
   }
   .showtimes {
     grid-area: showtimes;
@@ -47,7 +47,7 @@
     grid-template:
       'poster heading' 5rem
       'poster showtimes' auto
-      'links showtimes' 1fr
+      'actions showtimes' 1fr
       / 8rem 1fr;
 
     .poster {
@@ -57,7 +57,7 @@
 
     &.vertical {
       grid-template:
-        'poster links' auto
+        'poster actions' auto
         'heading heading' auto
         'showtimes showtimes' auto
         /

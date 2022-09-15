@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import MovieShowtimes from './MovieShowtimes'
 import MovieActions from './MovieActions'
-import MovieSummary from '../shared/MovieSummary'
+import MovieSummary from './MovieSummary'
 
 const MovieShowtimeSummary = ({ movie, showtimes }) => {
   const [isHidden, setIsHidden] = useState(false)

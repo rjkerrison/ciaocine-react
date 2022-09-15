@@ -1,4 +1,4 @@
-import MovieSummary from '../shared/MovieSummary'
+import MovieSummary from './MovieSummary'
 import MovieShowtimes from './MovieShowtimes'
 
 const MovieCard = ({ ...movie }) => {

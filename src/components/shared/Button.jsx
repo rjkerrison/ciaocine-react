@@ -1,4 +1,4 @@
-const Button = ({ isActive, classes = [], onClick, label }) => {
+const Button = ({ isActive, classes = [], onClick, label, children }) => {
   const className = [
     ...classes,
     'movies-filter',
@@ -7,6 +7,7 @@ const Button = ({ isActive, classes = [], onClick, label }) => {
   return (
     <button className={className} onClick={onClick}>
       {label}
+      {children}
     </button>
   )
 }

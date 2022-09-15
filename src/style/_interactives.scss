@@ -19,7 +19,7 @@ input[type='submit'] {
   background-color: var(--contrast);
 
   &:hover {
-    color: var(--positive-light);
+    color: var(--dark);
     background-color: var(--button-hover-background);
     transform: translateY(-0.125rem);
     box-shadow: 0rem 0.75rem 0.5rem -0.25rem var(--button-shadow);

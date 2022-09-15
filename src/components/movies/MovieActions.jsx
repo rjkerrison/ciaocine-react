@@ -1,17 +1,18 @@
 import { useContext } from 'react'
 import { ToastContext } from '../../context/ToastContext'
+import Button from '../shared/Button'
 
 const MovieActions = ({ setIsHidden, title }) => {
   const { toast } = useContext(ToastContext)
   return (
-    <div className='movie-actions'>
-      <button onClick={setIsHidden}>Dismiss</button>
-      <button
+    <>
+      <Button onClick={setIsHidden}>Dismiss</Button>
+      <Button
         onClick={() => toast(`Okay, we'll remember how much you like ${title}`)}
       >
         Save
-      </button>
-    </div>
+      </Button>
+    </>
   )
 }
 

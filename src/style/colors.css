@@ -1,15 +1,15 @@
 :root {
-  --dark: #1f1b30;
-  --mid: #362c61;
-  --light: #6959ab;
-  --light-half: #6959ab80;
-  --contrast: #75eb70;
-  --contrast-dark: #33701b;
-  --contrast-dark-half: #33701b80;
-  --contrast-shadow: #75eb7067;
-  --positive-light: #f9f64c;
+  --dark: hsl(251, 28%, 15%);
+  --mid: hsl(251, 38%, 28%);
+  --light: hsl(252, 33%, 50%);
+  --light-half: hsla(252, 33%, 50%, 0.5);
+  --contrast: hsl(230, 75%, 78%);
+  --contrast-dark: hsl(230, 61%, 27%);
+  --contrast-dark-half: hsla(230, 61%, 27%, 0.5);
+  --contrast-shadow: hsla(230, 75%, 68%, 0.4);
+  --positive-light: hsl(118, 83%, 74%);
 
-  --text: #e0e0e0;
+  --text: hsl(0, 0%, 85%);
   --link: var(--text);
   --link-hover: var(--positive-light);
 
@@ -23,6 +23,6 @@
   --toast-text-color: var(--text);
 
   --button-hover-background: var(--contrast-dark);
-  --button-shadow: #533ea791;
+  --button-shadow: var(--contrast-dark-half);
   --button-border: var(--mid);
 }

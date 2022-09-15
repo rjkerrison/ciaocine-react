@@ -1,4 +1,4 @@
-ul.external-links {
+.actions {
   margin: 0;
   padding: 0.5rem;
   list-style: none;
@@ -9,13 +9,10 @@ ul.external-links {
   align-self: center;
   font-size: 0.875rem;
 
-  li {
+  a {
     background-color: var(--dark);
     border-radius: 1rem;
-
-    a {
-      display: block;
-      padding: 0 0.25rem;
-    }
+    display: block;
+    padding: 0 0.25rem;
   }
 }

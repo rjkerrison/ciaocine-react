@@ -1,15 +1,6 @@
 import MovieHeading from '../MovieHeading'
-import ExternalLinks from '../movies/ExternalLinks'
+import Actions from './Actions'
 import './MovieSummary.scss'
-
-const Actions = ({ children, movie }) => {
-  return (
-    <div className='actions'>
-      <ExternalLinks {...movie} />
-      {children}
-    </div>
-  )
-}
 
 const MovieSummary = ({ classes, movie, children, rowSpan }) => {
   return (
