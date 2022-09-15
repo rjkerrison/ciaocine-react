@@ -4,10 +4,11 @@ const Button = ({
   onClick,
   label,
   children,
+  ...props
 }) => {
-  const className = [...classes, isActive ? 'selected' : ''].join(' ')
+  const className = [...classes, isActive ? 'active' : ''].join(' ')
   return (
-    <button className={className} onClick={onClick}>
+    <button className={className} onClick={onClick} {...props}>
       {label}
       {children}
     </button>

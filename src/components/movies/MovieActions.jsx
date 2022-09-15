@@ -6,8 +6,11 @@ const MovieActions = ({ setIsHidden, title }) => {
   const { toast } = useContext(ToastContext)
   return (
     <>
-      <Button onClick={setIsHidden}>Dismiss</Button>
+      <Button classes={['action']} onClick={setIsHidden}>
+        Dismiss
+      </Button>
       <Button
+        classes={['action']}
         onClick={() => toast(`Okay, we'll remember how much you like ${title}`)}
       >
         Save

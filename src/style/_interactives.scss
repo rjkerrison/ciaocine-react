@@ -24,29 +24,24 @@
     background-color: var(--button-hover-background);
   }
 
-  &.selected {
-    background-color: var(--contrast-dark);
-    color: var(--white);
-  }
-
-  &.active {
-    background-color: var(--positive-light);
-    color: var(--dark);
-  }
-
-  &.inside {
-    background-color: var(--contrast);
-    color: var(--mid);
-  }
-
   &:hover {
     background-color: var(--contrast);
     border: none;
   }
 
-  &.selected:hover {
-    background-color: var(--mid);
-    color: var(--text);
+  &.active {
+    background-color: var(--positive-light);
+    color: var(--dark);
+
+    &:hover {
+      background-color: var(--mid);
+      color: var(--text);
+    }
+  }
+
+  &.inside {
+    background-color: var(--contrast);
+    color: var(--mid);
   }
 }
 

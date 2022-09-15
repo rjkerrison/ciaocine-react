@@ -3,6 +3,7 @@ import { likeCinema } from '../api/likes'
 import { ToastContext } from '../context/ToastContext'
 import { LikedContext } from '../context/LikedContext'
 import Authenticated from './shared/Authenticated'
+import Button from './shared/Button'
 
 const FavouriteCinema = ({ cinema }) => {
   const { toast } = useContext(ToastContext)
@@ -23,8 +24,8 @@ const FavouriteCinema = ({ cinema }) => {
   )
 
   return (
-    <button
-      className={'favourite-cinema' + (liked ? ' liked' : '')}
+    <Button
+      classes={['favourite-cinema', liked ? ' liked' : '']}
       onClick={() =>
         likeCinema(cinema._id, liked).then(({ liked: newLiked }) => {
           setLikedCinema(cinema._id, newLiked)
@@ -37,7 +38,7 @@ const FavouriteCinema = ({ cinema }) => {
       }
     >
       {liked ? '⭐️' : '☆'}
-    </button>
+    </Button>
   )
 }
 

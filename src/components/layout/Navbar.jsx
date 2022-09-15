@@ -4,12 +4,13 @@ import { AuthContext } from '../../context/AuthContext'
 import PopupLink from '../shared/PopupLink'
 import { getCalendarRoute } from '../../utils/routeHelpers'
 import NavigationSearchBar from './NavigationSearchBar'
+import Button from '../shared/Button'
 
 const AccountNav = ({ logOutUser }) => (
   <>
     <nav aria-label='account navigation'>
       <Link to={getCalendarRoute()}>Calendar</Link>
-      <button onClick={logOutUser}>Logout</button>
+      <Button onClick={logOutUser}>Logout</Button>
     </nav>
   </>
 )

@@ -5,7 +5,7 @@ import { getLabelValue } from './helpers'
 
 const SliderOption = ({ option, className, updateSlider, lower, upper }) => {
   const { label, value } = getLabelValue(option)
-  const isSelected = value === lower || value === upper
+  const isActive = value === lower || value === upper
   const isInside = (!lower || value > lower) && (!upper || value < upper)
 
   const classes = [className, isInside ? 'inside' : '']
@@ -13,7 +13,7 @@ const SliderOption = ({ option, className, updateSlider, lower, upper }) => {
   return (
     <Button
       key={value}
-      isActive={isSelected}
+      isActive={isActive}
       onClick={() => updateSlider(value)}
       classes={classes}
       label={label}

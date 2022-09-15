@@ -4,6 +4,7 @@ const ExternalLinks = ({ originalTitle, title, allocineId }) => {
   return (
     <>
       <a
+        className='action'
         href={`https://www.allocine.fr/film/fichefilm_gen_cfilm=${allocineId}.html`}
         target='_blank'
         rel='noreferrer'
@@ -12,6 +13,7 @@ const ExternalLinks = ({ originalTitle, title, allocineId }) => {
       </a>
 
       <a
+        className='action'
         href={`https://letterboxd.com/film/${convertToSlug(
           originalTitle || title
         )}`}

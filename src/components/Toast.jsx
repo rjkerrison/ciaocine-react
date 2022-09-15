@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { ToastContext } from '../context/ToastContext'
+import Button from './shared/Button'
 import './toast.scss'
 
 const Toast = () => {
@@ -9,7 +10,7 @@ const Toast = () => {
     <div className={'toast-container ' + (active ? '' : 'bye-bye-bye')}>
       <div className='toast'>
         <p>{message}</p>
-        {undo.action && <button onClick={undo.action}>Undo</button>}
+        {undo.action && <Button onClick={undo.action}>Undo</Button>}
       </div>
     </div>
   )

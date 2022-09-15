@@ -3,28 +3,30 @@ import { CalendarContext } from '../../context/CalendarContext'
 import { ToastContext } from '../../context/ToastContext'
 import { formatAs } from '../../utils/formatDate'
 import Authenticated from '../shared/Authenticated'
+import Button from '../shared/Button'
 
 const ConcurrencyExclusionButton = ({ _id, movie, startTime }) => {
   const { toast } = useContext(ToastContext)
   const { toggleSelectedShowtimeId, isSelectedShowtimeId } =
     useContext(CalendarContext)
 
-  const isSelected = isSelectedShowtimeId(_id)
+  const isActive = isSelectedShowtimeId(_id)
   const description = `${movie.title} at ${formatAs.time(startTime)}`
 
-  const title = isSelected
+  const title = isActive
     ? `Remove concurrency exclusion check with ${description}`
     : `Filter only showings at a different time to ${description}`
 
   return (
-    <button
-      className={`round ${isSelected && 'active'}`}
+    <Button
+      isActive={isActive}
+      classes={['round']}
       title={title}
       onClick={async () => {
         toggleSelectedShowtimeId(_id)
         toast(
           <>
-            {!isSelected
+            {!isActive
               ? 'Showing only films that can be seen along with'
               : 'Removed concurrency exclusion check with'}{' '}
             <strong>{movie.title}</strong> at{' '}
@@ -33,9 +35,9 @@ const ConcurrencyExclusionButton = ({ _id, movie, startTime }) => {
         )
       }}
     >
-      <span>{isSelected ? '💫' : '☄️'}</span>
+      <span>{isActive ? '💫' : '☄️'}</span>
       <span className='sr-only'></span>
-    </button>
+    </Button>
   )
 }
 

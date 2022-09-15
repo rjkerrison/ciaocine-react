@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
+import Button from './shared/Button'
 
 const Popup = ({ active = true, close }) => {
   const [classes, setClasses] = useState(['big-popup', 'movie-popup'])
@@ -32,9 +33,9 @@ const Popup = ({ active = true, close }) => {
       onTransitionEnd={handleTransitionEnd}
     >
       <Outlet />
-      <button className='round' onClick={deactivate}>
+      <Button classes={['round']} onClick={deactivate}>
         X
-      </button>
+      </Button>
     </article>
   )
 }

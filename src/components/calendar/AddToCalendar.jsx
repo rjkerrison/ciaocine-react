@@ -3,6 +3,7 @@ import { CalendarContext } from '../../context/CalendarContext'
 import { ToastContext } from '../../context/ToastContext'
 import { formatAs } from '../../utils/formatDate'
 import Authenticated from '../shared/Authenticated'
+import Button from '../shared/Button'
 import CalendarChangeToastMessage from './CalendarChangeToastMessage'
 
 const getDescription = (title, cinema, startTime, isInCalendar) => {
@@ -30,14 +31,20 @@ const AddToCalendar = ({ _id, title, startTime, cinema }) => {
     [title, cinema, startTime, isInCalendar]
   )
 
-  const className = `round ${isInCalendar ? 'active' : ''} ${
-    loading ? 'loading' : ''
-  }`
+  const classes = ['round']
+
+  if (isInCalendar) {
+    classes.push('active')
+  }
+  if (loading) {
+    classes.push('loading')
+  }
+
   const symbol = isInCalendar ? '✔' : '+'
 
   return (
-    <button
-      className={className}
+    <Button
+      classes={classes}
       title={description}
       onClick={async () => {
         setLoading(true)
@@ -69,7 +76,7 @@ const AddToCalendar = ({ _id, title, startTime, cinema }) => {
     >
       <span>{symbol}</span>
       <span className='sr-only'>{description}</span>
-    </button>
+    </Button>
   )
 }
 
