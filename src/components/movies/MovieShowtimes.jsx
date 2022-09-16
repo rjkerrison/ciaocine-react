@@ -22,6 +22,10 @@ const toHiddenShowtimeCard = (showtime, movie) =>
 const MovieShowtimes = ({ showtimes, movie, children, overflowLimit = 6 }) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
+  if (!showtimes || showtimes.length === 0) {
+    return children
+  }
+
   if (showtimes.length > overflowLimit) {
     const toShow = showtimes
       .slice(0, overflowLimit - 1)

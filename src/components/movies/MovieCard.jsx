@@ -14,7 +14,7 @@ const MovieCard = ({ ...movie }) => {
           return (
             <>
               <Showtimes>
-                {showtimes.length > 0 && (
+                {
                   <MovieShowtimes
                     showtimes={showtimes}
                     movie={enhancedMovie}
@@ -27,7 +27,7 @@ const MovieCard = ({ ...movie }) => {
                       </p>
                     )}
                   </MovieShowtimes>
-                )}
+                }
               </Showtimes>
               <Actions />
             </>
