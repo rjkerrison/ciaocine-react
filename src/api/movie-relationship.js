@@ -13,6 +13,22 @@ const postRelationship = async (movieId, relationshipType, data) => {
   return { relationship }
 }
 
+export const getMetadata = async (movies) => {
+  const config = {
+    url: `/metadata`,
+    headers: getHeadersWithAuth(),
+    params: {
+      movies,
+    },
+  }
+  try {
+    const { data } = await service.request(config)
+    return data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export const postWatch = async (movieId, rating = 10) =>
   await postRelationship(movieId, 'watch', { rating })
 

@@ -1,15 +1,18 @@
 import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
+import { MetadataContext } from '../../context/MetadataContext'
 import { ToastContext } from '../../context/ToastContext'
 import Button from '../shared/Button'
 import { markAs } from './utils/relationships'
 
-const MovieActions = ({ setIsHidden, title, _id }) => {
+const MovieActions = ({ setIsHidden, title, slug, _id }) => {
   const { toast } = useContext(ToastContext)
   const { isLoggedIn, fireOrQueueAuthenticatedAction } = useContext(AuthContext)
+  const { metadata } = useContext(MetadataContext)
 
   const actions = [
     {
+      isActive: metadata.watches.includes(slug),
       label: 'Watched?',
       onClick: () => {
         fireOrQueueAuthenticatedAction(
@@ -19,6 +22,7 @@ const MovieActions = ({ setIsHidden, title, _id }) => {
       },
     },
     {
+      isActive: metadata.dismisses.includes(slug),
       label: 'Dismiss',
       onClick: () => {
         setIsHidden(true)
@@ -28,6 +32,7 @@ const MovieActions = ({ setIsHidden, title, _id }) => {
       },
     },
     {
+      isActive: metadata.wants.includes(slug),
       label: 'Want?',
       onClick: () => {
         fireOrQueueAuthenticatedAction(

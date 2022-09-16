@@ -5,6 +5,8 @@ import { getShowtimes } from '../../api/showtimes'
 import Filters from '../filters/Filters'
 import MovieList from '../movies/MovieList'
 import { formatAs } from '../../utils/formatDate'
+import { useContext } from 'react'
+import { MetadataContext } from '../../context/MetadataContext'
 
 const ShowtimeList = ({
   title = 'Séances',
@@ -18,6 +20,12 @@ const ShowtimeList = ({
   const [isLoading, setIsLoading] = useState(true)
   const [searchParams, setSearchParams] = useSearchParams()
   const [movies, setMovies] = useState([])
+
+  const { updateMetadataForSlugs } = useContext(MetadataContext)
+
+  useEffect(() => {
+    updateMetadataForSlugs(movies.map(({ movie: { slug } }) => slug))
+  }, [movies, updateMetadataForSlugs])
 
   const [searchDate, setSearchDate] = useState(null)
   const yyyy = useMemo(() => searchDate?.getFullYear(), [searchDate])
@@ -43,7 +51,7 @@ const ShowtimeList = ({
     }
 
     let cancelled = false
-    let source = axios.CancelToken.source()
+    const source = axios.CancelToken.source()
     const getMovies = async () => {
       try {
         const { movies } = await getShowtimes({
