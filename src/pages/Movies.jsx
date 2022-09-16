@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { searchMovies } from '../api/movie'
 import NavigationSearchBar from '../components/layout/NavigationSearchBar'
