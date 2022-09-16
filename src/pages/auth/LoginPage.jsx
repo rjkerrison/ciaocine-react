@@ -4,7 +4,6 @@ import { AuthContext } from '../../context/AuthContext'
 import { login } from '../../api/auth'
 import './AuthPage.css'
 import UserForm from '../../components/auth/UserForm'
-import { useEffect } from 'react'
 import Quote, { quotes } from '../../components/shared/Quote'
 
 const LoginPage = ({ message }) => {
