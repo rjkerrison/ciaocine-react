@@ -42,8 +42,6 @@ const ShowtimeList = ({
       return
     }
 
-    // setIsLoading(true)
-
     let cancelled = false
     let source = axios.CancelToken.source()
     const getMovies = async () => {

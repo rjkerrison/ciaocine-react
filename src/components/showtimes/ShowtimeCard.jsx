@@ -1,5 +1,5 @@
 import { formatAs } from '../../utils/formatDate'
-import AddToCalendar from '../calendar/AddToCalendar'
+import { Deferred as AddToCalendar } from '../calendar/AddToCalendar'
 
 import './ShowtimeCard.scss'
 

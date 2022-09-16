@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { signup } from '../../api/auth'
 import UserForm from '../../components/auth/UserForm'
+import Quote, { quotes } from '../../components/shared/Quote'
 import './AuthPage.css'
 
 const SignupPage = () => {
@@ -33,10 +34,6 @@ const SignupPage = () => {
       className='movie-popup-inner auth-page popup-inner'
     >
       <h1>Sign Up</h1>
-      <blockquote>
-        Welcome to the party, pal.
-        <cite>Die Hard</cite>
-      </blockquote>
 
       <UserForm submitUserInfo={handleSignupSubmit} submitLabel='Sign Up' />
 
@@ -45,6 +42,7 @@ const SignupPage = () => {
       <p>
         Already have an account? <Link to={'/auth/login'}>Login</Link>.
       </p>
+      <Quote {...quotes.dieHard} />
     </div>
   )
 }

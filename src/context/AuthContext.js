@@ -19,22 +19,32 @@ function AuthProviderWrapper(props) {
 
   useEffect(() => {
     if (isLoggedIn && queuedActions.length > 0) {
-      queuedActions.forEach((action) => action())
+      queuedActions.forEach((action) => action(user))
       setQueuedActions([])
     }
-  }, [isLoggedIn, queuedActions])
+  }, [isLoggedIn, queuedActions, user])
 
-  const fireOrQueueAuthAction = useCallback(
-    (actionCallback) => {
+  const fireOrQueueAuthenticatedAction = useCallback(
+    (actionCallback, { message } = {}) => {
       if (isLoggedIn) {
-        actionCallback()
-        return
+        return actionCallback(user)
       }
 
-      addToQueue(actionCallback)
-      navigate('/auth/login', { state: { backgroundLocation: location } })
+      return new Promise((res, rej) => {
+        addToQueue((newUser) => {
+          Promise.resolve(actionCallback(newUser))
+            .then((result) => res(result))
+            .catch(rej)
+        })
+        navigate('/auth/login' + location.search, {
+          state: {
+            message,
+            backgroundLocation: location,
+          },
+        })
+      })
     },
-    [isLoggedIn, navigate, location]
+    [isLoggedIn, navigate, location, user]
   )
 
   const authenticateUser = useCallback(async () => {
@@ -68,7 +78,7 @@ function AuthProviderWrapper(props) {
         user,
         authenticateUser,
         logOutUser,
-        fireOrQueueAuthAction,
+        fireOrQueueAuthenticatedAction,
       }}
     >
       {props.children}

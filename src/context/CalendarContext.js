@@ -14,7 +14,8 @@ const CalendarContextProvider = ({ children }) => {
   const [userCalendars, setUserCalendars] = useState({})
   const [usernamesPendingRequests, setUsernamesPendingRequests] = useState([])
   const [selectedShowtimeIds, setSelectedShowtimeIds] = useState([])
-  const { isLoggedIn, isLoading, user } = useContext(AuthContext)
+  const { isLoggedIn, isLoading, user, fireOrQueueAuthenticatedAction } =
+    useContext(AuthContext)
 
   const isSelectedShowtimeId = (id) => {
     return selectedShowtimeIds.includes(id)
@@ -80,15 +81,22 @@ const CalendarContextProvider = ({ children }) => {
   )
 
   const remove = async (id) => {
-    const result = await removeFromCalendar(id)
-    await requestCalendarForUsername(user.username)
-    return result
+    await fireOrQueueAuthenticatedAction(async ({ username }) => {
+      const result = await removeFromCalendar(id)
+      await requestCalendarForUsername(username)
+      return result
+    })
   }
 
   const add = async (id) => {
-    const result = await addToCalendar(id)
-    await requestCalendarForUsername(user.username)
-    return result
+    await fireOrQueueAuthenticatedAction(
+      async ({ username }) => {
+        const result = await addToCalendar(id)
+        await requestCalendarForUsername(username)
+        return result
+      },
+      { message: 'You must be logged in to add to your calendar.' }
+    )
   }
 
   return (
