@@ -1,0 +1,15 @@
+blockquote {
+  display: grid;
+  grid-template: 'quote quote .' 2rem '. cite cite' 2rem / 5rem auto 5rem;
+  color: var(--mid);
+
+  span {
+    grid-area: quote;
+    font-family: var(--font-mono);
+  }
+  cite {
+    grid-area: cite;
+    justify-self: flex-end;
+    align-self: flex-end;
+  }
+}
