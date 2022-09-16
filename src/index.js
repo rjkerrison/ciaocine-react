@@ -11,6 +11,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContextProvider } from './context/ToastContext'
 import { CalendarContextProvider } from './context/CalendarContext'
 import { LikedContextProvider } from './context/LikedContext'
+import { MetadataContextProvider } from './context/MetadataContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -18,9 +19,11 @@ root.render(
     <AuthProviderWrapper>
       <ToastContextProvider>
         <LikedContextProvider>
-          <CalendarContextProvider>
-            <App />
-          </CalendarContextProvider>
+          <MetadataContextProvider>
+            <CalendarContextProvider>
+              <App />
+            </CalendarContextProvider>
+          </MetadataContextProvider>
         </LikedContextProvider>
       </ToastContextProvider>
     </AuthProviderWrapper>
