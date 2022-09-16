@@ -1,24 +1,20 @@
 import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import { MetadataContext } from '../../context/MetadataContext'
-import { ToastContext } from '../../context/ToastContext'
 import Button from '../shared/Button'
-import { markAs } from './utils/relationships'
 
-const MovieActions = ({ setIsHidden, title, slug, _id }) => {
-  const { toast } = useContext(ToastContext)
+const MovieActions = ({ setIsHidden, title, slug }) => {
   const { isLoggedIn, fireOrQueueAuthenticatedAction } = useContext(AuthContext)
-  const { metadata } = useContext(MetadataContext)
+  const { metadata, markAs } = useContext(MetadataContext)
 
   const actions = [
     {
       isActive: metadata.watches.includes(slug),
-      label: 'Watched?',
+      label: metadata.watches.includes(slug) ? 'Watched' : 'Unwatched',
       onClick: () => {
-        fireOrQueueAuthenticatedAction(
-          () => markAs.watched(_id, { title }, toast),
-          { message: 'Log in to save your watched films' }
-        )
+        fireOrQueueAuthenticatedAction(() => markAs.watched(slug, { title }), {
+          message: 'Log in to save your watched films',
+        })
       },
     },
     {
@@ -27,18 +23,19 @@ const MovieActions = ({ setIsHidden, title, slug, _id }) => {
       onClick: () => {
         setIsHidden(true)
         if (isLoggedIn) {
-          markAs.dismissed(_id, { title }, toast)
+          markAs.dismissed(slug, { title })
         }
       },
     },
     {
       isActive: metadata.wants.includes(slug),
-      label: 'Want?',
+      label: metadata.wants.includes(slug)
+        ? 'You want to see this'
+        : 'Want to see this?',
       onClick: () => {
-        fireOrQueueAuthenticatedAction(
-          () => markAs.wanted(_id, { title }, toast),
-          { message: 'Log in to bookmark films' }
-        )
+        fireOrQueueAuthenticatedAction(() => markAs.wanted(slug, { title }), {
+          message: 'Log in to bookmark films',
+        })
       },
     },
   ]
