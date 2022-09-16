@@ -4,9 +4,11 @@ import { AuthContext } from '../../context/AuthContext'
 import { login } from '../../api/auth'
 import './AuthPage.css'
 import UserForm from '../../components/auth/UserForm'
+import { useEffect } from 'react'
+import Quote, { quotes } from '../../components/shared/Quote'
 
 const LoginPage = ({ message }) => {
-  const { authenticateUser, isLoggedIn } = useContext(AuthContext)
+  const { authenticateUser } = useContext(AuthContext)
   const [errorMessage, setErrorMessage] = useState(undefined)
 
   const navigate = useNavigate()
@@ -26,10 +28,6 @@ const LoginPage = ({ message }) => {
     }
   }
 
-  if (isLoggedIn) {
-    navigate(-1)
-  }
-
   return (
     <div
       onClick={(e) => e.stopPropagation()}
@@ -39,22 +37,16 @@ const LoginPage = ({ message }) => {
       className='movie-popup-inner auth-page popup-inner'
     >
       <h1>Login</h1>
-      <blockquote>
-        This is a private residence, man.
-        <cite>The Big Lebowski</cite>
-      </blockquote>
+      <p>{message}</p>
 
       <UserForm submitUserInfo={handleLoginSubmit} submitLabel='Login' />
 
       {errorMessage && <p className='error-message'>{errorMessage}</p>}
 
       <p>
-        {message || (
-          <>
-            Don't have an account? <Link to={'/auth/signup'}>Sign up</Link>.
-          </>
-        )}
+        Don't have an account? <Link to={'/auth/signup'}>Sign up</Link>.
       </p>
+      <Quote {...quotes.lebowski} />
     </div>
   )
 }

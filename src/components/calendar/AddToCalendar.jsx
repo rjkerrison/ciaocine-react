@@ -80,4 +80,6 @@ const AddToCalendar = ({ _id, title, startTime, cinema }) => {
   )
 }
 
+export const Deferred = AddToCalendar
+
 export default Authenticated(AddToCalendar)

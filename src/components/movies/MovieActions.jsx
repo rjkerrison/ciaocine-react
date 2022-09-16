@@ -6,13 +6,16 @@ import { markAs } from './utils/relationships'
 
 const MovieActions = ({ setIsHidden, title, _id }) => {
   const { toast } = useContext(ToastContext)
-  const { isLoggedIn, fireOrQueueAuthAction } = useContext(AuthContext)
+  const { isLoggedIn, fireOrQueueAuthenticatedAction } = useContext(AuthContext)
 
   const actions = [
     {
       label: 'Watched?',
       onClick: () => {
-        fireOrQueueAuthAction(() => markAs.watched(_id, { title }, toast))
+        fireOrQueueAuthenticatedAction(
+          () => markAs.watched(_id, { title }, toast),
+          { message: 'Log in to save your watched films' }
+        )
       },
     },
     {
@@ -27,7 +30,10 @@ const MovieActions = ({ setIsHidden, title, _id }) => {
     {
       label: 'Want?',
       onClick: () => {
-        fireOrQueueAuthAction(() => markAs.wanted(_id, { title }, toast))
+        fireOrQueueAuthenticatedAction(
+          () => markAs.wanted(_id, { title }, toast),
+          { message: 'Log in to bookmark films' }
+        )
       },
     },
   ]
@@ -35,7 +41,7 @@ const MovieActions = ({ setIsHidden, title, _id }) => {
   return (
     <>
       {actions.map((action) => {
-        return <Button classes={['action']} {...action} />
+        return <Button key={action.label} classes={['action']} {...action} />
       })}
     </>
   )
