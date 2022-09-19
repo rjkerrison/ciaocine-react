@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import MovieShowtimeSummary from './MovieShowtimeSummary'
 import QuickFilter from './QuickFilter'
+import LoadingSpinner from '../shared/LoadingSpinner'
 
 const MovieList = ({ movies, isLoading, className }) => {
   const [currentQuery, setCurrentQuery] = useState('')
@@ -22,7 +23,7 @@ const MovieList = ({ movies, isLoading, className }) => {
   }, [updateFilteredMovies, currentQuery])
 
   if (isLoading) {
-    return <div className='centre loading'></div>
+    return <LoadingSpinner />
   }
 
   return (

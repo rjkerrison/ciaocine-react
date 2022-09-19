@@ -34,59 +34,9 @@ section.movies-section h1 {
 
 @media screen and (min-width: 600px) {
   .movies {
-    grid-template: auto / repeat(auto-fill, minmax(24rem, 1fr));
-  }
-}
-
-.loading {
-  background-image: conic-gradient(
-    var(--contrast-dark) 0%,
-    var(--contrast-dark) 15%,
-    var(--dark) 15%,
-    var(--dark) 35%,
-    var(--contrast) 35%,
-    var(--contrast-dark) 100%
-  );
-  border-radius: 50%;
-  width: 15rem;
-  height: 15rem;
-  transform-origin: center;
-  animation: spin 2s infinite;
-}
-.loading::after {
-  --size: 50%;
-  display: block;
-  background-image: conic-gradient(
-    var(--contrast),
-    var(--contrast-dark),
-    var(--mid),
-    var(--contrast-dark),
-    var(--contrast)
-  );
-  background: var(--dark);
-  position: absolute;
-  left: calc(50% - var(--size) / 2);
-  top: calc(50% - var(--size) / 2);
-  transform-origin: center;
-  content: '';
-  border-radius: 50%;
-  width: var(--size);
-  height: var(--size);
-  /* animation: spin 0.5s infinite reverse linear; */
-}
-
-.loading.centre {
-  position: absolute;
-  left: calc(50% - 7.5rem);
-  top: calc(50% - 7.5rem);
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(1turn);
+    grid-template:
+      auto /
+      repeat(auto-fill, minmax(24rem, 1fr));
   }
 }
 

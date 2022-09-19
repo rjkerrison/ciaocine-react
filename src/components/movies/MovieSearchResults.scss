@@ -8,11 +8,14 @@ ul.movie-search-results {
 
   > li {
     width: 100%;
+    display: contents;
   }
 
   @media screen and (min-width: 37.5rem) {
     display: grid;
-    grid-template: auto / repeat(auto-fill, minmax(30rem, 1fr));
+    grid-template:
+      auto /
+      repeat(auto-fill, minmax(20rem, 1fr));
   }
 
   .movie-search-result {

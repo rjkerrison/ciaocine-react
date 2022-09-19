@@ -74,6 +74,7 @@ const ShowtimeList = ({
       }
     }
 
+    setIsLoading(true)
     getMovies()
 
     return () => {

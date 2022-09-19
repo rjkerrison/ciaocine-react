@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { getCinema } from '../api/cinemas'
 import CinemaHeader from '../components/cinemas/CinemaHeader'
 import ShowtimeList from '../components/showtimes/ShowtimeList'
+import LoadingSpinner from '../components/shared/LoadingSpinner'
 
 const Cinema = () => {
   const navigate = useNavigate()
@@ -22,7 +23,7 @@ const Cinema = () => {
   }, [cinemaIdOrSlug, navigate])
 
   if (!cinema) {
-    return <div className='centre loading'></div>
+    return <LoadingSpinner />
   }
 
   return (

@@ -1,5 +1,6 @@
 import MovieSummary from './MovieSummary'
 import MovieShowtimes from './MovieShowtimes'
+import MovieActions from './MovieActions'
 
 const MovieCard = ({ ...movie }) => {
   const { showtimes, pastShowtimeCount, ...enhancedMovie } = {
@@ -29,7 +30,9 @@ const MovieCard = ({ ...movie }) => {
                   </MovieShowtimes>
                 }
               </Showtimes>
-              <Actions />
+              <Actions>
+                <MovieActions {...movie} />
+              </Actions>
             </>
           )
         }}
