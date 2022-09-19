@@ -7,6 +7,7 @@ import MovieList from '../movies/MovieList'
 import { formatAs } from '../../utils/formatDate'
 import { useContext } from 'react'
 import { MetadataContext } from '../../context/MetadataContext'
+import ShowtimeResultsSummary from './ShowtimeResultsSummary'
 
 const ShowtimeList = ({
   title = 'Séances',
@@ -131,10 +132,7 @@ const ShowtimeList = ({
       <h1>
         {title} le {formatAs.weekdayDate(searchDate)}
       </h1>
-      <p>
-        Il y a {movies.length} films avec des séances le{' '}
-        {formatAs.weekdayDate(searchDate)} qui satisfait vos filtres.
-      </p>
+      <ShowtimeResultsSummary movies={movies} searchDate={searchDate} />
 
       <Filters
         updateFilter={updateFilter}
