@@ -3,8 +3,8 @@ import { AuthContext } from '../../context/AuthContext'
 import { MetadataContext } from '../../context/MetadataContext'
 import Button from '../shared/Button'
 
-const MovieActions = ({ setIsHidden, title, slug }) => {
-  const { isLoggedIn, fireOrQueueAuthenticatedAction } = useContext(AuthContext)
+const MovieActions = ({ title, slug }) => {
+  const { fireOrQueueAuthenticatedAction } = useContext(AuthContext)
   const { metadata, markAs } = useContext(MetadataContext)
 
   const actions = [
@@ -21,10 +21,12 @@ const MovieActions = ({ setIsHidden, title, slug }) => {
       isActive: metadata.dismisses.includes(slug),
       label: 'Dismiss',
       onClick: () => {
-        setIsHidden(true)
-        if (isLoggedIn) {
-          markAs.dismissed(slug, { title })
-        }
+        fireOrQueueAuthenticatedAction(
+          () => markAs.dismissed(slug, { title }),
+          {
+            message: "Log in to hide films you don't want to see",
+          }
+        )
       },
     },
     {

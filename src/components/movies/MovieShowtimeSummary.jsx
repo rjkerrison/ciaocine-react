@@ -1,15 +1,8 @@
-import { useState } from 'react'
 import MovieShowtimes from './MovieShowtimes'
 import MovieActions from './MovieActions'
 import MovieSummary from './MovieSummary'
 
 const MovieShowtimeSummary = ({ movie, showtimes }) => {
-  const [isHidden, setIsHidden] = useState(false)
-
-  if (isHidden) {
-    return <></>
-  }
-
   return (
     <MovieSummary movie={movie}>
       {({ Actions, Showtimes }) => {
@@ -19,7 +12,7 @@ const MovieShowtimeSummary = ({ movie, showtimes }) => {
               <MovieShowtimes showtimes={showtimes} movie={movie} />
             </Showtimes>
             <Actions>
-              <MovieActions setIsHidden={setIsHidden} {...movie} />
+              <MovieActions {...movie} />
             </Actions>
           </>
         )
