@@ -90,7 +90,7 @@ const MetadataContextProvider = ({ children }) => {
 
   const markAsDismissed = (slug, { title }) => {
     postDismiss(slug).then(() => {
-      addToMetadata(slug, 'dismissed')
+      addToMetadata(slug, 'dismisses')
       toast(`Marked ${title} as dismissed`)
     })
   }

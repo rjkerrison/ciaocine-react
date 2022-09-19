@@ -1,14 +1,21 @@
-.toast-container {
+.toasts-container {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 3;
+}
+
+.toast-container {
+  position: absolute;
+  left: 0;
+  top: calc(8rem * var(--index));
+  height: 8rem;
   padding: 1rem;
-  width: 20rem;
+  width: 25rem;
   display: flex;
   justify-content: center;
   transition: all 1s ease-in-out;
   font-size: 1rem;
-  z-index: 3;
 
   &.bye-bye-bye {
     left: -100%;
@@ -21,4 +28,6 @@
   box-shadow: 0.5rem 0.5rem 0.25rem -0.25rem var(--toast-shadow);
   padding: 1rem;
   border-radius: 1rem;
+  display: flex;
+  align-items: center;
 }

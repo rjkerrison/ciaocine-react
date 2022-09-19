@@ -1,49 +1,35 @@
-import { createContext, useCallback, useEffect, useState } from 'react'
+import { createContext, useCallback, useState } from 'react'
+import { v4 as uuid } from 'uuid'
 
 const ToastContext = createContext()
 
-const seconds = (a) => a * 1000
-const TOAST_TIMEOUT = seconds(3)
-
 const ToastContextProvider = ({ children }) => {
-  const [message, setMessage] = useState('')
-  const [undo, setUndo] = useState({ action: null })
-  const [active, setActive] = useState('')
-  const [resetTimeout, setResetTimeout] = useState(null)
+  const [toasts, setToasts] = useState([])
 
-  const toast = useCallback(
-    (message, undoCallback) => {
-      clearTimeout(resetTimeout)
-      setMessage(message)
-      setUndo({ action: undoCallback })
-      setActive(true)
-    },
-    [resetTimeout]
-  )
+  const toast = useCallback((message, undoCallback) => {
+    const id = uuid()
 
-  const reset = useCallback(() => {
-    setActive(false)
-    // reset the reset
-    const timeout = setTimeout(() => setMessage(''), 500)
-    setResetTimeout(timeout)
-    setUndo({ action: null })
+    setToasts((current) => [
+      ...current,
+      {
+        id,
+        message,
+        undo: { action: undoCallback },
+        // To allow the Toast.jsx component to govern its own animation timings,
+        // we provide it the responsibility of removing each toast.
+        remove: () =>
+          setToasts((current) =>
+            current.filter(({ id: foundId }) => foundId !== id)
+          ),
+      },
+    ])
   }, [])
-
-  useEffect(() => {
-    if (!active) {
-      return
-    }
-    // Deactivate after 1s
-    setTimeout(reset, TOAST_TIMEOUT)
-  }, [active, reset])
 
   return (
     <ToastContext.Provider
       value={{
-        message,
-        active,
+        toasts,
         toast,
-        undo,
       }}
     >
       {children}
