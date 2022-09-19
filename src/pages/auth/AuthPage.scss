@@ -6,4 +6,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  a {
+    color: var(--contrast-dark);
+
+    &:hover {
+      color: var(--contrast-alt-dark);
+    }
+  }
 }

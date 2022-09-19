@@ -5,7 +5,14 @@ const PopupLink = ({ to, children, ...props }) => {
   const query = location.search
 
   return (
-    <Link to={to + query} state={{ backgroundLocation: location }} {...props}>
+    <Link
+      to={to + query}
+      state={{
+        backgroundLocation: location,
+        ...location.state,
+      }}
+      {...props}
+    >
       {children}
     </Link>
   )

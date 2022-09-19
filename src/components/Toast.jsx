@@ -10,10 +10,6 @@ const TOAST_TIMEOUT = seconds(3)
 const ToastsContainer = () => {
   const { toasts } = useContext(ToastContext)
 
-  useEffect(() => {
-    console.log('TOASTS UPDATED', toasts)
-  }, [toasts])
-
   return (
     <div className='toasts-container'>
       {toasts.map(({ id, ...toast }, i) => (

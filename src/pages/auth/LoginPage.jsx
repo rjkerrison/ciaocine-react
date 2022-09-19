@@ -1,10 +1,11 @@
 import { useContext, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import { login } from '../../api/auth'
-import './AuthPage.css'
-import UserForm from '../../components/auth/UserForm'
-import Quote, { quotes } from '../../components/shared/Quote'
+import { quotes } from '../../components/shared/Quote'
+import PopupLink from '../../components/shared/PopupLink'
+
+import AuthPage from './AuthPage'
 
 const LoginPage = ({ message }) => {
   const { authenticateUser } = useContext(AuthContext)
@@ -28,25 +29,20 @@ const LoginPage = ({ message }) => {
   }
 
   return (
-    <div
-      onClick={(e) => e.stopPropagation()}
-      style={{
-        '--backdrop-path': `url(https://www.gannett-cdn.com/-mm-/18e5734ece714b32cb52522096349e5f2501493c/c=77-102-1501-906/local/-/media/Louisville/Louisville/2014/07/08/1404839052000-lcjdc5-6b0iz0ln7vq5d6rub04-original.jpg)`,
-      }}
-      className='movie-popup-inner auth-page popup-inner'
-    >
-      <h1>Login</h1>
-      <p>{message}</p>
-
-      <UserForm submitUserInfo={handleLoginSubmit} submitLabel='Login' />
-
-      {errorMessage && <p className='error-message'>{errorMessage}</p>}
-
-      <p>
-        Don't have an account? <Link to={'/auth/signup'}>Sign up</Link>.
-      </p>
-      <Quote {...quotes.lebowski} />
-    </div>
+    <AuthPage
+      handleSubmit={handleLoginSubmit}
+      errorMessage={errorMessage}
+      message={message}
+      backdrop={`url(https://www.gannett-cdn.com/-mm-/18e5734ece714b32cb52522096349e5f2501493c/c=77-102-1501-906/local/-/media/Louisville/Louisville/2014/07/08/1404839052000-lcjdc5-6b0iz0ln7vq5d6rub04-original.jpg)`}
+      label='Log In'
+      quote={quotes.lebowski}
+      alternative={
+        <p>
+          Don't have an account?{' '}
+          <PopupLink to={'/auth/signup'}>Sign up</PopupLink>.
+        </p>
+      }
+    />
   )
 }
 

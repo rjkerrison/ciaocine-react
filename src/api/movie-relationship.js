@@ -1,12 +1,23 @@
 import { getHeadersWithAuth } from './auth'
 import service from './service'
 
-const postRelationship = async (movieId, relationshipType, data) => {
+const endpoints = {
+  watches: 'watch',
+  dismisses: 'dismiss',
+  wants: 'want',
+}
+
+export const makeMetadataRequest = async ({
+  slug,
+  key,
+  method = 'post',
+  data,
+}) => {
   const {
     data: { relationship },
   } = await service.request({
-    method: 'post',
-    url: `/movies/${movieId}/${relationshipType}`,
+    method,
+    url: `/movies/${slug}/${endpoints[key]}`,
     data,
     headers: getHeadersWithAuth(),
   })
@@ -28,12 +39,3 @@ export const getMetadata = async (movies) => {
     console.error(error)
   }
 }
-
-export const postWatch = async (movieId, rating = 10) =>
-  await postRelationship(movieId, 'watch', { rating })
-
-export const postDismiss = async (movieId) =>
-  await postRelationship(movieId, 'dismiss')
-
-export const postWant = async (movieId) =>
-  await postRelationship(movieId, 'want')

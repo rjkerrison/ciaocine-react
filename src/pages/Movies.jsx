@@ -22,7 +22,6 @@ const Movies = () => {
   const query = searchParams.get('q')
 
   useEffect(() => {
-    console.log('updating movies list', { query })
     const updateMovies = async () => {
       if (!query) {
         return

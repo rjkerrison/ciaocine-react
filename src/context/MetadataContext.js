@@ -3,12 +3,11 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from 'react'
-import { getMetadata } from '../api/movie-relationship'
+import { getMetadata, makeMetadataRequest } from '../api/movie-relationship'
 import { AuthContext } from './AuthContext'
-
-import { postDismiss, postWant, postWatch } from '../api/movie-relationship'
 import { ToastContext } from './ToastContext'
 
 const MetadataContext = createContext()
@@ -18,6 +17,31 @@ const uniquelyCombine = (a, b, property) => {
     ...a[property],
     ...b[property].filter((c) => !a[property].includes(c)),
   ]
+}
+
+const toggleMarkAs = (
+  key,
+  { metadata, toast, removeFromMetadata, addToMetadata }
+) => {
+  return (slug, { title }) => {
+    const toggle = async (isRemoval) => {
+      const method = isRemoval ? 'delete' : 'post'
+      await makeMetadataRequest({ slug, method, key })
+
+      const changeMetadata = isRemoval ? removeFromMetadata : addToMetadata
+      changeMetadata(slug, key)
+
+      toast(
+        <p>
+          {isRemoval ? 'Removed' : 'Added'} <em>{title}</em>{' '}
+          {isRemoval ? 'from' : 'to'} {key}
+        </p>,
+        () => toggle(!isRemoval)
+      )
+    }
+
+    toggle(metadata[key].includes(slug))
+  }
 }
 
 const MetadataContextProvider = ({ children }) => {
@@ -36,7 +60,6 @@ const MetadataContextProvider = ({ children }) => {
       const newSlugs = slugs.filter(
         (slug) => slug && !metadata.movies.includes(slug)
       )
-      console.log({ slugs, newSlugs })
 
       if (newSlugs.length === 0) {
         return
@@ -44,12 +67,12 @@ const MetadataContextProvider = ({ children }) => {
 
       const received = await getMetadata(newSlugs)
       setMetadata((current) => {
-        return {
-          movies: uniquelyCombine(current, received, 'movies'),
-          watches: uniquelyCombine(current, received, 'watches'),
-          dismisses: uniquelyCombine(current, received, 'dismisses'),
-          wants: uniquelyCombine(current, received, 'wants'),
-        }
+        return Object.fromEntries(
+          ['movies', 'watches', 'dismisses', 'wants'].map((key) => [
+            key,
+            uniquelyCombine(current, received, key),
+          ])
+        )
       })
     },
     [metadata.movies]
@@ -70,43 +93,37 @@ const MetadataContextProvider = ({ children }) => {
     }
   }, [isLoading, isLoggedIn])
 
-  const addToMetadata = (slug, key) => {
-    setMetadata(({ [key]: value, ...metadata }) => {
-      return {
-        ...metadata,
-        [key]: [...value, slug],
-      }
-    })
-  }
-
-  const markAsWatched = (slug, { title }) => {
-    if (!metadata.watches.includes(slug)) {
-      postWatch(slug).then(() => {
-        addToMetadata(slug, 'watches')
-        toast(`Marked ${title} as watched`)
+  const markAs = useMemo(() => {
+    const addToMetadata = (slug, key) => {
+      setMetadata(({ [key]: value, ...metadata }) => {
+        return {
+          ...metadata,
+          [key]: [...value, slug],
+        }
       })
     }
-  }
+    const removeFromMetadata = (slug, key) => {
+      setMetadata(({ [key]: value, ...metadata }) => {
+        return {
+          ...metadata,
+          [key]: value.filter((x) => x !== slug),
+        }
+      })
+    }
 
-  const markAsDismissed = (slug, { title }) => {
-    postDismiss(slug).then(() => {
-      addToMetadata(slug, 'dismisses')
-      toast(`Marked ${title} as dismissed`)
-    })
-  }
+    const config = {
+      metadata,
+      toast,
+      addToMetadata,
+      removeFromMetadata,
+    }
 
-  const markAsWanted = (slug, { title }) => {
-    postWant(slug, 10).then(() => {
-      addToMetadata(slug, 'wants')
-      toast(`Marked ${title} as wanted`)
-    })
-  }
-
-  const markAs = {
-    watched: markAsWatched,
-    dismissed: markAsDismissed,
-    wanted: markAsWanted,
-  }
+    return {
+      watched: toggleMarkAs('watches', config),
+      dismissed: toggleMarkAs('dismisses', config),
+      wanted: toggleMarkAs('wants', config),
+    }
+  }, [metadata, toast])
 
   return (
     <MetadataContext.Provider

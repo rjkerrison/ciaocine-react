@@ -15,7 +15,6 @@ const Cinema = () => {
     getCinema(cinemaIdOrSlug)
       .then(setCinema)
       .catch(({ response }) => {
-        console.log(response)
         if (response.status === 404) {
           navigate('/not-found', { replace: true })
         }

@@ -5,6 +5,7 @@
   --light-half: hsla(252, 33%, 50%, 0.5);
   --contrast: hsl(230, 75%, 78%);
   --contrast-dark: hsl(230, 61%, 27%);
+  --contrast-alt-dark: hsl(0, 71%, 27%);
   --contrast-dark-half: hsla(230, 61%, 27%, 0.5);
   --contrast-shadow: hsla(230, 75%, 68%, 0.4);
   --positive-light: hsl(118, 83%, 74%);

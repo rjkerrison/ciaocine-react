@@ -78,7 +78,7 @@ function App() {
           </Route>
           <Route path='/auth'>
             <Route path='login' element={<Login {...state} />} />
-            <Route path='signup' element={<Signup />} />
+            <Route path='signup' element={<Signup {...state} />} />
           </Route>
         </Route>
       </Routes>
@@ -95,7 +95,7 @@ function App() {
           >
             <Route path='movies/:movieId' element={<MoviePopupInner />} />
             <Route path='auth/login' element={<Login {...state} />} />
-            <Route path='auth/signup' element={<Signup />} />
+            <Route path='auth/signup' element={<Signup {...state} />} />
           </Route>
         </Routes>
       )}
