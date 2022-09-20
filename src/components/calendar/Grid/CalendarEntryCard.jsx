@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import { formatAs } from '../../../utils/formatDate'
-import GridColumnPlacer from '../../shared/GridColumnPlacer'
+import GridPlacer from '../../shared/GridPlacer'
 import CalendarMovieSummary from './CalendarMovieSummary'
 
 const CalendarEntryCard = ({ indexOffset = 32, ...showtime }) => {
@@ -22,9 +22,9 @@ const CalendarEntryCard = ({ indexOffset = 32, ...showtime }) => {
 
   return (
     <>
-      <GridColumnPlacer rowStart={index} rowEndSpan={length}>
+      <GridPlacer orientation='column' start={index} endSpan={length}>
         <CalendarMovieSummary {...showtime} />
-      </GridColumnPlacer>
+      </GridPlacer>
     </>
   )
 }
