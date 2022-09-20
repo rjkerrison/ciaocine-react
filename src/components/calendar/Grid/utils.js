@@ -29,9 +29,11 @@ export const summariseShowtimes = (showtimes) => {
   }, earliestStart)
 
   const creneaux =
-    1 +
-    formatAs.fifteenMinuteIndex(latestFinish) -
-    formatAs.fifteenMinuteIndex(earliestStart)
+    (1 +
+      formatAs.fifteenMinuteIndex(latestFinish) -
+      formatAs.fifteenMinuteIndex(earliestStart) +
+      96) %
+    96
 
   return { earliestStart, latestFinish, creneaux }
 }

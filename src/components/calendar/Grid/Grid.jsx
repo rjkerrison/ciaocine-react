@@ -36,7 +36,10 @@ const Grid = ({ showtimes }) => {
   )
 
   return (
-    <div className='CalendarGrid column' style={{ '--row-count': creneaux }}>
+    <div
+      className='CalendarGrid column'
+      style={{ '--creneaux-count': creneaux }}
+    >
       <Hours {...{ startingHours, indexOffset }} />
       <Showtimes {...{ showtimes, indexOffset }} />
     </div>
