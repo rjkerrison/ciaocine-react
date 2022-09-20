@@ -7,7 +7,7 @@ import PopupLink from '../../components/shared/PopupLink'
 
 import AuthPage from './AuthPage'
 
-const LoginPage = ({ message }) => {
+const LoginPage = ({ message, redirect }) => {
   const { authenticateUser } = useContext(AuthContext)
   const [errorMessage, setErrorMessage] = useState(undefined)
 
@@ -20,7 +20,7 @@ const LoginPage = ({ message }) => {
         setErrorMessage(errorMessage)
       } else {
         await authenticateUser()
-        navigate(-1)
+        navigate(redirect || -1)
       }
     } catch (error) {
       const errorDescription = error.response.data.message

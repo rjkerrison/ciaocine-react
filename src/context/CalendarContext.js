@@ -14,6 +14,8 @@ const CalendarContextProvider = ({ children }) => {
   const [userCalendars, setUserCalendars] = useState({})
   const [usernamesPendingRequests, setUsernamesPendingRequests] = useState([])
   const [selectedShowtimeIds, setSelectedShowtimeIds] = useState([])
+  const [currentDayIndex, setCurrentDayIndex] = useState(0)
+
   const { isLoggedIn, isLoading, user, fireOrQueueAuthenticatedAction } =
     useContext(AuthContext)
 
@@ -110,6 +112,8 @@ const CalendarContextProvider = ({ children }) => {
         toggleSelectedShowtimeId,
         isSelectedShowtimeId,
         selectedShowtimeIds,
+        currentDayIndex,
+        setCurrentDayIndex,
       }}
     >
       {children}

@@ -1,0 +1,42 @@
+.calendar-tabs {
+  display: flex;
+  color: var(--text);
+  background-color: var(--dark);
+  overflow-x: scroll;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  gap: 0.5rem;
+
+  flex-direction: column;
+
+  .calendar-tab {
+    background-color: var(--mid);
+    flex: 1 0 auto;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    display: none;
+
+    &.selected {
+      display: flex;
+    }
+  }
+
+  &.open {
+    .calendar-tab {
+      display: flex;
+    }
+  }
+
+  @media screen and (min-width: 600px) {
+    flex-direction: row;
+
+    .calendar-tab {
+      flex: 1 0 10rem;
+      flex-direction: column;
+      display: flex;
+    }
+  }
+}

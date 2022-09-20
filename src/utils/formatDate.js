@@ -3,6 +3,15 @@ const sanitiseDate = (datetime) => {
     return new Date()
   } else if (typeof datetime === 'string' || typeof datetime === 'number') {
     return new Date(datetime)
+  } else if (datetime instanceof Date) {
+    return datetime
+  } else if (
+    datetime.hasOwnProperty('year') &&
+    datetime.hasOwnProperty('month') &&
+    datetime.hasOwnProperty('date')
+  ) {
+    const { year, month, date } = datetime
+    return new Date(year, month - 1, date)
   }
   return datetime
 }
