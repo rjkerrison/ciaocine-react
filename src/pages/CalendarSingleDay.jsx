@@ -67,7 +67,7 @@ const CalendarSingleDay = () => {
             <li key={calendarDate}>
               View calendar for{' '}
               <Link to={getCalendarRoute({ username, calendarDate })}>
-                {formatAs.date(calendarDate)}
+                {formatAs.weekdayDate(calendarDate)}
               </Link>
               .
             </li>

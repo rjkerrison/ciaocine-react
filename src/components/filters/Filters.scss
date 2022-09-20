@@ -1,52 +1,34 @@
-/* Movies filters */
-.movies-filters {
-  position: absolute;
-  top: 2rem;
-  left: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.125rem;
-  margin: 0.25rem;
-  list-style: none;
-  padding: 0;
-  z-index: 1;
-  align-items: flex-start;
-  flex-direction: row;
-  justify-content: stretch;
-}
-
-.movies-filters.collapsed {
-  display: none;
-}
-
 nav.filters {
   display: grid;
+  gap: 0.125rem;
 
   position: relative;
   z-index: 2;
 
   grid-template-columns: 1fr;
   grid-auto-flow: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
 
   @media screen and (min-width: 900px) {
-    gap: 0.5rem;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 .movies-filters-menu {
   background-color: var(--mid);
   text-align: center;
-  align-self: center;
 
   position: relative;
   padding: 0.5rem;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   @media screen and (min-width: 600px) {
     padding: 1rem;
-    border-radius: 3rem;
   }
   h3 {
     font-size: 1.25rem;

@@ -96,7 +96,7 @@ const SingleDayView = ({ calendarDate, showtimes, username }) => {
   return (
     <div className='calendar-date' key={calendarDate}>
       <Link to={getCalendarRoute({ username, calendarDate })}>
-        <h3 className='calendar-head'>{formatAs.date(calendarDate)}</h3>
+        <h3 className='calendar-head'>{formatAs.weekdayDate(calendarDate)}</h3>
       </Link>
       <div className='movies' style={{ '--row-count': creneaux }}>
         {startingHours.map((hour) => (
