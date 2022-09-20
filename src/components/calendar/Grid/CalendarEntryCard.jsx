@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react'
-import { formatAs } from '../../utils/formatDate'
-import GridColumnPlacer from '../shared/GridColumnPlacer'
+import { formatAs } from '../../../utils/formatDate'
+import GridColumnPlacer from '../../shared/GridColumnPlacer'
 import CalendarMovieSummary from './CalendarMovieSummary'
 
 const CalendarEntryCard = ({ indexOffset = 32, ...showtime }) => {

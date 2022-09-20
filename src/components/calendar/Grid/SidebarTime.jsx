@@ -1,4 +1,4 @@
-import { formatAs } from '../../utils/formatDate'
+import { formatAs } from '../../../utils/formatDate'
 
 import './SidebarTime.scss'
 

@@ -19,8 +19,11 @@
 
     display: none;
 
-    &.selected {
+    &.selected,
+    &:hover {
       display: flex;
+      background-color: var(--contrast);
+      color: var(--dark);
     }
   }
 

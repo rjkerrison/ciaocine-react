@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
-import { formatAs } from '../../utils/formatDate'
-import FloatingButtons from '../shared/FloatingButtons'
-import MovieSummary from '../movies/MovieSummary'
-import AddToCalendar from './AddToCalendar'
+import { formatAs } from '../../../utils/formatDate'
+import FloatingButtons from '../../shared/FloatingButtons'
+import MovieSummary from '../../movies/MovieSummary'
+import AddToCalendar from '../AddToCalendar'
 import ConcurrencyExclusionButton from './ConcurrencyExclusionButton'
 import './CalendarMovieSummary.scss'
 

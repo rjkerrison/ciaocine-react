@@ -36,27 +36,8 @@
   transform: rotateX(1turn);
 }
 
-.calendar .movies {
-  grid-area: shows;
-  display: flex;
-  flex-direction: column;
-  row-gap: 0.25rem;
-  max-width: 100%;
-}
-
 @media screen and (min-width: 600px) {
   .calendar-date {
     justify-items: center;
-  }
-
-  .calendar-date .movies {
-    display: grid;
-    overflow-x: scroll;
-    /* default can be overriden by JS */
-    --row-count: 96;
-    grid-template: repeat(var(--row-count), 2.5rem) / auto;
-    grid-auto-columns: auto;
-    column-gap: 0.5rem;
-    row-gap: 0.5rem;
   }
 }

@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { CalendarContext } from '../../context/CalendarContext'
-import { ToastContext } from '../../context/ToastContext'
-import { formatAs } from '../../utils/formatDate'
-import Authenticated from '../shared/Authenticated'
-import Button from '../shared/Button'
+import { CalendarContext } from '../../../context/CalendarContext'
+import { ToastContext } from '../../../context/ToastContext'
+import { formatAs } from '../../../utils/formatDate'
+import Authenticated from '../../shared/Authenticated'
+import Button from '../../shared/Button'
 
 const ConcurrencyExclusionButton = ({ _id, movie, startTime }) => {
   const { toast } = useContext(ToastContext)
