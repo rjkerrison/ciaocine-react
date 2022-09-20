@@ -64,7 +64,9 @@
   @media screen and (min-width: 600px) {
     display: grid;
     grid-template:
-      'poster heading' 5rem
+      // sometimes the name of a film is exceptionally long, so allow for that
+
+      'poster heading' minmax(5rem, min-content)
       'poster showtimes' auto
       'actions showtimes' 1fr
       / 7rem 1fr;
