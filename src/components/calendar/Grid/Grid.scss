@@ -9,8 +9,16 @@
     overflow-x: scroll;
     /* default can be overriden by JS */
     --row-count: 96;
-    grid-template: repeat(var(--row-count), 2.5rem) / min-content;
     grid-auto-columns: min-content;
+
+    grid-template-rows: repeat(var(--row-count), 2.5rem);
+    grid-template-columns: auto;
+
+    &.column {
+      grid-template-columns: repeat(var(--row-count), 2.5rem);
+      grid-template-rows: auto;
+    }
+
     column-gap: 0.5rem;
     row-gap: 0.5rem;
     padding: 1rem;
