@@ -8,19 +8,20 @@
     display: grid;
     overflow-x: scroll;
     /* default can be overriden by JS */
-    --row-count: 96;
-    grid-auto-columns: min-content;
+    --creneaux-count: 96;
 
-    grid-template-rows: repeat(var(--row-count), 2.5rem);
     grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-auto-flow: dense;
 
     &.column {
-      grid-template-columns: repeat(var(--row-count), 2.5rem);
-      grid-template-rows: auto;
+      grid-template-columns: repeat(var(--creneaux-count), 2.5rem);
+    }
+    &.row {
+      grid-template-rows: repeat(var(--creneaux-count), 2.5rem);
     }
 
-    column-gap: 0.5rem;
-    row-gap: 0.5rem;
     padding: 1rem;
+    gap: 0.5rem;
   }
 }

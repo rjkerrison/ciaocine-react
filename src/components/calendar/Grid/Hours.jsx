@@ -7,6 +7,7 @@ const Hours = ({ startingHours, indexOffset }) => {
       key={hour}
       time={hour}
       gridRowStart={(formatAs.fifteenMinuteIndex(hour) - indexOffset + 96) % 96}
+      endSpan={(4 - formatAs.fifteenMinuteIndex(hour)) % 4 || 4}
     />
   ))
 }

@@ -1,11 +1,25 @@
 .sidebar-time {
   display: none;
-  grid-column: 1;
+
   color: white;
   border-top: 1px solid white;
+  border-left: 1px solid white;
   padding: 0.25rem;
+  grid-row: auto;
+  grid-column: auto;
+  text-align: left;
 
   @media screen and (min-width: 600px) {
     display: block;
+  }
+}
+
+$orientations: row, column;
+
+@each $orientation in $orientations {
+  .#{$orientation} {
+    .sidebar-time {
+      grid-#{$orientation}: var(--start) / span var(--endSpan);
+    }
   }
 }

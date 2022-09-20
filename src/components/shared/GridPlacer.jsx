@@ -1,9 +1,9 @@
 import './GridPlacer.scss'
 
-const GridPlacer = ({ children, start, endSpan, orientation = 'column' }) => {
+const GridPlacer = ({ children, start, endSpan }) => {
   return (
     <div
-      className={`grid-${orientation}-placer`}
+      className={`grid-placer`}
       style={{
         '--start': start,
         '--endSpan': endSpan,

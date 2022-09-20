@@ -12,9 +12,9 @@
   grid-template: auto auto auto/ auto 1fr;
   grid-template-areas: 'poster heading' 'poster actions' 'showtimes showtimes';
 
-  &.vertical {
-    grid-template-areas: 'poster heading' 'poster actions' 'poster showtimes';
-  }
+  // &.vertical {
+  //   grid-template-areas: 'poster heading' 'poster actions' 'poster showtimes';
+  // }
 
   .movie-heading,
   .poster,
@@ -76,13 +76,13 @@
       max-width: 10rem;
     }
 
-    &.vertical {
-      grid-template:
-        'poster actions' auto
-        'heading heading' auto
-        'showtimes showtimes' auto
-        /
-        8rem 6rem;
-    }
+    // &.vertical {
+    //   grid-template:
+    //     'poster actions' auto
+    //     'heading heading' auto
+    //     'showtimes showtimes' auto
+    //     /
+    //     8rem 6rem;
+    // }
   }
 }

@@ -7,9 +7,11 @@ $orientations: row, column;
 
 @each $orientation in $orientations {
   @media screen and (min-width: 600px) {
-    .grid-#{$orientation}-placer {
-      grid-#{$orientation}-start: var(--start);
-      grid-#{$orientation}-end: span var(--endSpan);
+    .#{$orientation} {
+      .grid-placer {
+        grid-#{$orientation}-start: var(--start);
+        grid-#{$orientation}-end: span var(--endSpan);
+      }
     }
   }
 }
