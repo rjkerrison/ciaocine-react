@@ -29,9 +29,7 @@ const SingleDay = ({ year, month, date }) => {
   )
 
   const calendar = calendarDay ? (
-    <div className='calendar'>
-      <SingleDayView {...calendarDay} />
-    </div>
+    <SingleDayView {...calendarDay} />
   ) : (
     <p>
       You don't appear to have any saved screenings. Use the{' '}
