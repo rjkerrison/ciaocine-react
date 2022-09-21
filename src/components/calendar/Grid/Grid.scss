@@ -1,3 +1,10 @@
+.orientation-switch {
+  display: none;
+  @media screen and (min-width: 600px) {
+    display: flex;
+  }
+}
+
 .CalendarGrid {
   display: flex;
   flex-direction: column;
@@ -28,7 +35,7 @@
     grid-template-rows: auto;
     grid-auto-flow: dense;
 
-    &.column {
+    &.row {
       grid-template-columns: repeat(var(--creneaux-count), 2.5rem);
 
       // We override the movie summary layout for the Calendar Grid
@@ -45,7 +52,7 @@
         }
       }
     }
-    &.row {
+    &.column {
       grid-template-rows: repeat(var(--creneaux-count), 2.5rem);
 
       // We override the movie summary layout for the Calendar Grid
