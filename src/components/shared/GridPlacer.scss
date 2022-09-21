@@ -3,14 +3,14 @@
   --endSpan: auto;
 }
 
-$orientations: row, column;
+$orientations: row column, column row;
 
-@each $orientation in $orientations {
+@each $mainAxis, $crossAxis in $orientations {
   @media screen and (min-width: 600px) {
-    .#{$orientation} {
+    .#{$mainAxis} {
       .grid-placer {
-        grid-#{$orientation}-start: var(--start);
-        grid-#{$orientation}-end: span max(var(--endSpan), 6);
+        grid-#{$crossAxis}-start: var(--start);
+        grid-#{$crossAxis}-end: span max(var(--endSpan), 6);
       }
     }
   }

@@ -14,12 +14,12 @@
   }
 }
 
-$orientations: row, column;
+$orientations: row column, column row;
 
-@each $orientation in $orientations {
-  .#{$orientation} {
+@each $mainAxis, $crossAxis in $orientations {
+  .#{$mainAxis} {
     .sidebar-time {
-      grid-#{$orientation}: var(--start) / span var(--endSpan);
+      grid-#{$crossAxis}: var(--start) / span var(--endSpan);
     }
   }
 }

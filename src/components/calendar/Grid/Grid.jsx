@@ -7,6 +7,7 @@ import './Grid.scss'
 import Hours from './Hours'
 import Showtimes from './Showtimes'
 import { useCallback } from 'react'
+import Button from '../../shared/Button'
 
 const Grid = ({ showtimes }) => {
   const { earliestStart, latestFinish, creneaux } = useMemo(() => {
@@ -49,14 +50,18 @@ const Grid = ({ showtimes }) => {
   )
 
   return (
-    <div
-      className={`CalendarGrid ${orientation}`}
-      style={{ '--creneaux-count': creneaux }}
-      onClick={toggleOrientation}
-    >
-      <Hours {...{ startingHours, indexOffset }} />
-      <Showtimes {...{ showtimes, indexOffset }} />
-    </div>
+    <>
+      <div className='orientation-switch'>
+        <Button onClick={toggleOrientation}>{orientation}</Button>
+      </div>
+      <div
+        className={`CalendarGrid ${orientation}`}
+        style={{ '--creneaux-count': creneaux }}
+      >
+        <Hours {...{ startingHours, indexOffset }} />
+        <Showtimes {...{ showtimes, indexOffset }} />
+      </div>
+    </>
   )
 }
 
