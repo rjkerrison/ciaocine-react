@@ -22,7 +22,7 @@ const CalendarEntryCard = ({ indexOffset = 32, ...showtime }) => {
 
   return (
     <>
-      <GridPlacer orientation='column' start={index} endSpan={length}>
+      <GridPlacer start={index} endSpan={length}>
         <CalendarMovieSummary {...showtime} />
       </GridPlacer>
     </>
