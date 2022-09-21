@@ -1,6 +1,13 @@
 import convertToSlug from './utils/convertToSlug'
 
-const ExternalLinks = ({ originalTitle, title, allocineId }) => {
+const ExternalLinks = ({
+  originalTitle,
+  title,
+  allocineId,
+  externalIdentifiers,
+}) => {
+  const slug = externalIdentifiers?.letterboxd?.slug
+
   return (
     <>
       <a
@@ -14,9 +21,9 @@ const ExternalLinks = ({ originalTitle, title, allocineId }) => {
 
       <a
         className='action'
-        href={`https://letterboxd.com/film/${convertToSlug(
-          originalTitle || title
-        )}`}
+        href={`https://letterboxd.com/film/${
+          slug || convertToSlug(originalTitle || title)
+        }`}
         target='_blank'
         rel='noreferrer'
       >

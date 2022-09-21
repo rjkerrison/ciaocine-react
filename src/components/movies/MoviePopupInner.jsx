@@ -30,14 +30,14 @@ const MoviePopupInner = () => {
     <div
       onClick={(e) => e.stopPropagation()}
       style={{
-        '--backdrop-path': `url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${movieInfo.extra.backdrop_path})`,
+        '--backdrop-path': `url(${movieInfo.images.backdrop})`,
       }}
       className='movie-popup-inner popup-inner'
     >
       <h2>{movieInfo.extra.original_title}</h2>
       <p>{movieInfo.extra.overview}</p>
       <p>{movieInfo.extra.vote_average} / 10 on TMDB</p>
-      <p>Released {formatAs.date(movieInfo.extra.release_date)}</p>
+      <p>Released {formatAs.date(movieInfo.releaseDate)}</p>
       <p>Runtime: {movieInfo.extra.runtime} minutes</p>
       <Crew crew={movieInfo.extra.crew} />
       <Cast cast={movieInfo.extra.cast} />
