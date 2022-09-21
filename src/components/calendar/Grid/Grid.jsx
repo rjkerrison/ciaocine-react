@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { summariseShowtimes } from './utils'
 import { formatAs } from '../../../utils/formatDate'
 
@@ -6,11 +6,24 @@ import './Grid.scss'
 
 import Hours from './Hours'
 import Showtimes from './Showtimes'
+import { useCallback } from 'react'
 
 const Grid = ({ showtimes }) => {
   const { earliestStart, latestFinish, creneaux } = useMemo(() => {
     return summariseShowtimes(showtimes)
   }, [showtimes])
+  const [orientation, setOrientation] = useState('column')
+  const toggleOrientation = useCallback(() => {
+    switch (orientation) {
+      case 'row':
+        setOrientation('column')
+        return
+      case 'column':
+      default:
+        setOrientation('row')
+        return
+    }
+  }, [orientation])
 
   const startingHours = useMemo(() => {
     const startTime = new Date(earliestStart)
@@ -37,8 +50,9 @@ const Grid = ({ showtimes }) => {
 
   return (
     <div
-      className='CalendarGrid column'
+      className={`CalendarGrid ${orientation}`}
       style={{ '--creneaux-count': creneaux }}
+      onClick={toggleOrientation}
     >
       <Hours {...{ startingHours, indexOffset }} />
       <Showtimes {...{ showtimes, indexOffset }} />

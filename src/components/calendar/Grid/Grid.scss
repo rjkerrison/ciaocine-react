@@ -2,7 +2,20 @@
   display: flex;
   flex-direction: column;
   row-gap: 0.25rem;
+  padding: 0.75rem 0.5rem 0.25rem;
   max-width: 100%;
+
+  .movie-summary {
+    grid-template:
+      'poster heading heading' auto
+      'poster actions showtimes' auto
+      /
+      6rem min-content 1fr;
+
+    .poster {
+      align-self: center;
+    }
+  }
 
   @media screen and (min-width: 600px) {
     display: grid;
@@ -10,15 +23,41 @@
     /* default can be overriden by JS */
     --creneaux-count: 96;
 
-    grid-template-columns: auto;
+    grid-template-columns: min-content;
+    grid-auto-columns: min-content;
     grid-template-rows: auto;
     grid-auto-flow: dense;
 
     &.column {
       grid-template-columns: repeat(var(--creneaux-count), 2.5rem);
+
+      // We override the movie summary layout for the Calendar Grid
+      .movie-summary {
+        grid-template:
+          'poster heading' auto
+          'poster actions' auto
+          'poster showtimes' auto
+          /
+          6rem 1fr;
+
+        .poster {
+          align-self: center;
+        }
+      }
     }
     &.row {
       grid-template-rows: repeat(var(--creneaux-count), 2.5rem);
+
+      // We override the movie summary layout for the Calendar Grid
+      .movie-summary {
+        grid-template:
+          'heading' minmax(2rem, min-content)
+          'poster' auto
+          'actions' auto
+          'showtimes' auto
+          /
+          8rem;
+      }
     }
 
     padding: 1rem;

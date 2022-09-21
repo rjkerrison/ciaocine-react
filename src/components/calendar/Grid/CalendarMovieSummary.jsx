@@ -10,7 +10,7 @@ const CalendarMovieSummary = ({ movie, startTime, cinema, _id }) => {
   const endTime = new Date(startTime) - 0 + (movie.runtime || 7200) * 1000
 
   return (
-    <MovieSummary classes={['vertical']} movie={{ ...movie }}>
+    <MovieSummary movie={{ ...movie }}>
       {({ Actions, Showtimes }) => {
         return (
           <>
