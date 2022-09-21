@@ -8,12 +8,25 @@ import './CalendarDayChooser.scss'
 const CalendarDayChooser = ({ calendarByDay, year, month, date, username }) => {
   const [isOpen, setIsOpen] = useState(false)
 
+  const calendarDayCollection = [...calendarByDay]
+  if (
+    !calendarByDay.some(({ calendarDate }) =>
+      areSameDay(calendarDate, { year, month, date })
+    )
+  ) {
+    // We need to have the selected date displayed even if it has no showtimes
+    calendarDayCollection.push({
+      calendarDate: { year, month, date },
+      showtimes: [],
+    })
+  }
+
   return (
     <div
       className={['calendar-tabs', isOpen ? 'open' : ''].join(' ')}
       onClick={() => setIsOpen((o) => !o)}
     >
-      {calendarByDay.map(({ calendarDate, showtimes }, index) => (
+      {calendarDayCollection.map(({ calendarDate, showtimes }) => (
         <Link
           key={formatAs.date(calendarDate)}
           className={[
