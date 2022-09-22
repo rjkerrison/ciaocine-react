@@ -25,6 +25,10 @@
       background-color: var(--contrast);
       color: var(--dark);
     }
+
+    p {
+      margin: 0;
+    }
   }
 
   &.open {

@@ -2,9 +2,23 @@
   p {
     margin: 0;
     font-size: 0.75rem;
+
+    .year {
+      color: var(--contrast);
+    }
   }
   h3 {
     font-size: 1.125rem;
     word-break: break-word;
+    padding: 0 0.25rem;
+
+    span {
+      display: block;
+    }
+
+    .alternative-title {
+      color: var(--contrast);
+      font-size: 1rem;
+    }
   }
 }
