@@ -14,6 +14,7 @@ const MovieActions = ({ title, slug }) => {
 
   const actions = [
     {
+      key: 'watches',
       isActive: metadata.watches.includes(slug),
       label: <Icon src={CatIcon} />,
       onClick: () => {
@@ -23,6 +24,7 @@ const MovieActions = ({ title, slug }) => {
       },
     },
     {
+      key: 'dismisses',
       isActive: metadata.dismisses.includes(slug),
       label: <Icon src={BinIcon} />,
       onClick: () => {
@@ -35,6 +37,7 @@ const MovieActions = ({ title, slug }) => {
       },
     },
     {
+      key: 'wants',
       isActive: metadata.wants.includes(slug),
       label: <Icon src={GauntletIcon} />,
       onClick: () => {
@@ -48,7 +51,7 @@ const MovieActions = ({ title, slug }) => {
   return (
     <>
       {actions.map((action) => {
-        return <Button key={action.label} classes={['action']} {...action} />
+        return <Button key={action.key} classes={['action']} {...action} />
       })}
     </>
   )

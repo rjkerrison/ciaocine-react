@@ -15,9 +15,12 @@ const MovieHeading = ({
   releaseDate,
   externalIdentifiers,
 }) => {
-  const posterToShow = useMemo(
-    () => stripProtocol(images?.poster ?? poster),
-    [images?.poster, poster]
+  const posters = useMemo(
+    () =>
+      [images?.poster, poster, images?.backdrop]
+        .filter((x) => x)
+        .map(stripProtocol),
+    [images, poster]
   )
 
   const secondTitle = externalIdentifiers?.tmdb?.title || originalTitle
@@ -41,11 +44,14 @@ const MovieHeading = ({
         </PopupLink>
       </div>
 
-      <picture className='poster' title={title}>
-        <PopupLink to={`/movies/${slug}`}>
-          <img src={posterToShow} alt={title} />
-        </PopupLink>
-      </picture>
+      <PopupLink to={`/movies/${slug}`}>
+        <picture className='poster' title={title}>
+          {posters.map((poster) => (
+            <source key={poster} srcSet={poster} />
+          ))}
+          <img src={posters[0]} alt={title} />
+        </picture>
+      </PopupLink>
     </>
   )
 }
