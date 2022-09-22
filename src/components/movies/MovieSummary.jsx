@@ -3,7 +3,6 @@ import { MetadataContext } from '../../context/MetadataContext'
 import './MovieSummary.scss'
 
 import MovieHeading from '../MovieHeading'
-import Actions from './Actions'
 
 const MovieSummary = ({
   classes: propsClasses = [],
@@ -35,11 +34,7 @@ const MovieSummary = ({
       }}
     >
       <MovieHeading {...movie} />
-      {children &&
-        children({
-          Actions: (props) => <Actions {...props} movie={movie} />,
-          Showtimes: (props) => <div className='showtimes' {...props} />,
-        })}
+      {children}
     </div>
   )
 }
