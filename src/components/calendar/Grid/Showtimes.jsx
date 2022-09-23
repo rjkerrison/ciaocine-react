@@ -7,7 +7,7 @@ const Showtimes = ({ showtimes, indexOffset }) => {
   const { selectedShowtimeIds } = useContext(CalendarContext)
 
   const filteredShowtimes = useMemo(() => {
-    return showtimes.filter((showtime) => {
+    return showtimes?.filter((showtime) => {
       if (selectedShowtimeIds.includes(showtime._id)) {
         return true
       }

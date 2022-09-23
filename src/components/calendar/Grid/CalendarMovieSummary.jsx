@@ -6,7 +6,7 @@ import AddToCalendar from '../AddToCalendar'
 import ConcurrencyExclusionButton from './ConcurrencyExclusionButton'
 import './CalendarMovieSummary.scss'
 import Actions from '../../movies/Actions'
-import Showtimes from './Showtimes'
+import Showtimes from '../../movies/Showtimes'
 
 const CalendarMovieSummary = ({ movie, startTime, cinema, _id }) => {
   const endTime = new Date(startTime) - 0 + (movie.runtime || 7200) * 1000
