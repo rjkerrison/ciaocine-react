@@ -44,14 +44,16 @@ const MovieHeading = ({
         </PopupLink>
       </div>
 
-      <PopupLink to={`/movies/${slug}`}>
-        <picture className='poster' title={title}>
-          {posters.map((poster) => (
-            <source key={poster} srcSet={poster} />
-          ))}
-          <img src={posters[0]} alt={title} />
-        </picture>
-      </PopupLink>
+      <div className='poster'>
+        <PopupLink to={`/movies/${slug}`}>
+          <picture title={title}>
+            {posters.map((poster) => (
+              <source key={poster} srcSet={poster} />
+            ))}
+            <img src={posters[0]} alt={title} />
+          </picture>
+        </PopupLink>
+      </div>
     </>
   )
 }
