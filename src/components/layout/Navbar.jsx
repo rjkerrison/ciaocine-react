@@ -34,7 +34,7 @@ const Navbar = ({ toggleOpen, open }) => {
       id='main-nav'
     >
       <nav aria-label='main navigation'>
-        <Link to='/movies'>Movies</Link>
+        <Link to='/movies/top'>Movies</Link>
         <Link to='/cinemas'>Cinemas</Link>
         <Link to='/showtimes'>Showtimes</Link>
       </nav>
