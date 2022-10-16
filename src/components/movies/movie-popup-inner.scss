@@ -4,23 +4,27 @@ $baseDark: hsl(251, 28%, 15%);
 
 .movie-popup-inner {
   position: relative;
-  --cutoff: 20rem;
-  padding: calc(var(--cutoff) - 1em) 0 1rem;
+  --cutoff: 15rem;
+  --cutoff-overlap: 10rem;
+  padding: 0 1rem;
+  &.has-background {
+    padding: calc(var(--cutoff) - var(--cutoff-overlap)) 0 1rem;
+  }
   color: var(--text);
 
   .background {
     position: absolute;
     top: 0;
-    left: 0;
-    background-position: top center, center center, top center;
-    background-image: var(--backdrop-path);
-
-    background-blend-mode: normal;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: var(--dark);
-    background-position: top center, center center, center center;
+    background-image: var(--backdrop-path);
+    background-blend-mode: normal;
+    background-position: top center;
     background-repeat: no-repeat;
-    background-size: contain var(--cutoff);
+    background-size: cover;
     height: var(--cutoff);
+    max-width: 60rem;
     width: 100%;
     z-index: -1;
 
@@ -59,24 +63,63 @@ $baseDark: hsl(251, 28%, 15%);
     }
   }
 
+  display: grid;
+  grid-template:
+    'sidebar' auto
+    'header' auto
+    'main' 1fr /
+    100%;
+  align-content: center;
+  justify-items: center;
+
+  @media screen and (min-width: 30rem) {
+    grid-template:
+      'sidebar header' auto
+      'sidebar main' 1fr /
+      10rem 1fr;
+    --cutoff: 25rem;
+    --cutoff-overlap: 3rem;
+  }
+
+  max-width: 60rem;
+  width: 100%;
+  margin: 0 auto;
+
   header {
-    display: flex;
-    padding: 1rem;
-    gap: 1rem;
+    grid-area: header;
+
+    padding: 0 1rem;
+
     font-size: 1.5rem;
     align-items: baseline;
+    flex-wrap: wrap;
 
     h1 {
       font-size: 2.5rem;
-      text-align: center;
+      text-align: left;
     }
     h1,
     p {
+      display: inline;
       margin: 0;
+      margin-right: 0.75rem;
     }
   }
 
   main {
+    grid-area: main;
     padding: 1rem;
+
+    section {
+      margin-bottom: 1rem;
+      h2 {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  aside {
+    grid-area: sidebar;
+    max-width: 10rem;
   }
 }

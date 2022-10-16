@@ -2,14 +2,14 @@ import service from './service'
 
 export const getMovieData = async (movieId) => {
   const {
-    data: { movie, tmdbInfo, showtimes },
+    data: { movie, tmdbInfo },
   } = await service.request({
     url: `/movies/${movieId}/`,
     query: {
       limit: 25,
     },
   })
-  return { ...movie, extra: tmdbInfo[0], showtimes }
+  return { ...movie, extra: tmdbInfo[0] }
 }
 
 export const searchMovies = async (searchTerm) => {

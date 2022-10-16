@@ -4,6 +4,7 @@ import { stripProtocol } from '../utils/urls'
 import { formatAs } from '../utils/formatDate'
 
 import './MovieHeading.scss'
+import Poster from './movies/Poster'
 
 const MovieHeading = ({
   title,
@@ -50,12 +51,7 @@ const MovieHeading = ({
 
       <div className='poster'>
         <Link to={`/movies/${slug}`}>
-          <picture title={title}>
-            {posters.map((poster) => (
-              <source key={poster} srcSet={poster} />
-            ))}
-            <img src={posters[0]} alt={title} />
-          </picture>
+          <Poster title={title} posters={posters} />
         </Link>
       </div>
     </>
