@@ -1,10 +1,4 @@
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import Index from './pages/Index'
 import Cinemas from './pages/Cinemas'
 import Showtimes from './pages/Showtimes'
