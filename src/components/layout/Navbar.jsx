@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import PopupLink from '../shared/PopupLink'
@@ -34,7 +34,7 @@ const Navbar = ({ toggleOpen, open }) => {
       id='main-nav'
     >
       <nav aria-label='main navigation'>
-        <Link to='/'>Home</Link>
+        <Link to='/movies'>Movies</Link>
         <Link to='/cinemas'>Cinemas</Link>
         <Link to='/showtimes'>Showtimes</Link>
       </nav>

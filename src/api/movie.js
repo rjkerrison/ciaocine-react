@@ -20,3 +20,12 @@ export const searchMovies = async (searchTerm) => {
   })
   return movies
 }
+
+export const getTopMovies = async () => {
+  const {
+    data: { movies },
+  } = await service.request({
+    url: `/movies/top/by/released`,
+  })
+  return movies
+}

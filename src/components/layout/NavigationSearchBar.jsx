@@ -27,7 +27,7 @@ const NavigationSearchBar = ({ toggleOpen }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     navigate({
-      pathname: '/search/movies',
+      pathname: '/movies/search',
       search: createSearchParams({ ...searchParams, q: query }).toString(),
     })
     toggleOpen?.()

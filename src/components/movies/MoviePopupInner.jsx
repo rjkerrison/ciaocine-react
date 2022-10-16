@@ -29,18 +29,29 @@ const MoviePopupInner = () => {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      style={{
-        '--backdrop-path': `url(${movieInfo.images.backdrop})`,
-      }}
       className='movie-popup-inner popup-inner'
     >
-      <h2>{movieInfo.extra.original_title}</h2>
-      <p>{movieInfo.extra.overview}</p>
-      <p>{movieInfo.extra.vote_average} / 10 on TMDB</p>
-      <p>Released {formatAs.date(movieInfo.releaseDate)}</p>
-      <p>Runtime: {movieInfo.extra.runtime} minutes</p>
-      <Crew crew={movieInfo.extra.crew} />
-      <Cast cast={movieInfo.extra.cast} />
+      <div
+        className='background'
+        style={{
+          '--backdrop-path': `url(${movieInfo.images.backdrop})`,
+        }}
+      ></div>
+      <header>
+        <h1>{movieInfo.extra.original_title}</h1>
+        <p>{formatAs.yearMonthDate(movieInfo.releaseDate)?.year}</p>
+        <p>Directed by {movieInfo?.castingShort?.directors}</p>
+      </header>
+      <main>
+        <p>{movieInfo.extra.overview}</p>
+        {movieInfo.extra.vote_average && (
+          <p>{movieInfo.extra.vote_average.toFixed(2)} / 10 on TMDB</p>
+        )}
+        <p>Released {formatAs.date(movieInfo.releaseDate)}</p>
+        <p>Runtime: {movieInfo.extra.runtime} minutes</p>
+        <Crew crew={movieInfo.extra.crew} />
+        <Cast cast={movieInfo.extra.cast} />
+      </main>
     </div>
   )
 }

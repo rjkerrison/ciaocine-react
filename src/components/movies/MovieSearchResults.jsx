@@ -4,13 +4,14 @@ import './MovieSearchResults.scss'
 
 import MovieCard from './MovieCard'
 
-const MovieSearchResults = ({ movies, query }) => {
+const MovieSearchResults = ({ movies, query, sortFunction }) => {
   const sortedMovies = useMemo(
     () =>
       [...movies].sort(
-        (a, b) => (b.showtimes?.length ?? 0) - (a.showtimes?.length ?? 0)
+        sortFunction ||
+          ((a, b) => (b.showtimes?.length ?? 0) - (a.showtimes?.length ?? 0))
       ),
-    [movies]
+    [movies, sortFunction]
   )
 
   if (!movies || movies.length === 0) {

@@ -1,9 +1,9 @@
-import PopupLink from './shared/PopupLink'
+import { useMemo } from 'react'
+import { Link } from 'react-router-dom'
 import { stripProtocol } from '../utils/urls'
 import { formatAs } from '../utils/formatDate'
 
 import './MovieHeading.scss'
-import { useMemo } from 'react'
 
 const MovieHeading = ({
   title,
@@ -28,7 +28,7 @@ const MovieHeading = ({
   return (
     <>
       <div className='movie-heading'>
-        <PopupLink to={`/movies/${slug}`}>
+        <Link to={`/movies/${slug}`}>
           <h3>
             <span>{title}</span>
             {secondTitle && secondTitle !== title && (
@@ -45,18 +45,18 @@ const MovieHeading = ({
               </span>
             )}
           </p>
-        </PopupLink>
+        </Link>
       </div>
 
       <div className='poster'>
-        <PopupLink to={`/movies/${slug}`}>
+        <Link to={`/movies/${slug}`}>
           <picture title={title}>
             {posters.map((poster) => (
               <source key={poster} srcSet={poster} />
             ))}
             <img src={posters[0]} alt={title} />
           </picture>
-        </PopupLink>
+        </Link>
       </div>
     </>
   )

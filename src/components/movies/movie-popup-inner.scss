@@ -1,23 +1,82 @@
+@use 'sass:color';
+
+$baseDark: hsl(251, 28%, 15%);
+
 .movie-popup-inner {
-  padding: 1rem;
   position: relative;
+  --cutoff: 20rem;
+  padding: calc(var(--cutoff) - 1em) 0 1rem;
+  color: var(--text);
 
-  color: var(--dark);
-  background-blend-mode: normal;
-  background-color: white;
-  background-position: top center, center center, center center;
-  background-repeat: no-repeat;
-  background-size: 100%, auto auto, cover;
-  background-image: linear-gradient(
-      var(--light) -10%,
-      #ffffff10 10%,
-      #f04e4e10 90%,
-      var(--light) 110%
-    ),
-    radial-gradient(transparent, #fffa 0% 30%, #000a 100% 100%),
-    var(--backdrop-path);
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-position: top center, center center, top center;
+    background-image: var(--backdrop-path);
 
-  h2 {
-    text-align: center;
+    background-blend-mode: normal;
+    background-color: var(--dark);
+    background-position: top center, center center, center center;
+    background-repeat: no-repeat;
+    background-size: contain var(--cutoff);
+    height: var(--cutoff);
+    width: 100%;
+    z-index: -1;
+
+    &::before {
+      background-image: linear-gradient(
+          90deg,
+          var(--dark) 0,
+          color.change($baseDark, $alpha: 0.75) 1%,
+          color.change($baseDark, $alpha: 0.5) 2%,
+          color.change($baseDark, $alpha: 0) 5%,
+          color.change($baseDark, $alpha: 0) 95%,
+          color.change($baseDark, $alpha: 0.5) 98%,
+          color.change($baseDark, $alpha: 0.75) 99%,
+          var(--dark) 100%
+        ),
+        linear-gradient(
+          0deg,
+          var(--dark) 0,
+          color.change($baseDark, $alpha: 0.9) 5%,
+          color.change($baseDark, $alpha: 0.8) 10%,
+          color.change($baseDark, $alpha: 0.5) 15%,
+          color.change($baseDark, $alpha: 0) 25%,
+          color.change($baseDark, $alpha: 0) 95%,
+          color.change($baseDark, $alpha: 0.5) 98%,
+          color.change($baseDark, $alpha: 0.75) 100%
+        );
+      background-repeat: no-repeat;
+      content: '';
+      display: block;
+      height: var(--cutoff);
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 0;
+    }
+  }
+
+  header {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    font-size: 1.5rem;
+    align-items: baseline;
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+    }
+    h1,
+    p {
+      margin: 0;
+    }
+  }
+
+  main {
+    padding: 1rem;
   }
 }

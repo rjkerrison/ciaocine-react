@@ -18,6 +18,7 @@ import Cinema from './pages/Cinema'
 import NearbySoon from './pages/NearbySoon'
 import Movies from './pages/Movies'
 import NotFound from './pages/NotFound'
+import MoviesTop from './pages/MoviesTop'
 
 function App() {
   const location = useLocation()
@@ -49,21 +50,9 @@ function App() {
               />
             </Route>
           </Route>
-          <Route path='/search/movies' index element={<Movies />} />
-          <Route
-            path='/movies/:movieId'
-            element={
-              <Navigate
-                state={{
-                  backgroundLocation: {
-                    pathname: '/showtimes',
-                    search: location.search,
-                  },
-                }}
-                to={location}
-              />
-            }
-          />
+          <Route path='/movies/search' index element={<Movies />} />
+          <Route path='/movies/top' element={<MoviesTop />} />
+          <Route path='/movies/:movieId' element={<MoviePopupInner />} />
           <Route path='/showtimes' element={<Showtimes />}>
             <Route path=':year/:month/:date' />
           </Route>
