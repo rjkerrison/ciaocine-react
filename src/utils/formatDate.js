@@ -19,8 +19,11 @@ const sanitiseDate = (datetime) => {
 const formatDate = (datetime, targetFormat) => {
   datetime = sanitiseDate(datetime)
   try {
-    let { format } = Intl.DateTimeFormat('fr-FR', targetFormat)
-    return format(datetime, { timeZone: 'Europe/Paris' })
+    const { format } = Intl.DateTimeFormat('fr-FR', {
+      ...targetFormat,
+      timeZone: 'Europe/Paris',
+    })
+    return format(datetime)
   } catch (error) {
     console.error('uhohohohoh', datetime, targetFormat)
     return datetime
