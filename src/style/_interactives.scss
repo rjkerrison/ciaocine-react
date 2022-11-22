@@ -25,7 +25,7 @@
   }
 
   &:hover {
-    background-color: var(--contrast);
+    background-color: var(--button-hover-background);
     border: none;
   }
 
@@ -46,7 +46,7 @@
 }
 
 @mixin buttonHoverState {
-  transform: translateY(-0.125rem);
+  transform: translateY(-0.0625rem);
   box-shadow: 0rem 0.75rem 0.5rem -0.25rem var(--button-shadow);
 }
 
@@ -67,7 +67,8 @@ a:hover {
 
 button,
 input[type='button'],
-input[type='submit'] {
+input[type='submit'],
+.action {
   @include buttonColours;
   &:hover {
     @include buttonHoverState;
@@ -83,7 +84,10 @@ button {
   &.loading {
     animation: spin 0.75s infinite;
   }
+}
 
+button,
+.action {
   &.round {
     width: 1.5rem;
     height: 1.5rem;

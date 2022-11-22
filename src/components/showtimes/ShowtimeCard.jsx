@@ -13,12 +13,14 @@ const ShowtimeCard = ({
 }) => {
   return (
     <div className={`showtime-card ${className}`}>
-      <h4>{formatAs.time(startTime)}</h4>
+      <div className='showtime-card-head'>
+        <h4>{formatAs.time(startTime)}</h4>
+        <div className='showtime-card-buttons'>
+          <AddToCalendar {...{ _id, title, startTime, cinema }} />
+        </div>
+      </div>
       {showDate && <p>{formatAs.dateMonth(startTime)}</p>}
       <p className='extra-info'>{cinema.name}</p>
-      <div className='showtime-card-buttons'>
-        <AddToCalendar {...{ _id, title, startTime, cinema }} />
-      </div>
     </div>
   )
 }

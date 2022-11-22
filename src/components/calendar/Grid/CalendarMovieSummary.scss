@@ -2,3 +2,7 @@
   grid-area: time;
   margin: 0;
 }
+
+.actions.calendar {
+  grid-template-columns: repeat(2, auto);
+}

@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { formatAs } from '../../../utils/formatDate'
-import FloatingButtons from '../../shared/FloatingButtons'
 import MovieSummary from '../../movies/MovieSummary'
 import AddToCalendar from '../AddToCalendar'
 import ConcurrencyExclusionButton from './ConcurrencyExclusionButton'
@@ -13,11 +12,9 @@ const CalendarMovieSummary = ({ movie, startTime, cinema, _id }) => {
 
   return (
     <MovieSummary movie={movie}>
-      <Actions movie={movie}>
-        <FloatingButtons>
-          <ConcurrencyExclusionButton {...{ _id, startTime, movie }} />
-          <AddToCalendar {...{ title: movie.title, startTime, cinema, _id }} />
-        </FloatingButtons>
+      <Actions movie={movie} classes={['calendar']}>
+        <ConcurrencyExclusionButton {...{ _id, startTime, movie }} />
+        <AddToCalendar {...{ title: movie.title, startTime, cinema, _id }} />
       </Actions>
       <Showtimes>
         <p className='time'>

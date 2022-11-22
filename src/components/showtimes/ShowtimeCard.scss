@@ -9,6 +9,23 @@
   transition: all 1s;
   border-radius: 0.25rem;
 
+  .showtime-card-head {
+    position: relative;
+    width: 100%;
+
+    .showtime-card-buttons {
+      position: absolute;
+      right: 0.25rem;
+      top: 0.125rem;
+
+      button.round {
+        height: 1.25rem;
+        width: 1.25rem;
+        font-size: 1rem;
+      }
+    }
+  }
+
   .extra-info {
     margin: 0;
     text-overflow: ellipsis;
@@ -46,11 +63,5 @@
   &:hover .overlay,
   &.show-overlay .overlay {
     transform: rotateX(1turn);
-  }
-
-  .showtime-card-buttons {
-    position: absolute;
-    right: -0.25rem;
-    top: -0.25rem;
   }
 }
