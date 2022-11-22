@@ -6,7 +6,6 @@ import './Grid.scss'
 
 import Hours from './Hours'
 import Showtimes from './Showtimes'
-import Button from '../../shared/Button'
 
 const Grid = ({ showtimes }) => {
   const { earliestStart, latestFinish, creneaux } = useMemo(() => {
