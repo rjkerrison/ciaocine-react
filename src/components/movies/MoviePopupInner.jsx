@@ -39,14 +39,14 @@ const MoviePopupInner = () => {
     <div
       onClick={(e) => e.stopPropagation()}
       className={`movie-popup-inner popup-inner ${
-        movieInfo.images.backdrop && 'has-background'
+        movieInfo.images?.backdrop && 'has-background'
       }`}
     >
-      {movieInfo.images.backdrop && (
+      {movieInfo.images?.backdrop && (
         <div
           className='background'
           style={{
-            '--backdrop-path': `url(${movieInfo.images.backdrop})`,
+            '--backdrop-path': `url(${movieInfo.images?.backdrop})`,
           }}
         ></div>
       )}
